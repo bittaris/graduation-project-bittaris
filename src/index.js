@@ -6,13 +6,13 @@ class User {
     password,
     birthDate,
     location,
-    height,
-    weight,
+    height, // in cm
+    weight, // in kg, but the number is a float so XX.XXkg
     currentSymptoms,
     goals,
-    firstDayLastPeriod,
-    usualPeriodLength,
-    usualCycleLength
+    firstDayLastPeriod, // date
+    usualPeriodLength, // in days
+    usualCycleLength // in days
   ) {
     this.username = username
     this.fullName = fullName
