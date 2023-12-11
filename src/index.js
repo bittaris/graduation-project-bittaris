@@ -105,14 +105,16 @@ const Jules = new User(
 )
 
 class Period {
-  constructor(user) {
-    this.user = user
+  constructor(firstDayLastPeriod, usualBleedLength, usualCycleLength) {
+    this.firstDayLastPeriod = firstDayLastPeriod
+    this.usualBleedLength = usualBleedLength
+    this.usualCycleLength = usualCycleLength
 
     this.ovulationPrediction = ovulationPrediction
     // To predict next ovulation: take the first day of the last period, add predicted cycle length and substract 14 days. That is the predicted ovulation day.
     function ovulationPrediction() {
-      let firstDayLastPeriodDate = new Date(this.user.firstDayLastPeriod)
-      firstDayLastPeriodDate.setDate(firstDayLastPeriodDate.getDate() + this.user.usualCycleLength)
+      let firstDayLastPeriodDate = new Date(this.firstDayLastPeriod)
+      firstDayLastPeriodDate.setDate(firstDayLastPeriodDate.getDate() + this.usualCycleLength)
       firstDayLastPeriodDate.setDate(firstDayLastPeriodDate.getDate() - 14)
       return firstDayLastPeriodDate.toLocaleDateString('en-GB')
     }
@@ -146,20 +148,17 @@ class Period {
   }
 }
 
-const julesPeriod = new Period(Jules)
+const julesPeriod = new Period(Jules.firstDayLastPeriod, Jules.usualBleedLength, Jules.usualCycleLength)
+console.log('Jules predicted ovulation should be: 23/11/2023. Test is returning: ' + julesPeriod.ovulationPrediction())
+
+const hannahPeriod = new Period(Hannah.firstDayLastPeriod, Hannah.usualBleedLength, Hannah.usualCycleLength)
 console.log(
-  'Jules predicted ovulation should be: 23/11/2023. Test is returning: ' + julesPeriod.ovulationPrediction(Jules)
+  'Hannahs predicted ovulation should be: 30/11/2023. Test is returning: ' + hannahPeriod.ovulationPrediction()
 )
 
-const hannahPeriod = new Period(Hannah)
+const penelopePeriod = new Period(Penelope.firstDayLastPeriod, Penelope.usualBleedLength, Penelope.usualCycleLength)
 console.log(
-  'Hannahs predicted ovulation should be: 30/11/2023. Test is returning: ' + hannahPeriod.ovulationPrediction(Hannah)
-)
-
-const penelopePeriod = new Period(Penelope)
-console.log(
-  'Penelope predicted ovulation should be: 13/12/2023. Test is returning: ' +
-    penelopePeriod.ovulationPrediction(Penelope)
+  'Penelope predicted ovulation should be: 13/12/2023. Test is returning: ' + penelopePeriod.ovulationPrediction()
 )
 
 // Future stuff to implement:
