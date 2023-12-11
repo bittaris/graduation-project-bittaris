@@ -11,6 +11,7 @@ class User {
     firstDayLastPeriod, // date
     usualBleedLength, // in days
     usualCycleLength // in days
+    // period history []
   ) {
     this.username = username
     this.fullName = fullName
@@ -24,6 +25,12 @@ class User {
     this.usualBleedLength = usualBleedLength
     this.usualCycleLength = usualCycleLength // To help establish when ovulation occurs and situate the other phases
   }
+
+  // addPeriod(firstDayLastPeriod, usualBleedLength, usualCycleLength)
+
+  //   get currentPhaseOfLastPeriod(){
+  //     const lastPeriod =
+  //   }
 }
 
 module.exports = User
