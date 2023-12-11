@@ -1,40 +1,9 @@
-class User {
-  constructor(
-    username,
-    fullName,
-    email,
-    password,
-    birthDate,
-    location,
-    height, // in cm
-    weight, // in kg, but the number is a float so XX.XXkg
-    currentSymptoms,
-    goals,
-    firstDayLastPeriod, // date
-    usualBleedLength, // in days
-    usualCycleLength // in days
-  ) {
-    this.username = username
-    this.fullName = fullName
-    this.email = email
-    this.password = password // Do I place this here with a #?
-    this.birthDate = birthDate // Do I need to use a specific format?
-    this.location = location // I'm putting this in only because I want to connect with the weather report from where the person is
-    this.height = height // I want to give the option both in the metric system and the insane US measurements
-    this.weight = weight // Same as line above. But for now I'm treating the height as given in cm and the weight in kg. I also want the weight to be a float.
-    this.currentSymptoms = currentSymptoms
-    this.goals = goals
-    this.firstDayLastPeriod = firstDayLastPeriod // To help determine which phase of the cycle the user is in
-    this.usualBleedLength = usualBleedLength
-    this.usualCycleLength = usualCycleLength // To help establish when ovulation occurs and situate the other phases
-  }
-}
+const Period = require('./period')
+const User = require('./user')
 
 const Penelope = new User( // I added all the symptoms and goals on this user to give an idea of the madness
   'PeepeePatient0',
   'Penelope Polpettone',
-  'pp@pasta.it',
-  'lasagne',
   '12-07-1983',
   'Venice, Italy',
   175,
@@ -75,8 +44,6 @@ const Penelope = new User( // I added all the symptoms and goals on this user to
 const Hannah = new User(
   'hannahbutbackwards',
   'Hannah Han',
-  'hanhan@vrumvrum.com',
-  'chickenfingers',
   '08.02.1990',
   'Frankfurt, Germany',
   145,
@@ -91,8 +58,6 @@ const Hannah = new User(
 const Jules = new User(
   'julesssss',
   'Jules Winnfield',
-  'englishmofo@doyouspeak.it',
-  'bangbang',
   '11.03.1994',
   'Los Angeles, United States',
   181,
@@ -104,60 +69,52 @@ const Jules = new User(
   32
 )
 
-class Period {
-  constructor(firstDayLastPeriod, usualBleedLength, usualCycleLength) {
-    this.firstDayLastPeriod = firstDayLastPeriod
-    this.usualBleedLength = usualBleedLength
-    this.usualCycleLength = usualCycleLength
-  }
-  // To predict next ovulation: take the first day of the last period, add predicted cycle length and substract 14 days. That is the predicted ovulation day.
+// Jules.addPeriod(firstDayLastPeriod, usualBleedLength, usualCycleLength)
 
-  //     this.currentPhase = currentPhase
-  //     // Current Phase calculation: using Date method situate where the given date is in relation to the firstDayofLastPeriod
-
-  //     this.bleedLengthPrediction = bleedLengthPrediction
-  //     /* Bleed Length Prediction Calculation: as the user inputs varying period lengths,
-  //     these values get added up and divided by the total amount of inputs, if the new average
-  //     is different from the original/previous one, the original number gets replaced by the new
-  //     average. The number needs to be an integer and rounded down.*/
-
-  //     this.cycleLengthPrediction = cycleLengthPrediction
-  //     /* Cycle Length Prediction Calculation: if the user inputs varying cycle lengths
-  //     (due to delays or early periods), these values get added and divided by the total amount
-  //     of inputs, if the new average is different from the original, the original number gets
-  //     replaced by the new average. The number needs to be an integer and rounded down.*/
-
-  //     this.follicularPrediction = follicularPrediction
-  //     // To predict follicular phase take the ovulation prediction day - bleed length
-
-  //     this.fertileWindow = fertileWindow
-  //     // To predict fertile window take the ovulationPrediction day and include the 5 calendar days before it.
-
-  //     this.lutealPrediction = lutealPrediction
-  //     // To predict luteal phase take the ovulationPrediction and include all the days up to the first day of the next bleed.
-
-  //     this.bleedPrediction = bleedPrediction
-  //     // To predict next bleed: take the first day of the last period and add the predicted cycle length to it. Return calendar day.
-
-  ovulationPrediction() {
-    let firstDayLastPeriodDate = new Date(this.firstDayLastPeriod)
-    firstDayLastPeriodDate.setDate(firstDayLastPeriodDate.getDate() + this.usualCycleLength)
-    firstDayLastPeriodDate.setDate(firstDayLastPeriodDate.getDate() - 14)
-    return firstDayLastPeriodDate.toLocaleDateString('en-GB')
-  }
-}
+console.log('_____________________________________Jules tests_____________________________________')
 
 const julesPeriod = new Period(Jules.firstDayLastPeriod, Jules.usualBleedLength, Jules.usualCycleLength)
 console.log('Jules predicted ovulation should be: 23/11/2023. Test is returning: ' + julesPeriod.ovulationPrediction())
+
+julesPeriod.addBleedLength(2)
+console.log(
+  'Jules bleed length prediction should be updated from 4 to 3. Test says: ' + julesPeriod.bleedLengthPrediction()
+)
+
+julesPeriod.addCycleLength(28)
+console.log("Jules's cycle length should be updated from 32 to 30. Test says: " + julesPeriod.cycleLengthPrediction())
+
+console.log('_____________________________________Hannah tests_____________________________________')
 
 const hannahPeriod = new Period(Hannah.firstDayLastPeriod, Hannah.usualBleedLength, Hannah.usualCycleLength)
 console.log(
   'Hannahs predicted ovulation should be: 30/11/2023. Test is returning: ' + hannahPeriod.ovulationPrediction()
 )
 
+hannahPeriod.addBleedLength(7)
+console.log(
+  "Hannah's bleed length prediction should be updated from 5 to 6. Test says: " + hannahPeriod.bleedLengthPrediction()
+)
+
+hannahPeriod.addCycleLength(40)
+console.log("Hannah's cycle length should be updated from 28 to 34. Test says: " + hannahPeriod.cycleLengthPrediction())
+
+console.log('_____________________________________Penelope tests_____________________________________')
+
 const penelopePeriod = new Period(Penelope.firstDayLastPeriod, Penelope.usualBleedLength, Penelope.usualCycleLength)
 console.log(
   'Penelope predicted ovulation should be: 13/12/2023. Test is returning: ' + penelopePeriod.ovulationPrediction()
+)
+
+penelopePeriod.addBleedLength(3)
+console.log(
+  "Penelope's bleed length prediction should be updated from 7 to 5. Test says: " +
+    penelopePeriod.bleedLengthPrediction()
+)
+
+penelopePeriod.addCycleLength(30)
+console.log(
+  "Penelope's cycle length should be updated from 34 to 32. Test says: " + penelopePeriod.cycleLengthPrediction()
 )
 
 // Future stuff to implement:
