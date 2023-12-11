@@ -109,42 +109,41 @@ class Period {
     this.firstDayLastPeriod = firstDayLastPeriod
     this.usualBleedLength = usualBleedLength
     this.usualCycleLength = usualCycleLength
+  }
+  // To predict next ovulation: take the first day of the last period, add predicted cycle length and substract 14 days. That is the predicted ovulation day.
 
-    this.ovulationPrediction = ovulationPrediction
-    // To predict next ovulation: take the first day of the last period, add predicted cycle length and substract 14 days. That is the predicted ovulation day.
-    function ovulationPrediction() {
-      let firstDayLastPeriodDate = new Date(this.firstDayLastPeriod)
-      firstDayLastPeriodDate.setDate(firstDayLastPeriodDate.getDate() + this.usualCycleLength)
-      firstDayLastPeriodDate.setDate(firstDayLastPeriodDate.getDate() - 14)
-      return firstDayLastPeriodDate.toLocaleDateString('en-GB')
-    }
+  //     this.currentPhase = currentPhase
+  //     // Current Phase calculation: using Date method situate where the given date is in relation to the firstDayofLastPeriod
 
-    //     this.currentPhase = currentPhase
-    //     // Current Phase calculation: using Date method situate where the given date is in relation to the firstDayofLastPeriod
+  //     this.bleedLengthPrediction = bleedLengthPrediction
+  //     /* Bleed Length Prediction Calculation: as the user inputs varying period lengths,
+  //     these values get added up and divided by the total amount of inputs, if the new average
+  //     is different from the original/previous one, the original number gets replaced by the new
+  //     average. The number needs to be an integer and rounded down.*/
 
-    //     this.bleedLengthPrediction = bleedLengthPrediction
-    //     /* Bleed Length Prediction Calculation: as the user inputs varying period lengths,
-    //     these values get added up and divided by the total amount of inputs, if the new average
-    //     is different from the original/previous one, the original number gets replaced by the new
-    //     average. The number needs to be an integer and rounded down.*/
+  //     this.cycleLengthPrediction = cycleLengthPrediction
+  //     /* Cycle Length Prediction Calculation: if the user inputs varying cycle lengths
+  //     (due to delays or early periods), these values get added and divided by the total amount
+  //     of inputs, if the new average is different from the original, the original number gets
+  //     replaced by the new average. The number needs to be an integer and rounded down.*/
 
-    //     this.cycleLengthPrediction = cycleLengthPrediction
-    //     /* Cycle Length Prediction Calculation: if the user inputs varying cycle lengths
-    //     (due to delays or early periods), these values get added and divided by the total amount
-    //     of inputs, if the new average is different from the original, the original number gets
-    //     replaced by the new average. The number needs to be an integer and rounded down.*/
+  //     this.follicularPrediction = follicularPrediction
+  //     // To predict follicular phase take the ovulation prediction day - bleed length
 
-    //     this.follicularPrediction = follicularPrediction
-    //     // To predict follicular phase take the ovulation prediction day - bleed length
+  //     this.fertileWindow = fertileWindow
+  //     // To predict fertile window take the ovulationPrediction day and include the 5 calendar days before it.
 
-    //     this.fertileWindow = fertileWindow
-    //     // To predict fertile window take the ovulationPrediction day and include the 5 calendar days before it.
+  //     this.lutealPrediction = lutealPrediction
+  //     // To predict luteal phase take the ovulationPrediction and include all the days up to the first day of the next bleed.
 
-    //     this.lutealPrediction = lutealPrediction
-    //     // To predict luteal phase take the ovulationPrediction and include all the days up to the first day of the next bleed.
+  //     this.bleedPrediction = bleedPrediction
+  //     // To predict next bleed: take the first day of the last period and add the predicted cycle length to it. Return calendar day.
 
-    //     this.bleedPrediction = bleedPrediction
-    //     // To predict next bleed: take the first day of the last period and add the predicted cycle length to it. Return calendar day.
+  ovulationPrediction() {
+    let firstDayLastPeriodDate = new Date(this.firstDayLastPeriod)
+    firstDayLastPeriodDate.setDate(firstDayLastPeriodDate.getDate() + this.usualCycleLength)
+    firstDayLastPeriodDate.setDate(firstDayLastPeriodDate.getDate() - 14)
+    return firstDayLastPeriodDate.toLocaleDateString('en-GB')
   }
 }
 
