@@ -73,48 +73,47 @@ const Jules = new User(
 
 console.log('_____________________________________Jules tests_____________________________________')
 
-const julesPeriod = new Period(Jules.firstDayLastPeriod, Jules.usualBleedLength, Jules.usualCycleLength)
-console.log('Jules predicted ovulation should be: 23/11/2023. Test is returning: ' + julesPeriod.ovulationPrediction())
+console.log('Jules predicted ovulation should be: 23/11/2023. Test is returning: ' + Jules.period.ovulationPrediction())
 
-julesPeriod.addBleedLength(2)
+Jules.period.addBleedLength(2)
 console.log(
-  'Jules bleed length prediction should be updated from 4 to 3. Test says: ' + julesPeriod.bleedLengthPrediction()
+  'Jules bleed length prediction should be updated from 4 to 3. Test says: ' + Jules.period.bleedLengthPrediction()
 )
 
-julesPeriod.addCycleLength(28)
-console.log("Jules's cycle length should be updated from 32 to 30. Test says: " + julesPeriod.cycleLengthPrediction())
+Jules.period.addCycleLength(28)
+console.log("Jules's cycle length should be updated from 32 to 30. Test says: " + Jules.period.cycleLengthPrediction())
 
 console.log('_____________________________________Hannah tests_____________________________________')
 
-const hannahPeriod = new Period(Hannah.firstDayLastPeriod, Hannah.usualBleedLength, Hannah.usualCycleLength)
 console.log(
-  'Hannahs predicted ovulation should be: 30/11/2023. Test is returning: ' + hannahPeriod.ovulationPrediction()
+  'Hannahs predicted ovulation should be: 30/11/2023. Test is returning: ' + Hannah.period.ovulationPrediction()
 )
 
-hannahPeriod.addBleedLength(7)
+Hannah.period.addBleedLength(7)
 console.log(
-  "Hannah's bleed length prediction should be updated from 5 to 6. Test says: " + hannahPeriod.bleedLengthPrediction()
+  "Hannah's bleed length prediction should be updated from 5 to 6. Test says: " + Hannah.period.bleedLengthPrediction()
 )
 
-hannahPeriod.addCycleLength(40)
-console.log("Hannah's cycle length should be updated from 28 to 34. Test says: " + hannahPeriod.cycleLengthPrediction())
+Hannah.period.addCycleLength(40)
+console.log(
+  "Hannah's cycle length should be updated from 28 to 34. Test says: " + Hannah.period.cycleLengthPrediction()
+)
 
 console.log('_____________________________________Penelope tests_____________________________________')
 
-const penelopePeriod = new Period(Penelope.firstDayLastPeriod, Penelope.usualBleedLength, Penelope.usualCycleLength)
 console.log(
-  'Penelope predicted ovulation should be: 13/12/2023. Test is returning: ' + penelopePeriod.ovulationPrediction()
+  'Penelope predicted ovulation should be: 13/12/2023. Test is returning: ' + Penelope.period.ovulationPrediction()
 )
 
-penelopePeriod.addBleedLength(3)
+Penelope.period.addBleedLength(3)
 console.log(
   "Penelope's bleed length prediction should be updated from 7 to 5. Test says: " +
-    penelopePeriod.bleedLengthPrediction()
+    Penelope.period.bleedLengthPrediction()
 )
 
-penelopePeriod.addCycleLength(30)
+Penelope.period.addCycleLength(30)
 console.log(
-  "Penelope's cycle length should be updated from 34 to 32. Test says: " + penelopePeriod.cycleLengthPrediction()
+  "Penelope's cycle length should be updated from 34 to 32. Test says: " + Penelope.period.cycleLengthPrediction()
 )
 
 // Future stuff to implement:

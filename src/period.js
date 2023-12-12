@@ -1,8 +1,8 @@
 class Period {
   constructor(firstDayLastPeriod, usualBleedLength, usualCycleLength) {
     this.firstDayLastPeriod = firstDayLastPeriod
-    this.usualBleedLength = usualBleedLength
-    this.usualCycleLength = usualCycleLength
+    this.usualBleedLength = usualBleedLength // transform into array
+    this.usualCycleLength = usualCycleLength // transform into array
     this.bleedLengths = [this.usualBleedLength] //as the user inputs varying period lengths or the app does it automatically, or the app does it and the user edits it
     this.cycleLengths = [this.usualCycleLength] // if/when the user inputs varying cycle lengths (due to delays or early periods), or the app does it, or the app does it and user edits it
   }

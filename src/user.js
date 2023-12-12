@@ -1,4 +1,6 @@
+const Period = require('./period')
 class User {
+  period
   constructor(
     username,
     fullName,
@@ -21,9 +23,10 @@ class User {
     this.weight = weight // Same as line above. But for now I'm treating the height as given in cm and the weight in kg. I also want the weight to be a float.
     this.currentSymptoms = currentSymptoms
     this.goals = goals
-    this.firstDayLastPeriod = firstDayLastPeriod // To help determine which phase of the cycle the user is in
-    this.usualBleedLength = usualBleedLength
-    this.usualCycleLength = usualCycleLength // To help establish when ovulation occurs and situate the other phases
+    this.period = new Period(firstDayLastPeriod, usualBleedLength, usualCycleLength) // To help determine which phase of the cycle the user is in
+    // this.periodHistory = []
+
+    // To help establish when ovulation occurs and situate the other phases
   }
 
   // addPeriod(firstDayLastPeriod, usualBleedLength, usualCycleLength)
