@@ -1,6 +1,7 @@
 class Period {
-  constructor(firstDayLastPeriod, usualBleedLength, usualCycleLength) {
-    this.firstDayLastPeriod = firstDayLastPeriod
+  constructor(firstDayOfPeriod, lastDayOfPeriod, usualBleedLength, usualCycleLength) {
+    this.firstDayOfPeriod = firstDayOfPeriod
+    this.lastDayOfPeriod = lastDayOfPeriod
     this.usualBleedLength = usualBleedLength // transform into array
     this.usualCycleLength = usualCycleLength // transform into array
     this.bleedLengths = [this.usualBleedLength] //as the user inputs varying period lengths or the app does it automatically, or the app does it and the user edits it
@@ -8,10 +9,10 @@ class Period {
   }
   // To predict next ovulation: take the first day of the last period, add predicted cycle length and substract 14 days. That is the predicted ovulation day.
   ovulationPrediction() {
-    let firstDayLastPeriodDate = new Date(this.firstDayLastPeriod)
-    firstDayLastPeriodDate.setDate(firstDayLastPeriodDate.getDate() + this.usualCycleLength)
-    firstDayLastPeriodDate.setDate(firstDayLastPeriodDate.getDate() - 14)
-    return firstDayLastPeriodDate.toLocaleDateString('en-GB')
+    let firstDayOfPeriodDate = new Date(this.firstDayOfPeriod)
+    firstDayOfPeriodDate.setDate(firstDayOfPeriodDate.getDate() + this.usualCycleLength)
+    firstDayOfPeriodDate.setDate(firstDayOfPeriodDate.getDate() - 14)
+    return firstDayOfPeriodDate.toLocaleDateString('en-GB')
   }
 
   bleedLengthPrediction() {

@@ -37,6 +37,7 @@ const Penelope = new User( // I added all the symptoms and goals on this user to
     'Have more energy',
   ],
   '11.23.23',
+  '11.30.23',
   7,
   34
 )
@@ -51,6 +52,7 @@ const Hannah = new User(
   ['Weight gain', 'Difficulty losing weight', 'Low energy', 'Sugar / salty cravings'],
   ['Feel good in my own skin', 'Improve nutrition', 'Improve skin', 'Exercise / move more'],
   '11.16.2023',
+  '11.21.2023',
   5,
   28
 )
@@ -65,6 +67,7 @@ const Jules = new User(
   ['Difficulty losing weight', 'Low energy', 'Sugar / salty cravings', 'Anxiety', 'Depression', 'Insulin resistance'],
   ['Exercise / move more', 'Improve sleep', 'Manage stress', 'Have more energy'],
   '11.05.2023',
+  '11.09.2023',
   4,
   32
 )

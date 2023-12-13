@@ -10,7 +10,8 @@ class User {
     weight, // in kg, but the number is a float so XX.XXkg
     currentSymptoms,
     goals,
-    firstDayLastPeriod, // date
+    firstDayOfPeriod, // date
+    lastDayOfPeriod, // date
     usualBleedLength, // in days
     usualCycleLength // in days
     // period history []
@@ -23,7 +24,7 @@ class User {
     this.weight = weight // Same as line above. But for now I'm treating the height as given in cm and the weight in kg. I also want the weight to be a float.
     this.currentSymptoms = currentSymptoms
     this.goals = goals
-    this.period = new Period(firstDayLastPeriod, usualBleedLength, usualCycleLength) // To help determine which phase of the cycle the user is in
+    this.period = new Period(firstDayOfPeriod, lastDayOfPeriod, usualBleedLength, usualCycleLength) // To help determine which phase of the cycle the user is in
     // this.periodHistory = []
 
     // To help establish when ovulation occurs and situate the other phases
