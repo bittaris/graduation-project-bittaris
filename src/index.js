@@ -1,5 +1,6 @@
 const Period = require('./period')
 const User = require('./user')
+const axios = require('axios')
 
 const Penelope = new User( // I added all the symptoms and goals on this user to give an idea of the madness
   'PeepeePatient0',
