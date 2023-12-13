@@ -1,17 +1,22 @@
 class Period {
-  constructor(firstDayOfPeriod, lastDayOfPeriod, usualBleedLength, usualCycleLength) {
-    this.firstDayOfPeriod = firstDayOfPeriod
-    this.lastDayOfPeriod = lastDayOfPeriod
-    this.usualBleedLength = usualBleedLength // transform into array
+  constructor(firstDayOfPeriod, lastDayOfPeriod, usualCycleLength) {
+    this.firstDayOfPeriod = new Date(firstDayOfPeriod).getTime() // 11/11/2023 -> 1670870400000
+    this.lastDayOfPeriod = new Date(lastDayOfPeriod).getTime() // 11/23/2023 -> 1671878400000
+    this.usualBleedLength = Math.floor((lastDayOfPeriod - firstDayOfPeriod) / (24 * 60 * 60 * 1000)) // 11/23/2023 - 11/11/2023 = 1671878400000 - 1670870400000 = 123344ms / 24 (=hours) * 60 (=minutes) * 60 (=seconds) * 1000 (=milliseconds) = x days
     this.usualCycleLength = usualCycleLength // transform into array
     this.bleedLengths = [this.usualBleedLength] //as the user inputs varying period lengths or the app does it automatically, or the app does it and the user edits it
     this.cycleLengths = [this.usualCycleLength] // if/when the user inputs varying cycle lengths (due to delays or early periods), or the app does it, or the app does it and user edits it
   }
   // To predict next ovulation: take the first day of the last period, add predicted cycle length and substract 14 days. That is the predicted ovulation day.
   ovulationPrediction() {
+    // console.log('Calls ovulationPrediction')
     let firstDayOfPeriodDate = new Date(this.firstDayOfPeriod)
-    firstDayOfPeriodDate.setDate(firstDayOfPeriodDate.getDate() + this.usualCycleLength)
+    // console.log('First Day of Peroid Date: ' + firstDayOfPeriodDate)
+    // console.log('Usual Cycle Length: ' + this.usualCycleLength)
+    firstDayOfPeriodDate.setDate(firstDayOfPeriodDate.getDate() + this.usualCycleLength) // 4 +32 = 36
+    // console.log('First Day of after cycle length calc: ' + firstDayOfPeriodDate)
     firstDayOfPeriodDate.setDate(firstDayOfPeriodDate.getDate() - 14)
+    // console.log('First Day of after 14 peroid calc: ' + firstDayOfPeriodDate)
     return firstDayOfPeriodDate.toLocaleDateString('en-GB')
   }
 

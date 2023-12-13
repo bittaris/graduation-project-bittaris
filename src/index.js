@@ -38,9 +38,9 @@ const Penelope = new User( // I added all the symptoms and goals on this user to
   ],
   '11.23.23',
   '11.30.23',
-  7,
   34
 )
+Penelope.period.addBleedLength(7)
 
 const Hannah = new User(
   'hannahbutbackwards',
@@ -53,9 +53,9 @@ const Hannah = new User(
   ['Feel good in my own skin', 'Improve nutrition', 'Improve skin', 'Exercise / move more'],
   '11.16.2023',
   '11.21.2023',
-  5,
   28
 )
+Hannah.period.addBleedLength(5)
 
 const Jules = new User(
   'julesssss',
@@ -68,11 +68,14 @@ const Jules = new User(
   ['Exercise / move more', 'Improve sleep', 'Manage stress', 'Have more energy'],
   '11.05.2023',
   '11.09.2023',
-  4,
   32
 )
 
+Jules.period.addBleedLength(4)
+
 // Jules.addPeriod(firstDayLastPeriod, usualBleedLength, usualCycleLength)
+
+console.log('blubbbbb')
 
 console.log('_____________________________________Jules tests_____________________________________')
 
