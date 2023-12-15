@@ -1,17 +1,38 @@
 h1 {
-  color: #aaff00d4;
+  color: orangered;
+  background-color: pink;
+  padding: 20px;
+  font-family: Helvetica, sans-serif;
+  border-radius: 40px;
+  text-align: center;
+}
+
+h2 {
+  color: lightpink;
+  font-family: Helvetica, sans-serif;
   background-color: brown;
+  padding: 15px;
+  border-radius: 30px;
+  text-align: right;
+}
+
+.name {
+  font-size: 25px;
+  font-family: Helvetica, sans-serif;
+  color: darkred;
 }
 
 .input {
-  color: #aaff00d4;
-  background-color: black;
-  border: 1px solid #aaff00d4;
-  border-radius: 4px;
-  padding: 0.5rem;
+  color: brown;
+  background-color: pink;
+  border: 1px solid orangered;
+  border-radius: 20px;
+  padding: 8px;
+  font-family: Helvetica, sans-serif;
+  margin: 285px;
 }
 
 body {
-  margin: 4rem 0 0 0;
-  background-color: rgb(96, 9, 168);
+  margin: 50px 450px 0px 50px;
+  background-color: lightcoral;
 }
