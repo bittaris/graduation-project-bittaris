@@ -10,16 +10,15 @@ const jules = new User('julesssss', '11.05.2023', '11.09.2023', 32)
 
 console.log('_____________________________________Jules tests_____________________________________')
 
-console.log('Jules predicted ovulation should be: 23/11/2023. Test is returning: ' + jules.period.ovulationPrediction())
+console.log('Jules predicted ovulation: 23/11/2023. Test returns: ' + jules.period.predictOvulation())
+console.log('Jules bleed length: 4. Test returns: ' + jules.period.calculateBleedLength())
 
 console.log('_____________________________________Hannah tests_____________________________________')
 
-console.log(
-  'Hannahs predicted ovulation should be: 30/11/2023. Test is returning: ' + hannah.period.ovulationPrediction()
-)
+console.log('Hannahs predicted ovulation: 30/11/2023. Test is returs: ' + hannah.period.predictOvulation())
+console.log('Hannahs bleed length: 5. Test returns: ' + hannah.period.calculateBleedLength())
 
 console.log('_____________________________________Penelope tests_____________________________________')
 
-console.log(
-  'Penelope predicted ovulation should be: 13/12/2023. Test is returning: ' + penelope.period.ovulationPrediction()
-)
+console.log('Penelope predicted ovulation: 13/12/2023. Test is returns: ' + penelope.period.predictOvulation())
+console.log('Penelope bleed length: 7. Test returns: ' + penelope.period.calculateBleedLength())

@@ -6,8 +6,8 @@ class Period {
     this.usualCycleLength = usualCycleLength
   }
 
-  ovulationPrediction() {
-    //console.log('Calls ovulationPrediction')
+  predictOvulation() {
+    //console.log('Calls predictOvulation')
     //console.log(this.firstDayOfPeriod)
     let firstDayOfPeriodDate = new Date(this.firstDayOfPeriod)
     //console.log('First Day of Period Date: ' + firstDayOfPeriodDate)
@@ -22,7 +22,7 @@ class Period {
   calculateBleedLength(lastDayOfPeriod, firstDayOfPeriod) {
     let lastDayOfPeriodDate = new Date(this.lastDayOfPeriod)
     let firstDayOfPeriodDate = new Date(this.firstDayOfPeriod)
-    let bleedLength = lastDayOfPeriodDate.setDate(lastDayOfPeriodDate.getDate() - firstDayOfPeriodDate.getDate())
+    let bleedLength = lastDayOfPeriodDate.getDate() - firstDayOfPeriodDate.getDate()
     return bleedLength
   }
 }
