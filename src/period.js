@@ -1,29 +1,33 @@
 class Period {
-  constructor(firstDayOfPeriod, lastDayOfPeriod, usualCycleLength) {
+  constructor(firstDayOfPeriod, lastDayOfPeriod, previousPeriod) {
     this.firstDayOfPeriod = firstDayOfPeriod
     this.lastDayOfPeriod = lastDayOfPeriod
-    this.usualBleedLength = this.calculateBleedLength(lastDayOfPeriod, firstDayOfPeriod)
-    this.usualCycleLength = usualCycleLength
+    this.usualBleedLength = this.calculateBleedLength()
+    this.usualCycleLength = this.calculateCycleLength(previousPeriod)
   }
 
-  predictOvulation() {
-    //console.log('Calls predictOvulation')
-    //console.log(this.firstDayOfPeriod)
-    let firstDayOfPeriodDate = new Date(this.firstDayOfPeriod)
-    //console.log('First Day of Period Date: ' + firstDayOfPeriodDate)
-    //console.log('Usual Cycle Length: ' + this.usualCycleLength)
-    firstDayOfPeriodDate.setDate(firstDayOfPeriodDate.getDate() + this.usualCycleLength) // 4 +32 = 36
-    //console.log('First Day of after cycle length calc: ' + firstDayOfPeriodDate)
-    firstDayOfPeriodDate.setDate(firstDayOfPeriodDate.getDate() - 14)
-    //console.log('First Day of after 14 period calc: ' + firstDayOfPeriodDate)
-    return firstDayOfPeriodDate.toLocaleDateString('en-GB')
-  }
-
-  calculateBleedLength(lastDayOfPeriod, firstDayOfPeriod) {
+  calculateBleedLength() {
     let lastDayOfPeriodDate = new Date(this.lastDayOfPeriod)
     let firstDayOfPeriodDate = new Date(this.firstDayOfPeriod)
     let bleedLength = lastDayOfPeriodDate.getDate() - firstDayOfPeriodDate.getDate()
     return bleedLength
+  }
+
+  calculateCycleLength(previousPeriod) {
+    if (previousPeriod) {
+      const oneDay = 24 * 60 * 60 * 1000
+      const diffDays = Math.round(Math.abs((this.firstDayOfPeriod - previousPeriod.firstDayOfPeriod) / oneDay))
+      return diffDays
+    } else {
+      return null
+    }
+  }
+
+  predictOvulation() {
+    let firstDayOfPeriodDate = new Date(this.firstDayOfPeriod)
+    firstDayOfPeriodDate.setDate(firstDayOfPeriodDate.getDate() + this.usualCycleLength)
+    firstDayOfPeriodDate.setDate(firstDayOfPeriodDate.getDate() - 14)
+    return firstDayOfPeriodDate.toLocaleDateString('en-GB')
   }
 }
 
