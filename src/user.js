@@ -1,22 +1,20 @@
-const Period = require('./period')
-
+const Order = require('./order')
 class User {
-  constructor(username) {
+  constructor(username, cart) {
     this.username = username
-    this.periodHistory = []
+    this.cart = []
   }
-
-  addPeriod(firstDayOfPeriod, lastDayOfPeriod) {
-    const previousPeriod = this.periodHistory[this.periodHistory.length - 1]
-    const period = new Period(firstDayOfPeriod, lastDayOfPeriod, previousPeriod)
-    this.periodHistory.push(period)
+  addItem(item) {
+    this.cart.push(item)
   }
-
-  // getCurrentPhase
-  // pass last 2 periods and do the calculation inside of this method
-  // if there is no 2 periods in the periodHistory throw 'You need to have at least 2 periods added
-
-  // get
+  removeItem(itemToRemove) {
+    this.cart = this.cart.filter(item => item !== itemToRemove)
+  }
+  placeOrder(deliveryAddress) {
+    let newOrder = new Order(this, this.cart, deliveryAddress)
+    this.cart = []
+    return newOrder
+  }
 }
 
 module.exports = User

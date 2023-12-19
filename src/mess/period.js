@@ -1,3 +1,36 @@
+// TRASHED OPTION 2
+
+const Period = require('./period')
+
+class User {
+  constructor(username) {
+    this.username = username
+    this.periodHistory = []
+  }
+
+  getPeriod(index) {
+    return this.periodHistory[index]
+  }
+
+  addPeriod(firstDayOfPeriod, lastDayOfPeriod) {
+    const previousPeriod = this.getPeriod(this.periodHistory.length - 1)
+    console.log('Previous period: ' + previousPeriod)
+    const period = new Period(firstDayOfPeriod, lastDayOfPeriod, previousPeriod)
+    this.periodHistory.push(period)
+    console.log('Period History: ' + this.periodHistory)
+    this.periodHistory.sort((a, b) => a.firstDayOfPeriod - b.firstDayOfPeriod)
+  }
+
+  // getCurrentPhase
+  // pass last 2 periods and do the calculation inside of this method
+  // if there is no 2 periods in the periodHistory throw 'You need to have at least 2 periods added
+
+  // get
+}
+
+module.exports = User
+
+// TRASHED VERSION 1
 class Period {
   constructor(firstDayOfPeriod, lastDayOfPeriod, usualCycleLength) {
     this.firstDayOfPeriod = new Date(firstDayOfPeriod).getTime() // 11/11/2023 -> 1670870400000

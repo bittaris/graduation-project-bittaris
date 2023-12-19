@@ -1,28 +1,22 @@
-const Period = require('./period')
 const User = require('./user')
-const axios = require('axios')
+const Product = require('./product')
+const Order = require('./order')
 
-const penelope = new User('peepeePatient0')
-penelope.addPeriod('11.23.2023', '11.30.2023')
-penelope.addPeriod('10.21.2023', '10.28.2023')
+const bunny = new User('bunny')
 
-const hannah = new User('hannahbutbackwards')
-hannah.addPeriod('11.16.2023', '11.21.2023')
+const bouquetOne = new Product('Bouquet One', '10 Pink Peonies', '30€')
+const bouquetTwo = new Product('Bouquet Two', '20 Yellow Roses', '30€')
 
-const jules = new User('julesssss')
-jules.addPeriod('11.05.2023', '11.09.2023')
+bunny.addItem(bouquetOne)
+console.log("Bunny's cart: " + bunny.cart)
 
-console.log('_____________________________________Jules tests_____________________________________')
+bunny.removeItem(bouquetOne)
+console.log("Bunny's cart: " + bunny.cart)
 
-console.log('Jules predicted ovulation: 23/11/2023. Test returns: ' + jules.period.predictOvulation())
-//console.log('Jules bleed length: 4. Test returns: ' + jules.period.calculateBleedLength())
+bunny.addItem(bouquetTwo)
+console.log("Bunny's cart: " + bunny.cart)
 
-console.log('_____________________________________Hannah tests_____________________________________')
+const bunnysOrder = new Order(bunny, bunny.cart, 'Lalastr. 22 12345')
 
-console.log('Hannahs predicted ovulation: 30/11/2023. Test is returs: ' + hannah.period.predictOvulation())
-//console.log('Hannahs bleed length: 5. Test returns: ' + hannah.period.calculateBleedLength())
-
-console.log('_____________________________________Penelope tests_____________________________________')
-
-console.log('Penelope predicted ovulation: 13/12/2023. Test is returns: ' + penelope.period.predictOvulation())
-//console.log('Penelope bleed length: 7. Test returns: ' + penelope.period.calculateBleedLength())
+bunny.placeOrder('Lalastr. 22 12345')
+console.log("Bunny's order: " + bunny.placeOrder('Lalastr. 22 12345'))
