@@ -16,21 +16,11 @@ async function main() {
     const bunny = new User(response.data.username)
     const turtle = new User(response.data.username)
 
-    const bouquetOne = new Product(
-      response.data.cart[0].title,
-      response.data.cart[0].description,
-      response.data.cart[0].price
-    )
-    const bouquetTwo = new Product(
-      response.data.cart[1].title,
-      response.data.cart[1].description,
-      response.data.cart[1].price
-    )
-    const bouquetThree = new Product(
-      response.data.cart[2].title,
-      response.data.cart[2].description,
-      response.data.cart[2].price
-    )
+    const bunnyUser = response.data[0]
+
+    const bouquetOne = new Product(bunnyUser.cart[0].title, bunnyUser.cart[0].description, bunnyUser.cart[0].price)
+    const bouquetTwo = new Product(bunnyUser.cart[1].title, bunnyUser.cart[1].description, bunnyUser.cart[1].price)
+    //const bouquetThree = new Product(bunnyUser.cart[2].title, bunnyUser.cart[2].description, bunnyUser.cart[2].price)
 
     bunny.addItem(bouquetOne)
     console.log("Bunny's cart: " + bunny.cart.length)
@@ -44,8 +34,8 @@ async function main() {
     bunny.addItem(bouquetTwo)
     console.log("Bunny's cart: " + bunny.cart.length)
 
-    bunny.addItem(bouquetThree)
-    console.log("Bunny's cart: " + bunny.cart.length)
+    //bunny.addItem(bouquetThree)
+    //console.log("Bunny's cart: " + bunny.cart.length)
 
     const bunnysOrder = new Order(bunny, bunny.cart, 'Lalastr. 22 12345')
 

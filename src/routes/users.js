@@ -10,13 +10,12 @@ router.get('/', function (req, res, next) {
   const bouquetOne = new Product('Bouquet One', '10 Pink Peonies', '30€')
   const bouquetTwo = new Product('Bouquet Two', '20 Yellow Roses', '35€')
   const bouquetThree = new Product('Bouquet Three', '25 Carnations', '30€')
-  // bunny.addItem(bouquetOne)
-  // bunny.addItem(bouquetTwo)
-  // res.send(bunny)
+  bunny.addItem(bouquetOne)
+  bunny.addItem(bouquetTwo)
   turtle.addItem(bouquetOne)
   turtle.addItem(bouquetThree)
   turtle.addItem(bouquetTwo)
-  res.send(turtle)
+  res.send([bunny, turtle])
 })
 
 module.exports = router
