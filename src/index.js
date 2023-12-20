@@ -15,17 +15,24 @@ async function main() {
     console.log(response.data)
     const bunny = new User(response.data.username)
 
-    const bouquetOne = new Product('Bouquet One', '10 Pink Peonies', '30€')
+    const bouquetOne = new Product(
+      response.data.cart[0].title,
+      response.data.cart[0].description,
+      response.data.cart[0].price
+    )
     const bouquetTwo = new Product('Bouquet Two', '20 Yellow Roses', '30€')
 
     bunny.addItem(bouquetOne)
-    console.log("Bunny's cart: " + bunny.cart)
+    console.log("Bunny's cart: " + bunny.cart.length)
 
     bunny.removeItem(bouquetOne)
-    console.log("Bunny's cart: " + bunny.cart)
+    console.log("Bunny's cart: " + bunny.cart.length)
 
     bunny.addItem(bouquetTwo)
-    console.log("Bunny's cart: " + bunny.cart)
+    console.log("Bunny's cart: " + bunny.cart.length)
+
+    bunny.addItem(bouquetTwo)
+    console.log("Bunny's cart: " + bunny.cart.length)
 
     const bunnysOrder = new Order(bunny, bunny.cart, 'Lalastr. 22 12345')
 
