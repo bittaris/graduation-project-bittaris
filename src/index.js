@@ -13,7 +13,7 @@ async function main() {
   try {
     const response = await client.get('/users')
     console.log(response.data)
-    const bunny = new User('bunny')
+    const bunny = new User(response.data.username)
 
     const bouquetOne = new Product('Bouquet One', '10 Pink Peonies', '30€')
     const bouquetTwo = new Product('Bouquet Two', '20 Yellow Roses', '30€')
