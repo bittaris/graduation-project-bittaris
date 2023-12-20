@@ -1,9 +1,11 @@
-var express = require('express')
-var router = express.Router()
+const express = require('express')
+const router = express.Router()
+const User = require('../user')
 
 /* GET users listing. */
 router.get('/', function (req, res, next) {
-  res.send([{ firstName: 'Jules' }, { firstName: 'Hannah' }, { firstName: 'Penelope' }])
+  const bunny = new User('bunny')
+  res.send([{ username: bunny.username }])
 })
 
 module.exports = router
