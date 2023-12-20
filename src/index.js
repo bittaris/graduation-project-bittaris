@@ -26,40 +26,31 @@ async function main() {
     const turtleUser = usersResponse.data[1]
     console.log('turtleUser: ' + turtleUser)
 
-    const bouquetOne = new Product(
-      productsResponse.data[0].title,
-      productsResponse.data[0].description,
-      productsResponse.data[0].price
-    )
-    const bouquetTwo = new Product(
-      productsResponse.data[1].title,
-      productsResponse.data[1].description,
-      productsResponse.data[1].price
-    )
-    const bouquetThree = new Product(
-      productsResponse.data[2].title,
-      productsResponse.data[2].description,
-      productsResponse.data[2].price
-    )
-    const bouquetFour = new Product(
-      productsResponse.data[3].title,
-      productsResponse.data[3].description,
-      productsResponse.data[3].price
-    )
-    const bouquetFive = new Product(
-      productsResponse.data[4].title,
-      productsResponse.data[4].description,
-      productsResponse.data[4].price
-    )
+    const bouquetOneInfo = productsResponse.data[0]
+    const bouquetOne = new Product(bouquetOneInfo.title, bouquetOneInfo.description, bouquetOneInfo.price)
+
+    const bouquetTwoInfo = productsResponse.data[1]
+    const bouquetTwo = new Product(bouquetTwoInfo.title, bouquetTwoInfo.description, bouquetTwoInfo.price)
+
+    const bouquetThreeInfo = productsResponse.data[2]
+    const bouquetThree = new Product(bouquetThreeInfo.title, bouquetThreeInfo.description, bouquetThreeInfo.price)
+
+    const bouquetFourInfo = productsResponse.data[3]
+    const bouquetFour = new Product(bouquetFourInfo.title, bouquetFourInfo.description, bouquetFourInfo.price)
+
+    const bouquetFiveInfo = productsResponse.data[4]
+    const bouquetFive = new Product(bouquetFiveInfo.title, bouquetFiveInfo.description, bouquetFiveInfo.price)
 
     bunny.addItem(bouquetOne)
     bunny.addItem(bouquetTwo)
-    console.log("Bunny's cart: " + bunny.cart.length)
+    bunny.addItem(bouquetFive)
+    bunny.addItem(bouquetFour)
+    console.log("Bunny's cart should have 4 items. Test says: " + bunny.cart.length)
 
     turtle.addItem(bouquetThree)
     turtle.addItem(bouquetFour)
     turtle.addItem(bouquetFive)
-    console.log("Turtle's cart: " + turtle.cart.length)
+    console.log("Turtle's cart should have 3 items. Test says: " + turtle.cart.length)
 
     const bunnysOrder = new Order(bunny, bunny.cart, 'Lalastr. 22 12345')
     bunny.placeOrder('Lalastr. 22 12345')
