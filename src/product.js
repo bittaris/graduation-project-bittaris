@@ -12,6 +12,15 @@ class Product {
     return product
   }
   static list = []
+
+  static deleteProduct(title) {
+    const index = Product.list.findIndex(product => product.title === title)
+    if (index === -1) {
+      return null // Product not found
+    }
+    const deletedProduct = Product.list.splice(index, 1)[0]
+    return deletedProduct
+  }
 }
 
 module.exports = Product

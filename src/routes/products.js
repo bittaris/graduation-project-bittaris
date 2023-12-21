@@ -13,4 +13,11 @@ router.post('/', function (req, res, next) {
   res.send(product)
 })
 
+/* DELETE a product */
+router.delete('/:title', function (req, res, next) {
+  const productTitle = req.params.title
+  const deletedProduct = Product.deleteProduct(productTitle)
+  res.status(200).send(deletedProduct)
+})
+
 module.exports = router

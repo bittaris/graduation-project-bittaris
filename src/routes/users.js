@@ -15,5 +15,13 @@ router.post('/', function (req, res, next) {
   }) // this way the route handler ignores the other parameters and only sends name. Security concern.
   res.send(user)
 })
+/* DELETE a user */
+router.delete('/:username', function (req, res, next) {
+  const { username } = req.params //instead of const username = req.params.username
+
+  User.deleteUserbyUsername(username)
+
+  res.sendStatus(200)
+})
 
 module.exports = router

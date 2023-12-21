@@ -23,6 +23,16 @@ class User {
   }
 
   static list = []
+
+  static deleteUserbyUsername(username) {
+    const index = User.list.findIndex(user => user.username === username)
+    if (index === -1) {
+      return null // User not found
+    }
+
+    const deletedUser = User.list.splice(index, 1)[0]
+    return deletedUser
+  }
 }
 
 module.exports = User
