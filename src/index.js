@@ -11,16 +11,13 @@ const { default: axios } = require('axios')
 
 // create a user with axious
 async function main() {
-  const bunny = await axios.post('http://localhost:3000/users', {
+  await axios.post('http://localhost:3000/users', {
     username: 'Bunny',
   })
 
-  const turtle = await axios.post('http://localhost:3000/users', {
+  await axios.post('http://localhost:3000/users', {
     username: 'Turtle',
   })
-
-  console.log(bunny.data)
-  console.log(turtle.data)
 
   const allUsers = await axios.get('http://localhost:3000/users')
 
