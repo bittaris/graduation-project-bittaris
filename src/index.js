@@ -9,7 +9,7 @@ const { default: axios } = require('axios')
 //   console.log(response.data)
 // })
 
-// create a user with axious
+// create users with axious
 async function main() {
   await axios.post('http://localhost:3000/users', {
     username: 'Bunny',
@@ -22,6 +22,40 @@ async function main() {
   const allUsers = await axios.get('http://localhost:3000/users')
 
   console.log('List of all the users: ', allUsers.data)
+
+  // create products with axios
+  await axios.post('http://localhost:3000/products', {
+    title: 'Bouquet One',
+    description: '10 Pink Peonies',
+    price: '30€',
+  })
+
+  await axios.post('http://localhost:3000/products', {
+    title: 'Bouquet Two',
+    description: '20 Yellow Roses',
+    price: '35€',
+  })
+
+  await axios.post('http://localhost:3000/products', {
+    title: 'Bouquet Three',
+    description: '25 Pink Carnations',
+    price: '30€',
+  })
+
+  await axios.post('http://localhost:3000/products', {
+    title: 'Bouquet Four',
+    description: '15 Yellow Daffodils',
+    price: '25€',
+  })
+
+  await axios.post('http://localhost:3000/products', {
+    title: 'Bouquet Five',
+    description: '25 White Roses',
+    price: '40€',
+  })
+
+  const allProducts = await axios.get('http://localhost:3000/products')
+  console.log('List of all the products: ', allProducts.data)
 }
 
 main()
@@ -51,6 +85,12 @@ main()
 //     console.log('bunnyUser: ' + bunnyUser)
 //     const turtleUser = usersResponse.data[1]
 //     console.log('turtleUser: ' + turtleUser)
+
+//const bouquetOne = new Product('Bouquet One', '10 Pink Peonies', '30€')
+//const bouquetTwo = new Product('Bouquet Two', '20 Yellow Roses', '35€')
+//const bouquetThree = new Product('Bouquet Three', '25 Pink Carnations', '30€')
+//const bouquetFour = new Product('Bouquet Four', '15 Yellow Daffodils', '25€')
+//const bouquetFive = new Product('Bouquet Five', '25 White Roses', '40€')
 
 //     const bouquetOneInfo = productsResponse.data[0]
 //     const bouquetOne = new Product(bouquetOneInfo.title, bouquetOneInfo.description, bouquetOneInfo.price)
