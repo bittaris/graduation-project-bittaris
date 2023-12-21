@@ -15,6 +15,14 @@ class User {
     this.cart = []
     return newOrder
   }
+  static create({ username }) {
+    const newUser = new User(username)
+
+    User.list.push(newUser)
+    return newUser
+  }
+
+  static list = []
 }
 
 module.exports = User

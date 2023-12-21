@@ -5,10 +5,13 @@ const Product = require('../product')
 
 /* GET users listing. */
 router.get('/', function (req, res, next) {
-  const bunny = new User('bunny')
-  const turtle = new User('turtle')
+  res.send(User.list)
+})
 
-  res.send([bunny, turtle])
+/* (POST)Create a new user. */
+router.post('/', function (req, res, next) {
+  const user = User.create(req.body)
+  res.send(user)
 })
 
 module.exports = router
