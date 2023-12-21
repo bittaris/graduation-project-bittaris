@@ -15,8 +15,8 @@ class User {
     this.cart = []
     return newOrder
   }
-  static create({ username }) {
-    const newUser = new User(username)
+  static create({ username, cart }) {
+    const newUser = new User(username, cart)
 
     User.list.push(newUser)
     return newUser
