@@ -11,7 +11,7 @@ class User {
     this.cart = this.cart.filter(item => item !== itemToRemove)
   }
   placeOrder(deliveryAddress) {
-    let newOrder = new Order(this, this.cart, deliveryAddress)
+    let newOrder = Order.create({ customer: this, items: this.cart, deliveryAddress })
     this.cart = []
     return newOrder
   }

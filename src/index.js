@@ -71,6 +71,16 @@ async function main() {
 
   const allProductsMinusBFive = await axios.get('/products')
   console.log('List of all the products: ', allProductsMinusBFive.data)
+
+  const testOrder = await axios.post('/orders', {
+    customer: 'Bunny',
+    items: 'Bouquet Two',
+    deliveryAddress: 'Lalastr. 32 12345 Berlin',
+  })
+  console.log('test order: ', testOrder.data)
+
+  const allOrders = await axios.get('/orders')
+  console.log('All orders: ', allOrders.data)
 }
 
 main()
