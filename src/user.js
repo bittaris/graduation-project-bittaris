@@ -4,7 +4,7 @@ class User {
     this.username = username
     this.cart = []
   }
-  addItem(item) {
+  addItemToCart(item) {
     this.cart.push(item)
   }
   removeItem(itemToRemove) {

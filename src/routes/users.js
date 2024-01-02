@@ -1,10 +1,17 @@
 const express = require('express')
 const router = express.Router()
 const User = require('../user')
+const Product = require('../product')
 
 /* GET users listing. */
 router.get('/', function (req, res, next) {
   res.send(User.list)
+})
+// /user/username get specific user
+router.get('/:username', function (req, res, next) {
+  const user = User.list.find(user => user.username === req.params.username)
+
+  res.send(user)
 })
 
 /* (POST)Create a new user. */
@@ -22,6 +29,32 @@ router.delete('/:username', function (req, res, next) {
   User.deleteUserbyUsername(username)
 
   res.sendStatus(200)
+})
+
+// /users/userId/cart/items => post, add an item to the cart
+router.post('/:username/cart/items', function (req, res, next) {
+  const { username } = req.params
+  const { itemTitle } = req.body
+
+  const user = User.list.find(user => user.username === username)
+  const item = Product.list.find(product => product.title == itemTitle)
+
+  user.addItemToCart(item)
+
+  res.send(user.cart)
+})
+
+// /users/userId/cart/items/itemId => delete, remove an item from the cart
+
+router.delete('/:username/cart/items/:itemTitle', function (req, res, next) {
+  const { username, itemTitle } = req.params
+
+  const user = User.list.find(user => user.username === username)
+  const item = Product.list.find(product => product.title == itemTitle)
+
+  user.removeItem(item)
+
+  res.send(user.cart)
 })
 
 module.exports = router

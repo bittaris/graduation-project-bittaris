@@ -72,15 +72,37 @@ async function main() {
   const allProductsMinusBFive = await axios.get('/products')
   console.log('List of all the products: ', allProductsMinusBFive.data)
 
-  const testOrder = await axios.post('/orders', {
+  // add item to cart
+  await axios.post('/users/Bunny/cart/items', {
+    itemTitle: 'Bouquet Two',
+  })
+
+  const bunnyAfterAddingItemToHerCart = await axios.get('users/Bunny')
+  console.log('bunnyAfterAddingItemToHerCart: ', bunnyAfterAddingItemToHerCart.data)
+
+  await axios.delete('users/Bunny/cart/items/Bouquet Two')
+
+  const bunnyAfterRemovingItemFromHerCart = await axios.get('users/Bunny')
+
+  console.log('bunnyAfterRemovingItemFromHerCart: ', bunnyAfterRemovingItemFromHerCart.data)
+
+  /*const testOrder = await axios.post('/orders', {
     customer: 'Bunny',
     items: 'Bouquet Two',
     deliveryAddress: 'Lalastr. 32 12345 Berlin',
   })
-  console.log('test order: ', testOrder.data)
+  console.log('test order: ', testOrder.data)*/
 
   const allOrders = await axios.get('/orders')
   console.log('All orders: ', allOrders.data)
 }
 
 main()
+
+// /users => get , to get all users
+
+// /orders => post, create a new order
+
+// /users/userId/cart/items => post, add an item to the cart
+
+// /users/userId/cart/items/itemId => delete, remove an item from the cart
