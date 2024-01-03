@@ -10,8 +10,6 @@ router.get('/', function (req, res, next) {
 
 /* (POST) Create a new order. */
 router.post('/', function (req, res, next) {
-  // need to have a user to call user.placeOrder method
-  // const customer = req.body.customer // 'Buuny'
   const deliveryAddress = req.body.deliveryAddress
   const customer = User.list.find(user => user.username === req.body.customer)
 

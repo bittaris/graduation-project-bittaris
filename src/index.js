@@ -86,12 +86,19 @@ async function main() {
 
   console.log('bunnyAfterRemovingItemFromHerCart: ', bunnyAfterRemovingItemFromHerCart.data)
 
-  /*const testOrder = await axios.post('/orders', {
+  const testOrder = await axios.post('/orders', {
     customer: 'Bunny',
     items: 'Bouquet Two',
-    deliveryAddress: 'Lalastr. 32 12345 Berlin',
+    deliveryAddress: {
+      recipientFullName: 'Foxxy Brown',
+      street: 'Lalastr.',
+      houseNr: '32',
+      zip: '12345',
+      city: 'Berlin',
+      country: 'Germany',
+    },
   })
-  console.log('test order: ', testOrder.data)*/
+  console.log('test order: ', testOrder.data)
 
   const allOrders = await axios.get('/orders')
   console.log('All orders: ', allOrders.data)
