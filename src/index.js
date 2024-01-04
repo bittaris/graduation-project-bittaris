@@ -27,45 +27,44 @@ async function main() {
 
   console.log('List of all the users: ', allUsers.data)
 
-  // // create products with axios
-  // await axios.post('/products', {
-  //   title: 'Bouquet One',
-  //   description: '10 Pink Peonies',
-  //   price: '30€',
-  // })
+  // create products with axios
+  await axios.post('/products', {
+    title: 'Bouquet One',
+    description: '10 Pink Peonies',
+    price: '30€',
+  })
 
-  // await axios.post('/products', {
-  //   title: 'Bouquet Two',
-  //   description: '20 Yellow Roses',
-  //   price: '35€',
-  // })
+  await axios.post('/products', {
+    title: 'Bouquet Two',
+    description: '20 Yellow Roses',
+    price: '35€',
+  })
 
-  // await axios.post('/products', {
-  //   title: 'Bouquet Three',
-  //   description: '25 Pink Carnations',
-  //   price: '30€',
-  // })
+  await axios.post('/products', {
+    title: 'Bouquet Three',
+    description: '25 Pink Carnations',
+    price: '30€',
+  })
 
-  // await axios.post('/products', {
-  //   title: 'Bouquet Four',
-  //   description: '15 Yellow Daffodils',
-  //   price: '25€',
-  // })
+  await axios.post('/products', {
+    title: 'Bouquet Four',
+    description: '15 Yellow Daffodils',
+    price: '25€',
+  })
 
-  // await axios.post('/products', {
-  //   title: 'Bouquet Five',
-  //   description: '25 White Roses',
-  //   price: '40€',
-  // })
+  await axios.post('/products', {
+    title: 'Bouquet Five',
+    description: '25 White Roses',
+    price: '40€',
+  })
 
   // const allProducts = await axios.get('/products')
   // console.log('List of all the products: ', allProducts.data)
 
   // await axios.delete('users/Turtle')
 
-  // const allUsersAB = await axios.get('/users')
-
-  // console.log('List of all the users: ', allUsersAB.data)
+  const allUsersAB = await axios.get('/users')
+  console.log('List of all the users: ', allUsersAB.data)
 
   //   await axios.delete('products/Bouquet Five')
 
@@ -105,7 +104,7 @@ async function main() {
   //
 }
 
-main()
+main().catch(error => console.log('Error: ', error.message, error.stack))
 
 // /users => get , to get all users
 

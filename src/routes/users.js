@@ -4,10 +4,11 @@ const User = require('../user')
 const Product = require('../product')
 
 /* GET users listing. */
-router.get('/', function (req, res, next) {
-  res.send(User.list)
+router.get('/', async function (req, res, next) {
+  res.send(await User.find())
 })
-// /user/username get specific user
+
+/* /user/username get specific user */
 router.get('/:username', function (req, res, next) {
   const user = User.list.find(user => user.username === req.params.username)
 
@@ -15,8 +16,8 @@ router.get('/:username', function (req, res, next) {
 })
 
 /* (POST)Create a new user. */
-router.post('/', function (req, res, next) {
-  const user = User.create({
+router.post('/', async function (req, res, next) {
+  const user = await User.create({
     username: req.body.username,
     cart: req.body.cart,
   }) // this way the route handler ignores the other parameters and only sends name. Security concern.
