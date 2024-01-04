@@ -1,4 +1,13 @@
 const Order = require('./order')
+const mongoose = require('mongoose')
+
+const userSchema = new mongoose.Schema({
+  username: String,
+  cart: [{ type: mongoose.Schema.Types.ObjectId, ref: 'Item' }],
+})
+
+module.exports = mongoose.model('User', userSchema)
+
 class User {
   constructor(username, cart) {
     this.username = username
@@ -35,4 +44,4 @@ class User {
   }
 }
 
-module.exports = User
+//module.exports = User
