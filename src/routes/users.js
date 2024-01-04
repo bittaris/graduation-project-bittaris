@@ -24,10 +24,10 @@ router.post('/', async function (req, res, next) {
   res.send(user)
 })
 /* DELETE a user */
-router.delete('/:username', function (req, res, next) {
+router.delete('/:username', async function (req, res, next) {
   const { username } = req.params //instead of const username = req.params.username
 
-  User.deleteUserbyUsername(username)
+  await User.findOneAndDelete({ username }) //instead of User.deleteUserbyUsername
 
   res.sendStatus(200)
 })

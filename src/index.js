@@ -1,13 +1,4 @@
-const User = require('./user')
-const Product = require('./product')
-const Order = require('./order')
-const Axios = require('axios')
-const { default: axios } = require('axios')
-
-// fetch users with axios
-// axios.get('http://localhost:3000/users').then(response => {
-//   console.log(response.data)
-// })
+const axios = require('axios')
 
 axios.defaults.baseURL = 'http://localhost:3000'
 
@@ -18,6 +9,7 @@ async function main() {
     cart: [],
   })
 
+  // delete users with axios
   await axios.post('/users', {
     username: 'Turtle',
     cart: [],
@@ -58,10 +50,10 @@ async function main() {
     price: '40€',
   })
 
-  // const allProducts = await axios.get('/products')
-  // console.log('List of all the products: ', allProducts.data)
+  const allProducts = await axios.get('/products')
+  console.log('List of all the products: ', allProducts.data)
 
-  // await axios.delete('users/Turtle')
+  await axios.delete('users/Turtle')
 
   const allUsersAB = await axios.get('/users')
   console.log('List of all the users: ', allUsersAB.data)
