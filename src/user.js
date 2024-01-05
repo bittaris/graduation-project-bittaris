@@ -1,9 +1,10 @@
 const Order = require('./order')
 const mongoose = require('mongoose')
+const autopopulate = require('mongoose-autopopulate')
 
 const userSchema = new mongoose.Schema({
   username: String,
-  cart: [{ type: mongoose.Schema.Types.ObjectId, ref: 'Item' }],
+  cart: [{ type: mongoose.Schema.Types.ObjectId, ref: 'Product', autopopulate: true }],
 })
 
 class User {
@@ -20,6 +21,8 @@ class User {
     return newOrder
   }
 }
+
+userSchema.plugin(autopopulate)
 
 userSchema.loadClass(User)
 

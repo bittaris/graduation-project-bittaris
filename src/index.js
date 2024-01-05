@@ -58,15 +58,18 @@ async function main() {
   // const allUsersAB = await axios.get('/users')
   // console.log('List of all the users: ', allUsersAB.data)
 
-  await axios.delete('products/Bouquet Five')
+  // await axios.delete('products/Bouquet Five')
 
   // const allProductsMinusBFive = await axios.get('/products')
   // console.log('List of all the products: ', allProductsMinusBFive.data)
 
   // add item to cart
   await axios.post('/users/Bunny/cart/items', {
-    itemTitle: 'Bouquet Two',
+    itemTitle: 'Bouquet Five',
   })
+
+  const bunnyAfterShoppingCart = await axios.get('/users/Bunny')
+  console.log('bunnyAfterShoppingCart: ', bunnyAfterShoppingCart.data)
 
   //   const bunnyAfterAddingItemToHerCart = await axios.get('users/Bunny')
   //   console.log('bunnyAfterAddingItemToHerCart: ', bunnyAfterAddingItemToHerCart.data)
