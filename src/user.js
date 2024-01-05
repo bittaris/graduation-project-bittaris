@@ -12,8 +12,9 @@ class User {
     this.cart.push(item)
     await this.save()
   }
-  removeItem(itemToRemove) {
-    this.cart = this.cart.filter(item => item !== itemToRemove)
+  async removeItem(itemToRemove) {
+    this.cart.pull(itemToRemove)
+    await this.save()
   }
   placeOrder(deliveryAddress) {
     let newOrder = Order.create({ customer: this, items: this.cart, deliveryAddress })

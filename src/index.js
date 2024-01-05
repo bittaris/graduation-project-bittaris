@@ -65,20 +65,24 @@ async function main() {
 
   // add item to cart
   await axios.post('/users/Bunny/cart/items', {
+    itemTitle: 'Bouquet Two',
+  })
+
+  await axios.post('/users/Bunny/cart/items', {
     itemTitle: 'Bouquet Five',
   })
 
-  const bunnyAfterShoppingCart = await axios.get('/users/Bunny')
-  console.log('bunnyAfterShoppingCart: ', bunnyAfterShoppingCart.data)
+  // const bunnyAfterShoppingCart = await axios.get('/users/Bunny')
+  // console.log('bunnyAfterShoppingCart: ', bunnyAfterShoppingCart.data)
 
   //   const bunnyAfterAddingItemToHerCart = await axios.get('users/Bunny')
   //   console.log('bunnyAfterAddingItemToHerCart: ', bunnyAfterAddingItemToHerCart.data)
 
-  //   await axios.delete('users/Bunny/cart/items/Bouquet Two')
+  await axios.delete('users/Bunny/cart/items/Bouquet Two')
 
-  //   const bunnyAfterRemovingItemFromHerCart = await axios.get('users/Bunny')
+  const bunnyAfterRemovingItemFromHerCart = await axios.get('users/Bunny')
 
-  //   console.log('bunnyAfterRemovingItemFromHerCart: ', bunnyAfterRemovingItemFromHerCart.data)
+  console.log('bunnyAfterRemovingItemFromHerCart: ', bunnyAfterRemovingItemFromHerCart.data)
 
   //   const testOrder = await axios.post('/orders', {
   //     customer: 'Bunny',
