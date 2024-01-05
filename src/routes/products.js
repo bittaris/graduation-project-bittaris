@@ -18,9 +18,10 @@ router.post('/', async function (req, res, next) {
 })
 
 /* DELETE a product */
-router.delete('/:title', function (req, res, next) {
+router.delete('/:title', async function (req, res, next) {
   const productTitle = req.params.title
-  const deletedProduct = Product.deleteProduct(productTitle)
+  console.log('productTitle: ', productTitle)
+  const deletedProduct = await Product.findOneAndDelete({ title: productTitle })
   res.status(200).send(deletedProduct)
 })
 

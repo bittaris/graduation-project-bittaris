@@ -9,10 +9,6 @@ const userSchema = new mongoose.Schema({
 module.exports = mongoose.model('User', userSchema)
 
 class User {
-  constructor(username, cart) {
-    this.username = username
-    this.cart = []
-  }
   addItemToCart(item) {
     this.cart.push(item)
   }
@@ -24,24 +20,8 @@ class User {
     this.cart = []
     return newOrder
   }
-  static create({ username, cart }) {
-    const newUser = new User(username, cart)
-
-    User.list.push(newUser)
-    return newUser
-  }
-
-  static list = []
-
-  static deleteUserbyUsername(username) {
-    const index = User.list.findIndex(user => user.username === username)
-    if (index === -1) {
-      return null // User not found
-    }
-
-    const deletedUser = User.list.splice(index, 1)[0]
-    return deletedUser
-  }
 }
 
-//module.exports = User
+userSchema.loadClass(User)
+
+module.exports = mongoose.model('User', userSchema)

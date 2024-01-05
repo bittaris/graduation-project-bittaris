@@ -15,9 +15,9 @@ async function main() {
     cart: [],
   })
 
-  const allUsers = await axios.get('/users')
+  // const allUsers = await axios.get('/users')
 
-  console.log('List of all the users: ', allUsers.data)
+  // console.log('List of all the users: ', allUsers.data)
 
   // create products with axios
   await axios.post('/products', {
@@ -50,18 +50,18 @@ async function main() {
     price: '40€',
   })
 
-  const allProducts = await axios.get('/products')
-  console.log('List of all the products: ', allProducts.data)
+  // const allProducts = await axios.get('/products')
+  // console.log('List of all the products: ', allProducts.data)
 
   await axios.delete('users/Turtle')
 
-  const allUsersAB = await axios.get('/users')
-  console.log('List of all the users: ', allUsersAB.data)
+  // const allUsersAB = await axios.get('/users')
+  // console.log('List of all the users: ', allUsersAB.data)
 
-  //   await axios.delete('products/Bouquet Five')
+  await axios.delete('products/Bouquet Five')
 
-  //   const allProductsMinusBFive = await axios.get('/products')
-  //   console.log('List of all the products: ', allProductsMinusBFive.data)
+  const allProductsMinusBFive = await axios.get('/products')
+  console.log('List of all the products: ', allProductsMinusBFive.data)
 
   //   // add item to cart
   //   await axios.post('/users/Bunny/cart/items', {
