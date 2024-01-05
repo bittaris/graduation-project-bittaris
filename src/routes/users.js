@@ -33,14 +33,14 @@ router.delete('/:username', async function (req, res, next) {
 })
 
 // /users/userId/cart/items => post, add an item to the cart
-router.post('/:username/cart/items', function (req, res, next) {
+router.post('/:username/cart/items', async function (req, res, next) {
   const { username } = req.params
   const { itemTitle } = req.body
 
-  const user = User.list.find(user => user.username === username)
-  const item = Product.list.find(product => product.title == itemTitle)
+  const user = await User.findOne({ username })
+  const item = await Product.findOne({ title: itemTitle })
 
-  user.addItemToCart(item)
+  await user.addItemToCart(item)
 
   res.send(user.cart)
 })

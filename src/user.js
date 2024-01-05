@@ -6,11 +6,10 @@ const userSchema = new mongoose.Schema({
   cart: [{ type: mongoose.Schema.Types.ObjectId, ref: 'Item' }],
 })
 
-module.exports = mongoose.model('User', userSchema)
-
 class User {
-  addItemToCart(item) {
+  async addItemToCart(item) {
     this.cart.push(item)
+    await this.save()
   }
   removeItem(itemToRemove) {
     this.cart = this.cart.filter(item => item !== itemToRemove)

@@ -60,13 +60,13 @@ async function main() {
 
   await axios.delete('products/Bouquet Five')
 
-  const allProductsMinusBFive = await axios.get('/products')
-  console.log('List of all the products: ', allProductsMinusBFive.data)
+  // const allProductsMinusBFive = await axios.get('/products')
+  // console.log('List of all the products: ', allProductsMinusBFive.data)
 
-  //   // add item to cart
-  //   await axios.post('/users/Bunny/cart/items', {
-  //     itemTitle: 'Bouquet Two',
-  //   })
+  // add item to cart
+  await axios.post('/users/Bunny/cart/items', {
+    itemTitle: 'Bouquet Two',
+  })
 
   //   const bunnyAfterAddingItemToHerCart = await axios.get('users/Bunny')
   //   console.log('bunnyAfterAddingItemToHerCart: ', bunnyAfterAddingItemToHerCart.data)
