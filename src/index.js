@@ -2,58 +2,57 @@ const axios = require('axios')
 
 axios.defaults.baseURL = 'http://localhost:3000'
 
-// create users with axious
+// create user with axious
 async function main() {
-  await axios.post('/users', {
+  const bunny = await axios.post('/users', {
     username: 'Bunny',
     cart: [],
   })
 
-  // delete users with axios
-  await axios.post('/users', {
+  // create user with axios
+  const turtle = await axios.post('/users', {
     username: 'Turtle',
     cart: [],
   })
 
   // const allUsers = await axios.get('/users')
-
   // console.log('List of all the users: ', allUsers.data)
 
   // create products with axios
-  await axios.post('/products', {
-    title: 'Bouquet One',
-    description: '10 Pink Peonies',
-    price: '30€',
-  })
+  // await axios.post('/products', {
+  //   title: 'Bouquet One',
+  //   description: '10 Pink Peonies',
+  //   price: '30€',
+  // })
 
-  await axios.post('/products', {
-    title: 'Bouquet Two',
-    description: '20 Yellow Roses',
-    price: '35€',
-  })
+  // await axios.post('/products', {
+  //   title: 'Bouquet Two',
+  //   description: '20 Yellow Roses',
+  //   price: '35€',
+  // })
 
-  await axios.post('/products', {
-    title: 'Bouquet Three',
-    description: '25 Pink Carnations',
-    price: '30€',
-  })
+  // await axios.post('/products', {
+  //   title: 'Bouquet Three',
+  //   description: '25 Pink Carnations',
+  //   price: '30€',
+  // })
 
-  await axios.post('/products', {
-    title: 'Bouquet Four',
-    description: '15 Yellow Daffodils',
-    price: '25€',
-  })
+  // await axios.post('/products', {
+  //   title: 'Bouquet Four',
+  //   description: '15 Yellow Daffodils',
+  //   price: '25€',
+  // })
 
-  await axios.post('/products', {
-    title: 'Bouquet Five',
-    description: '25 White Roses',
-    price: '40€',
-  })
+  // await axios.post('/products', {
+  //   title: 'Bouquet Five',
+  //   description: '25 White Roses',
+  //   price: '40€',
+  // })
 
   // const allProducts = await axios.get('/products')
   // console.log('List of all the products: ', allProducts.data)
 
-  await axios.delete('users/Turtle')
+  await axios.delete(`users/${turtle.data._id}`)
 
   // const allUsersAB = await axios.get('/users')
   // console.log('List of all the users: ', allUsersAB.data)
@@ -64,13 +63,13 @@ async function main() {
   // console.log('List of all the products: ', allProductsMinusBFive.data)
 
   // add item to cart
-  await axios.post('/users/Bunny/cart/items', {
-    itemTitle: 'Bouquet Two',
-  })
+  // await axios.post('/users/Bunny/cart/items', {
+  //   itemTitle: 'Bouquet Two',
+  // })
 
-  await axios.post('/users/Bunny/cart/items', {
-    itemTitle: 'Bouquet Five',
-  })
+  // await axios.post('/users/Bunny/cart/items', {
+  //   itemTitle: 'Bouquet Five',
+  // })
 
   // const bunnyAfterShoppingCart = await axios.get('/users/Bunny')
   // console.log('bunnyAfterShoppingCart: ', bunnyAfterShoppingCart.data)
@@ -78,28 +77,28 @@ async function main() {
   //   const bunnyAfterAddingItemToHerCart = await axios.get('users/Bunny')
   //   console.log('bunnyAfterAddingItemToHerCart: ', bunnyAfterAddingItemToHerCart.data)
 
-  await axios.delete('users/Bunny/cart/items/Bouquet Two')
+  // await axios.delete('users/Bunny/cart/items/Bouquet Two')
 
-  const bunnyAfterRemovingItemFromHerCart = await axios.get('users/Bunny')
+  // const bunnyAfterRemovingItemFromHerCart = await axios.get('users/Bunny')
 
-  console.log('bunnyAfterRemovingItemFromHerCart: ', bunnyAfterRemovingItemFromHerCart.data)
+  // console.log('bunnyAfterRemovingItemFromHerCart: ', bunnyAfterRemovingItemFromHerCart.data)
 
-  const testOrder = await axios.post('/orders', {
-    customer: 'Bunny',
-    items: 'Bouquet Two',
-    deliveryAddress: {
-      recipientFullName: 'Foxxy Brown',
-      street: 'Lalastr.',
-      houseNr: '32',
-      zip: '12345',
-      city: 'Berlin',
-      country: 'Germany',
-    },
-  })
-  console.log('test order: ', testOrder.data)
+  // const testOrder = await axios.post('/orders', {
+  //   customer: 'Bunny',
+  //   items: 'Bouquet Two',
+  //   deliveryAddress: {
+  //     recipientFullName: 'Foxxy Brown',
+  //     street: 'Lalastr.',
+  //     houseNr: '32',
+  //     zip: '12345',
+  //     city: 'Berlin',
+  //     country: 'Germany',
+  //   },
+  // })
+  // console.log('test order: ', testOrder.data)
 
-  const allOrders = await axios.get('/orders')
-  console.log('All orders: ', allOrders.data)
+  // const allOrders = await axios.get('/orders')
+  // console.log('All orders: ', allOrders.data)
 }
 
 main().catch(error => console.log('Error: ', error.message, error.stack))
