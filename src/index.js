@@ -19,45 +19,45 @@ async function main() {
   // console.log('List of all the users: ', allUsers.data)
 
   // create products with axios
-  // await axios.post('/products', {
-  //   title: 'Bouquet One',
-  //   description: '10 Pink Peonies',
-  //   price: '30€',
-  // })
+  const bouquetOne = await axios.post('/products', {
+    title: 'Bouquet One',
+    description: '10 Pink Peonies',
+    price: '30€',
+  })
 
-  // await axios.post('/products', {
-  //   title: 'Bouquet Two',
-  //   description: '20 Yellow Roses',
-  //   price: '35€',
-  // })
+  const bouquetTwo = await axios.post('/products', {
+    title: 'Bouquet Two',
+    description: '20 Yellow Roses',
+    price: '35€',
+  })
 
-  // await axios.post('/products', {
-  //   title: 'Bouquet Three',
-  //   description: '25 Pink Carnations',
-  //   price: '30€',
-  // })
+  const bouquetThree = await axios.post('/products', {
+    title: 'Bouquet Three',
+    description: '25 Pink Carnations',
+    price: '30€',
+  })
 
-  // await axios.post('/products', {
-  //   title: 'Bouquet Four',
-  //   description: '15 Yellow Daffodils',
-  //   price: '25€',
-  // })
+  const bouquetFour = await axios.post('/products', {
+    title: 'Bouquet Four',
+    description: '15 Yellow Daffodils',
+    price: '25€',
+  })
 
-  // await axios.post('/products', {
-  //   title: 'Bouquet Five',
-  //   description: '25 White Roses',
-  //   price: '40€',
-  // })
+  const bouquetFive = await axios.post('/products', {
+    title: 'Bouquet Five',
+    description: '25 White Roses',
+    price: '40€',
+  })
 
-  // const allProducts = await axios.get('/products')
-  // console.log('List of all the products: ', allProducts.data)
+  const allProducts = await axios.get('/products')
+  console.log('List of all the products: ', allProducts.data)
 
   await axios.delete(`users/${turtle.data._id}`)
 
-  // const allUsersAB = await axios.get('/users')
-  // console.log('List of all the users: ', allUsersAB.data)
+  // const allUsersAT = await axios.get('/users')
+  // console.log('List of all the users: ', allUsersAT.data)
 
-  // await axios.delete('products/Bouquet Five')
+  // await axios.delete(`products/${bouquetFive.data.title}`)
 
   // const allProductsMinusBFive = await axios.get('/products')
   // console.log('List of all the products: ', allProductsMinusBFive.data)
