@@ -1,22 +1,16 @@
-class Address {
-  constructor(recipientFullName, street, houseNr, zip, city, country) {
-    this.recipientFullName = recipientFullName
-    this.street = street
-    this.houseNr = houseNr
-    this.zip = zip
-    this.city = city
-    this.country = country
-  }
+const mongoose = require('mongoose')
 
-  static create({ recipientFullName, street, houseNr, zip, city, country }) {
-    const newAddress = new Address(recipientFullName, street, houseNr, zip, city, country)
+const addressSchema = new mongoose.Schema({
+  recipientFullName: String,
+  street: String,
+  houseNr: String,
+  zip: String,
+  city: String,
+  country: String,
+})
 
-    Address.list.push(newAddress)
+class Address {}
 
-    return newAddress
-  }
+addressSchema.loadClass(Address)
 
-  static list = []
-}
-
-module.exports = Address
+module.exports = mongoose.model('Address', addressSchema)

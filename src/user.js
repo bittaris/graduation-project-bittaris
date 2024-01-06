@@ -1,4 +1,5 @@
 const Order = require('./order')
+const Address = require('./address')
 const mongoose = require('mongoose')
 const autopopulate = require('mongoose-autopopulate')
 
@@ -16,8 +17,8 @@ class User {
     this.cart.pull(itemToRemove)
     await this.save()
   }
-  placeOrder(deliveryAddress) {
-    let newOrder = Order.create({ customer: this, items: this.cart, deliveryAddress })
+  async placeOrder(deliveryAddress) {
+    let newOrder = await Order.create({ customer: this, items: this.cart, deliveryAddress: deliveryAddress })
     this.cart = []
     return newOrder
   }

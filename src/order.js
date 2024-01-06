@@ -1,28 +1,22 @@
-const Address = require('./address')
+const mongoose = require('mongoose')
+const autopopulate = require('mongoose-autopopulate')
+
+const orderSchema = new mongoose.Schema({
+  customer: { type: mongoose.Schema.Types.ObjectId, ref: 'User', autopopulate: true },
+  items: [{ type: mongoose.Schema.Types.ObjectId, ref: 'Product', autopopulate: true }],
+  deliveryAddress: { type: mongoose.Schema.Types.ObjectId, ref: 'Address', autopopulate: true },
+})
 
 class Order {
-  constructor(customer, items, deliveryAddress) {
-    this.customer = customer
-    this.items = items
-    this.deliveryAddress = Address.create({
-      recipientFullName: deliveryAddress.recipientFullName,
-      street: deliveryAddress.street,
-      houseNr: deliveryAddress.houseNr,
-      zip: deliveryAddress.zip,
-      city: deliveryAddress.city,
-      country: deliveryAddress.country,
-    })
+  async addDeliveryAddress(deliveryAddress) {
+    let newAddress = await Address.create({ deliveryAddress: deliveryAddress })
+    this.deliveryAddress = newAddress
+    await this.save()
   }
-
-  static create({ customer, items, deliveryAddress }) {
-    const newOrder = new Order(customer, items, deliveryAddress)
-
-    Order.list.push(newOrder)
-
-    return newOrder
-  }
-
-  static list = []
 }
 
-module.exports = Order
+orderSchema.plugin(autopopulate)
+
+orderSchema.loadClass(Order)
+
+module.exports = mongoose.model('Order', orderSchema)

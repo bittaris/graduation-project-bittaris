@@ -2,18 +2,18 @@ const express = require('express')
 const router = express.Router()
 const Order = require('../order')
 const User = require('../user')
+const Address = require('../address')
 
 /* GET orders listing. */
-router.get('/', function (req, res, next) {
-  res.send(Order.list)
+router.get('/', async function (req, res, next) {
+  res.send(await Order.find())
 })
 
 /* (POST) Create a new order. */
-router.post('/', function (req, res, next) {
-  const deliveryAddress = req.body.deliveryAddress
-  const customer = User.list.find(user => user.username === req.body.customer)
-
-  const newOrder = customer.placeOrder(deliveryAddress)
+router.post('/', async function (req, res, next) {
+  const deliveryAddress = await Address.create(req.body.deliveryAddress)
+  const customer = await User.findOne({ username: req.body.customer })
+  const newOrder = await customer.placeOrder(deliveryAddress)
 
   res.send(newOrder)
 })
