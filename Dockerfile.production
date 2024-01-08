@@ -1,0 +1,10 @@
+FROM node:current-alpine3.19
+
+ADD package.json package-lock.json ./
+
+RUN npm install --production
+
+ADD bin ./bin
+ADD src ./src
+
+CMD ["npm", "start"]
