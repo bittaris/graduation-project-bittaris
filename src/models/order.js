@@ -7,13 +7,7 @@ const orderSchema = new mongoose.Schema({
   deliveryAddress: { type: mongoose.Schema.Types.ObjectId, ref: 'Address', autopopulate: true },
 })
 
-class Order {
-  async addDeliveryAddress(deliveryAddress) {
-    let newAddress = await Address.create({ deliveryAddress: deliveryAddress })
-    this.deliveryAddress = newAddress
-    await this.save()
-  }
-}
+class Order {}
 
 orderSchema.plugin(autopopulate)
 

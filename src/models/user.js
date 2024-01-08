@@ -1,5 +1,4 @@
 const Order = require('./order')
-const Address = require('./address')
 const mongoose = require('mongoose')
 const autopopulate = require('mongoose-autopopulate')
 
@@ -9,15 +8,15 @@ const userSchema = new mongoose.Schema({
 })
 
 class User {
-  async addItemToCart(item) {
-    this.cart.push(item)
+  async addItemToCart(itemToAdd) {
+    this.cart.push(itemToAdd)
     await this.save()
   }
   async removeItem(itemToRemove) {
     // find index of item to remove
-    const indexOfItem = this.cart.indexOf(itemToRemove)
+    // const indexOfItem = this.cart.indexOf(itemToRemove)
     // remove item from cart
-    this.cart.pull(indexOfItem)
+    this.cart.pull(itemToRemove)
     await this.save()
   }
   async placeOrder(deliveryAddress) {

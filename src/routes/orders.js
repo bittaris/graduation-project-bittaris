@@ -1,8 +1,8 @@
 const express = require('express')
 const router = express.Router()
-const Order = require('../order')
-const User = require('../user')
-const Address = require('../address')
+const Order = require('../models/order')
+const User = require('../models/user')
+const Address = require('../models/address')
 
 /* GET orders listing. */
 router.get('/', async function (req, res, next) {

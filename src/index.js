@@ -4,6 +4,7 @@ axios.defaults.baseURL = 'http://localhost:3000'
 
 // create user with axious
 async function main() {
+  await axios.get('/delete')
   const bunny = await axios.post('/users', {
     username: 'Bunny',
     cart: [],
@@ -49,8 +50,8 @@ async function main() {
     price: '40€',
   })
 
-  const allProducts = await axios.get('/products')
-  console.log('List of all the products: ', allProducts.data)
+  // const allProducts = await axios.get('/products')
+  // console.log('List of all the products: ', allProducts.data)
 
   await axios.delete(`users/${turtle.data._id}`)
 
@@ -63,13 +64,13 @@ async function main() {
   // console.log('List of all the products: ', allProductsMinusBFive.data)
 
   // add item to cart
-  // await axios.post('/users/Bunny/cart/items', {
-  //   itemTitle: 'Bouquet Two',
-  // })
+  await axios.post(`/users/${bunny.data._id}/cart/items`, {
+    itemId: bouquetTwo.data._id,
+  })
 
-  // await axios.post('/users/Bunny/cart/items', {
-  //   itemTitle: 'Bouquet Five',
-  // })
+  await axios.post(`/users/${bunny.data._id}/cart/items`, {
+    itemId: bouquetFive.data._id,
+  })
 
   // const bunnyAfterShoppingCart = await axios.get('/users/Bunny')
   // console.log('bunnyAfterShoppingCart: ', bunnyAfterShoppingCart.data)
@@ -77,7 +78,7 @@ async function main() {
   //   const bunnyAfterAddingItemToHerCart = await axios.get('users/Bunny')
   //   console.log('bunnyAfterAddingItemToHerCart: ', bunnyAfterAddingItemToHerCart.data)
 
-  // await axios.delete('users/Bunny/cart/items/Bouquet Two')
+  await axios.delete(`users/${bunny.data._id}/cart/items/${bouquetTwo.data._id}`)
 
   // const bunnyAfterRemovingItemFromHerCart = await axios.get('users/Bunny')
 
@@ -85,7 +86,6 @@ async function main() {
 
   // const testOrder = await axios.post('/orders', {
   //   customer: 'Bunny',
-  //   items: 'Bouquet Two',
   //   deliveryAddress: {
   //     recipientFullName: 'Foxxy Brown',
   //     street: 'Lalastr.',
