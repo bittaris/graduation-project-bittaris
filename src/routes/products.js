@@ -19,10 +19,14 @@ router.post('/', async function (req, res, next) {
 })
 
 /* DELETE a product */
-router.delete('/:title', async function (req, res, next) {
-  const productTitle = req.params.title
-  console.log('productTitle: ', productTitle)
-  const deletedProduct = await Product.findOneAndDelete({ title: productTitle })
+router.delete('/:itemId', async function (req, res, next) {
+  const { itemId } = req.params
+  const deletedProduct = await Product.findByIdAndDelete(itemId)
+
+  if (!deletedProduct) {
+    return res.status(404).send('Product not found')
+  }
+
   res.status(200).send(deletedProduct)
 })
 
