@@ -16,44 +16,49 @@ async function main() {
     cart: [],
   })
 
-  // const allUsers = await axios.get('/users')
-  // console.log('List of all the users: ', allUsers.data)
+  // gets all users
+  const allUsers = await axios.get('/users')
+  console.log('List of all the users: ', allUsers.data)
 
-  // create products with axios
-  const bouquetOne = await axios.post('/products', {
-    title: 'Bouquet One',
-    description: '10 Pink Peonies',
-    price: '30€',
-  })
+  // gets a specific user
+  const whoBunny = await axios.get(`/users/${bunny.data._id}`)
+  console.log('whoBunny: ', whoBunny.data)
 
-  const bouquetTwo = await axios.post('/products', {
-    title: 'Bouquet Two',
-    description: '20 Yellow Roses',
-    price: '35€',
-  })
+  // // create products with axios
+  // const bouquetOne = await axios.post('/products', {
+  //   title: 'Bouquet One',
+  //   description: '10 Pink Peonies',
+  //   price: '30€',
+  // })
 
-  const bouquetThree = await axios.post('/products', {
-    title: 'Bouquet Three',
-    description: '25 Pink Carnations',
-    price: '30€',
-  })
+  // const bouquetTwo = await axios.post('/products', {
+  //   title: 'Bouquet Two',
+  //   description: '20 Yellow Roses',
+  //   price: '35€',
+  // })
 
-  const bouquetFour = await axios.post('/products', {
-    title: 'Bouquet Four',
-    description: '15 Yellow Daffodils',
-    price: '25€',
-  })
+  // const bouquetThree = await axios.post('/products', {
+  //   title: 'Bouquet Three',
+  //   description: '25 Pink Carnations',
+  //   price: '30€',
+  // })
 
-  const bouquetFive = await axios.post('/products', {
-    title: 'Bouquet Five',
-    description: '25 White Roses',
-    price: '40€',
-  })
+  // const bouquetFour = await axios.post('/products', {
+  //   title: 'Bouquet Four',
+  //   description: '15 Yellow Daffodils',
+  //   price: '25€',
+  // })
+
+  // const bouquetFive = await axios.post('/products', {
+  //   title: 'Bouquet Five',
+  //   description: '25 White Roses',
+  //   price: '40€',
+  // })
 
   // const allProducts = await axios.get('/products')
   // console.log('List of all the products: ', allProducts.data)
 
-  await axios.delete(`users/${turtle.data._id}`)
+  // await axios.delete(`users/${turtle.data._id}`)
 
   // const allUsersAT = await axios.get('/users')
   // console.log('List of all the users: ', allUsersAT.data)
@@ -65,16 +70,17 @@ async function main() {
   // console.log('List of all the products: ', allProductsMinusBFive.data)
 
   // add item to cart
-  await axios.post(`/users/${bunny.data._id}/cart/items`, {
-    itemId: bouquetTwo.data._id,
-  })
+  // await axios.post(`/users/${bunny.data._id}/cart/items`, {
+  //   itemId: bouquetTwo.data._id,
+  // })
 
-  await axios.post(`/users/${bunny.data._id}/cart/items`, {
-    itemId: bouquetFive.data._id,
-  })
+  // await axios.post(`/users/${bunny.data._id}/cart/items`, {
+  //   itemId: bouquetFive.data._id,
+  // })
 
-  const bunnyAfterAddingItemToHerCart = await axios.get(`users/${bunny.data._id}/cart`)
-  console.log('bunnyAfterAddingItemToHerCart: ', bunnyAfterAddingItemToHerCart.data)
+  // // console log bunny's cart
+  // const bunnyAfterAddingItemToHerCart = await axios.get(`users/${bunny.data._id}/cart`)
+  // console.log('bunnyAfterAddingItemToHerCart: ', bunnyAfterAddingItemToHerCart.data)
 
   // await axios.delete(`users/${bunny.data._id}/cart/items/${bouquetTwo.data._id}`)
 

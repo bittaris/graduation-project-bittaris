@@ -8,10 +8,14 @@ router.get('/', async function (req, res, next) {
   res.send(await User.find())
 })
 
-/* /user/username get specific user */
-router.get('/:username', async function (req, res, next) {
-  const username = req.params.username
-  const user = await User.findOne({ username })
+/* /user/userId get specific user */
+router.get('/:userId', async function (req, res, next) {
+  const { userId } = req.params
+  const user = await User.findById(userId)
+
+  if (!user) {
+    return res.status(404).send('User not found')
+  }
 
   res.send(user)
 })
