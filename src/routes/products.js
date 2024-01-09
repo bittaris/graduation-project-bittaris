@@ -1,6 +1,7 @@
 const express = require('express')
 const router = express.Router()
 const Product = require('../models/product')
+const mongoose = require('mongoose')
 
 /* GET product listing. */
 router.get('/', async function (req, res, next) {

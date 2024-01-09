@@ -33,6 +33,17 @@ router.delete('/:userId', async function (req, res, next) {
   res.sendStatus(200)
 })
 
+// users/userId/cart - get the cart of a user
+router.get('/:userId/cart', async function (req, res, next) {
+  const { userId } = req.params
+  const user = await User.findById(userId)
+
+  if (!user) {
+    res.sendStatus(404).send('User not found')
+  }
+  res.send(user.cart)
+})
+
 // /users/userId/cart/items => post, add an item to the cart
 router.post('/:userId/cart/items', async function (req, res, next) {
   const { userId } = req.params

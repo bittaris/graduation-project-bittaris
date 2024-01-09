@@ -58,6 +58,7 @@ async function main() {
   // const allUsersAT = await axios.get('/users')
   // console.log('List of all the users: ', allUsersAT.data)
 
+  // delete product with axios
   // await axios.delete(`products/${bouquetFive.data.title}`)
 
   // const allProductsMinusBFive = await axios.get('/products')
@@ -72,33 +73,30 @@ async function main() {
     itemId: bouquetFive.data._id,
   })
 
-  // const bunnyAfterShoppingCart = await axios.get('/users/Bunny')
-  // console.log('bunnyAfterShoppingCart: ', bunnyAfterShoppingCart.data)
+  const bunnyAfterAddingItemToHerCart = await axios.get(`users/${bunny.data._id}/cart`)
+  console.log('bunnyAfterAddingItemToHerCart: ', bunnyAfterAddingItemToHerCart.data)
 
-  //   const bunnyAfterAddingItemToHerCart = await axios.get('users/Bunny')
-  //   console.log('bunnyAfterAddingItemToHerCart: ', bunnyAfterAddingItemToHerCart.data)
-
-  await axios.delete(`users/${bunny.data._id}/cart/items/${bouquetTwo.data._id}`)
+  // await axios.delete(`users/${bunny.data._id}/cart/items/${bouquetTwo.data._id}`)
 
   // const bunnyAfterRemovingItemFromHerCart = await axios.get('users/Bunny')
 
   // console.log('bunnyAfterRemovingItemFromHerCart: ', bunnyAfterRemovingItemFromHerCart.data)
 
-  // const testOrder = await axios.post('/orders', {
-  //   customer: 'Bunny',
-  //   deliveryAddress: {
-  //     recipientFullName: 'Foxxy Brown',
-  //     street: 'Lalastr.',
-  //     houseNr: '32',
-  //     zip: '12345',
-  //     city: 'Berlin',
-  //     country: 'Germany',
-  //   },
-  // })
-  // console.log('test order: ', testOrder.data)
+  //   const testOrder = await axios.post('/orders', {
+  //     customer: 'Bunny',
+  //     deliveryAddress: {
+  //       recipientFullName: 'Foxxy Brown',
+  //       street: 'Lalastr.',
+  //       houseNr: '32',
+  //       zip: '12345',
+  //       city: 'Berlin',
+  //       country: 'Germany',
+  //     },
+  //   })
+  //   console.log('test order: ', testOrder.data)
 
-  // const allOrders = await axios.get('/orders')
-  // console.log('All orders: ', allOrders.data)
+  //   const allOrders = await axios.get('/orders')
+  //   console.log('All orders: ', allOrders.data)
 }
 
 main().catch(error => console.log('Error: ', error.message, error.stack))
