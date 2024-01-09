@@ -12,7 +12,12 @@ router.get('/', async function (req, res, next) {
 /* (POST) Create a new order. */
 router.post('/', async function (req, res, next) {
   const deliveryAddress = await Address.create(req.body.deliveryAddress)
-  const customer = await User.findOne({ username: req.body.customer })
+  const customer = await User.findById(req.body.customer)
+
+  if (!customer) {
+    return res.status(404).send('Customer not found')
+  }
+
   const newOrder = await customer.placeOrder(deliveryAddress)
 
   res.send(newOrder)

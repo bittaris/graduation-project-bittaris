@@ -63,13 +63,13 @@ async function main() {
   // const allUsersAT = await axios.get('/users')
   // console.log('List of all the users: ', allUsersAT.data)
 
-  // delete product with axios
-  await axios.delete(`products/${bouquetFive.data._id}`)
+  // // delete product with axios
+  // await axios.delete(`products/${bouquetFive.data._id}`)
 
-  const allProductsMinusBFive = await axios.get('/products')
-  console.log('List of all the products: ', allProductsMinusBFive.data)
+  // const allProductsMinusBFive = await axios.get('/products')
+  // console.log('List of all the products: ', allProductsMinusBFive.data)
 
-  // add item to cart
+  // // add item to cart
   // await axios.post(`/users/${bunny.data._id}/cart/items`, {
   //   itemId: bouquetTwo.data._id,
   // })
@@ -84,25 +84,25 @@ async function main() {
 
   // await axios.delete(`users/${bunny.data._id}/cart/items/${bouquetTwo.data._id}`)
 
-  // const bunnyAfterRemovingItemFromHerCart = await axios.get('users/Bunny')
+  // const bunnyAfterRemovingItemFromHerCart = await axios.get('users/bunny.data._id/cart')
 
   // console.log('bunnyAfterRemovingItemFromHerCart: ', bunnyAfterRemovingItemFromHerCart.data)
 
-  //   const testOrder = await axios.post('/orders', {
-  //     customer: 'Bunny',
-  //     deliveryAddress: {
-  //       recipientFullName: 'Foxxy Brown',
-  //       street: 'Lalastr.',
-  //       houseNr: '32',
-  //       zip: '12345',
-  //       city: 'Berlin',
-  //       country: 'Germany',
-  //     },
-  //   })
-  //   console.log('test order: ', testOrder.data)
+  const testOrder = await axios.post('/orders', {
+    customer: bunny.data._id,
+    deliveryAddress: {
+      recipientFullName: 'Foxxy Brown',
+      street: 'Lalastr.',
+      houseNr: '32',
+      zip: '12345',
+      city: 'Berlin',
+      country: 'Germany',
+    },
+  })
+  console.log('test order: ', testOrder.data)
 
-  //   const allOrders = await axios.get('/orders')
-  //   console.log('All orders: ', allOrders.data)
+  const allOrders = await axios.get('/orders')
+  console.log('All orders: ', allOrders.data)
 }
 
 main().catch(error => console.log('Error: ', error.message, error.stack))
