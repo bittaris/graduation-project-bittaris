@@ -11,8 +11,8 @@ async function main() {
   })
 
   // create user with axios
-  const turtle = await axios.post('/users', {
-    username: 'Turtle',
+  const lula = await axios.post('/users', {
+    username: 'Lula',
     cart: [],
   })
 
@@ -78,7 +78,7 @@ async function main() {
     itemId: bouquetFive.data._id,
   })
 
-  await axios.post(`/users/${turtle.data._id}/cart/items`, {
+  await axios.post(`/users/${lula.data._id}/cart/items`, {
     itemId: bouquetOne.data._id,
   })
 
@@ -106,13 +106,13 @@ async function main() {
   // console.log('test order: ', testOrder.data)
 
   const testOrderTwo = await axios.post('/orders', {
-    customer: turtle.data._id,
+    customer: lula.data._id,
     deliveryAddress: {
-      recipientFullName: 'Foxxy Brown',
-      street: 'Lalastr.',
-      houseNr: '32',
-      zip: '12345',
-      city: 'Berlin',
+      recipientFullName: 'Kitty Kat',
+      street: 'Breckenbrakerstr.',
+      houseNr: '58',
+      zip: '10123',
+      city: 'Ruegen',
       country: 'Germany',
     },
   })
