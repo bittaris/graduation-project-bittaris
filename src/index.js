@@ -58,7 +58,7 @@ async function main() {
   // const allProducts = await axios.get('/products')
   // console.log('List of all the products: ', allProducts.data)
 
-  await axios.delete(`users/${turtle.data._id}`)
+  // await axios.delete(`users/${turtle.data._id}`)
 
   // const allUsersAT = await axios.get('/users')
   // console.log('List of all the users: ', allUsersAT.data)
@@ -69,14 +69,18 @@ async function main() {
   // const allProductsMinusBFive = await axios.get('/products')
   // console.log('List of all the products: ', allProductsMinusBFive.data)
 
-  // // add item to cart
-  // await axios.post(`/users/${bunny.data._id}/cart/items`, {
-  //   itemId: bouquetTwo.data._id,
-  // })
+  // add item to cart
+  await axios.post(`/users/${bunny.data._id}/cart/items`, {
+    itemId: bouquetTwo.data._id,
+  })
 
-  // await axios.post(`/users/${bunny.data._id}/cart/items`, {
-  //   itemId: bouquetFive.data._id,
-  // })
+  await axios.post(`/users/${bunny.data._id}/cart/items`, {
+    itemId: bouquetFive.data._id,
+  })
+
+  await axios.post(`/users/${turtle.data._id}/cart/items`, {
+    itemId: bouquetOne.data._id,
+  })
 
   // // console log bunny's cart
   // const bunnyAfterAddingItemToHerCart = await axios.get(`users/${bunny.data._id}/cart`)
@@ -99,7 +103,19 @@ async function main() {
       country: 'Germany',
     },
   })
-  console.log('test order: ', testOrder.data)
+  // console.log('test order: ', testOrder.data)
+
+  const testOrderTwo = await axios.post('/orders', {
+    customer: turtle.data._id,
+    deliveryAddress: {
+      recipientFullName: 'Foxxy Brown',
+      street: 'Lalastr.',
+      houseNr: '32',
+      zip: '12345',
+      city: 'Berlin',
+      country: 'Germany',
+    },
+  })
 
   const allOrders = await axios.get('/orders')
   console.log('All orders: ', allOrders.data)

@@ -13,9 +13,6 @@ class User {
     await this.save()
   }
   async removeItem(itemToRemove) {
-    // find index of item to remove
-    // const indexOfItem = this.cart.indexOf(itemToRemove)
-    // remove item from cart
     this.cart.pull(itemToRemove)
     await this.save()
   }

@@ -9,6 +9,18 @@ router.get('/', async function (req, res, next) {
   res.send(await Order.find())
 })
 
+/* /orders/orderId get specific order */
+router.get('/:orderId', async function (req, res, next) {
+  const { orderId } = req.params
+  const order = await Order.findById(orderId)
+
+  if (!order) {
+    return res.status(404).send('Order not found')
+  }
+
+  res.send(order)
+})
+
 /* (POST) Create a new order. */
 router.post('/', async function (req, res, next) {
   const deliveryAddress = await Address.create(req.body.deliveryAddress)
