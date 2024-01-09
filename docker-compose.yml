@@ -1,7 +1,9 @@
 services:
   api:
     image: wildflower-api
-    build: .
+    build:
+      context: .
+      dockerfile: Dockerfile
     depends_on:
       - mongodb
     ports:
