@@ -88,4 +88,19 @@ describe('Wildflower', () => {
     expect(actualOutput.body).toMatchObject(expectedOutput)
     expect(actualOutput.status).toBe(200)
   })
+
+  it('can delete a product', async () => {
+    const bouquetOne = await request(app).post('/products').send({
+      title: 'Bouquet One',
+      description: '10 Pink Peonies',
+      price: '30€',
+    })
+
+    const expectedOutput = {}
+
+    const actualOutput = await request(app).delete(`/products/${bouquetOne.body._id}`)
+
+    expect(actualOutput.body).toMatchObject(expectedOutput)
+    expect(actualOutput.status).toBe(200)
+  })
 })
