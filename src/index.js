@@ -6,6 +6,7 @@ axios.defaults.baseURL = 'http://localhost:3000'
 // create user with axious
 async function main() {
   await axios.get('/delete')
+  // create user with axios
   const bunny = await axios.post('/users', {
     username: 'Bunny',
     cart: [],
@@ -59,13 +60,14 @@ async function main() {
   const allProducts = await axios.get('/products')
   console.log('List of all the products: ', allProducts.data)
 
-  await axios.delete(`users/${turtle.data._id}`)
+  // // delete user with axios
+  // await axios.delete(`users/${turtle.data._id}`)
 
   const allUsersAT = await axios.get('/users')
   console.log('List of all the users: ', allUsersAT.data)
 
-  // delete product with axios
-  await axios.delete(`products/${bouquetFive.data._id}`)
+  // // delete product with axios
+  // await axios.delete(`products/${bouquetFive.data._id}`)
 
   const allProductsMinusBFive = await axios.get('/products')
   console.log('List of all the products: ', allProductsMinusBFive.data)
@@ -89,7 +91,7 @@ async function main() {
 
   await axios.delete(`users/${bunny.data._id}/cart/items/${bouquetTwo.data._id}`)
 
-  const bunnyAfterRemovingItemFromHerCart = await axios.get('users/bunny.data._id/cart')
+  const bunnyAfterRemovingItemFromHerCart = await axios.get(`users/${bunny.data._id}/cart`)
 
   console.log('bunnyAfterRemovingItemFromHerCart: ', bunnyAfterRemovingItemFromHerCart.data)
 
