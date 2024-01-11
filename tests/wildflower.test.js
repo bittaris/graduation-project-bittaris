@@ -3,6 +3,10 @@ const request = require('supertest')
 const app = require('../src/app')
 
 describe('Wildflower', () => {
+  beforeEach(async () => {
+    await request(app).get('/delete')
+  })
+
   it('can create a user', async () => {
     const username = 'Bunny'
 
@@ -16,6 +20,7 @@ describe('Wildflower', () => {
     expect(actualOutput.body).toMatchObject(expectedOutput)
     expect(actualOutput.body._id).toBeDefined()
   })
+
   it('can get all users', async () => {
     const bunny = await request(app).post('/users').send({ username: 'Bunny' })
     const lula = await request(app).post('/users').send({ username: 'Lula' })
@@ -70,4 +75,15 @@ describe('Wildflower', () => {
     expect(actualOutput.body._id).toBeDefined()
   })
 
+  it('should delete a user', async () => {
+    const bunny = await request(app).post('/users').send({ username: 'Bunny' })
+    const lula = await request(app).post('/users').send({ username: 'Lula' })
+
+    const expectedOutput = {}
+
+    const actualOutput = await request(app).delete(`/users/${lula.body._id}`)
+
+    expect(actualOutput.body).toMatchObject(expectedOutput)
+    expect(actualOutput.status).toBe(200)
   })
+})
