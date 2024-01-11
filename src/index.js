@@ -89,6 +89,7 @@ async function main() {
   const bunnyAfterAddingItemToHerCart = await axios.get(`users/${bunny.data._id}/cart`)
   console.log('bunnyAfterAddingItemToHerCart: ', bunnyAfterAddingItemToHerCart.data)
 
+  // remove item from cart
   await axios.delete(`users/${bunny.data._id}/cart/items/${bouquetTwo.data._id}`)
 
   const bunnyAfterRemovingItemFromHerCart = await axios.get(`users/${bunny.data._id}/cart`)
