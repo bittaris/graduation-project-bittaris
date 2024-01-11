@@ -37,4 +37,20 @@ describe('Wildflower', () => {
 
     expect(actualOutput.body).toMatchObject(expectedOutput)
   })
+
+  it('can get a specific user', async () => {
+    const bunny = await request(app).post('/users').send({ username: 'Bunny' })
+    const lula = await request(app).post('/users').send({ username: 'Lula' })
+
+    const expectedOutput = {
+      username: 'Bunny',
+      cart: [],
+      _id: bunny.body._id,
+    }
+
+    const actualOutput = await request(app).get(`/users/${bunny.body._id}`)
+
+    expect(actualOutput.body).toMatchObject(expectedOutput)
+  })
+
   })
