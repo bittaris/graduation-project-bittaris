@@ -24,3 +24,6 @@ node_modules/
 
 # mongoDB files
 data
+
+# test files
+coverage
