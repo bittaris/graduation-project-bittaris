@@ -53,4 +53,21 @@ describe('Wildflower', () => {
     expect(actualOutput.body).toMatchObject(expectedOutput)
   })
 
+  it('can create a product', async () => {
+    const title = 'Bouquet One'
+    const description = '10 Pink Peonies'
+    const price = '30€'
+
+    const expectedOutput = {
+      title,
+      description,
+      price,
+    }
+
+    const actualOutput = await request(app).post('/products').send({ title, description, price })
+
+    expect(actualOutput.body).toMatchObject(expectedOutput)
+    expect(actualOutput.body._id).toBeDefined()
+  })
+
   })
