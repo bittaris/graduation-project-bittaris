@@ -9,9 +9,9 @@
     "dev": "nodemon ./bin/www",
     "eslint:check": "npx eslint .",
     "eslint:fix": "npx eslint --fix .",
-    "test": "jest",
-    "test:watch": "jest --watch --coverage",
-    "test:coverage": "jest --coverage"
+    "test": "DOTENV_CONFIG_PATH=./.env.test.local jest",
+    "test:watch": "DOTENV_CONFIG_PATH=./.env.test.local jest --watch --coverage",
+    "test:coverage": "DOTENV_CONFIG_PATH=./.env.test.local jest --coverage"
   },
   "devDependencies": {
     "eslint": "^8.19.0",
@@ -36,5 +36,10 @@
     "morgan": "^1.10.0",
     "pug": "^3.0.2",
     "supertest": "^6.3.3"
+  },
+  "jest": {
+    "setupFiles": [
+      "dotenv/config"
+    ]
   }
 }

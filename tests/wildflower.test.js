@@ -1,4 +1,6 @@
 const request = require('supertest')
+const User = require('../src/models/user')
+const Product = require('../src/models/product')
 
 const app = require('../src/app')
 
