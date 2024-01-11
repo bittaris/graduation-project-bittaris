@@ -103,4 +103,73 @@ describe('Wildflower', () => {
     expect(actualOutput.body).toMatchObject(expectedOutput)
     expect(actualOutput.status).toBe(200)
   })
+
+  it('can get all products', async () => {
+    const bouquetOne = await request(app).post('/products').send({
+      title: 'Bouquet One',
+      description: '10 Pink Peonies',
+      price: '30€',
+    })
+
+    const bouquetTwo = await request(app).post('/products').send({
+      title: 'Bouquet Two',
+      description: '20 Yellow Roses',
+      price: '35€',
+    })
+
+    const bouquetThree = await request(app).post('/products').send({
+      title: 'Bouquet Three',
+      description: '25 Pink Carnations',
+      price: '30€',
+    })
+
+    const bouquetFour = await request(app).post('/products').send({
+      title: 'Bouquet Four',
+      description: '15 Yellow Daffodils',
+      price: '25€',
+    })
+
+    const bouquetFive = await request(app).post('/products').send({
+      title: 'Bouquet Five',
+      description: '25 White Roses',
+      price: '40€',
+    })
+
+    const expectedOutput = [
+      {
+        title: 'Bouquet One',
+        description: '10 Pink Peonies',
+        price: '30€',
+        _id: bouquetOne.body._id,
+      },
+      {
+        title: 'Bouquet Two',
+        description: '20 Yellow Roses',
+        price: '35€',
+        _id: bouquetTwo.body._id,
+      },
+      {
+        title: 'Bouquet Three',
+        description: '25 Pink Carnations',
+        price: '30€',
+        _id: bouquetThree.body._id,
+      },
+      {
+        title: 'Bouquet Four',
+        description: '15 Yellow Daffodils',
+        price: '25€',
+        _id: bouquetFour.body._id,
+      },
+      {
+        title: 'Bouquet Five',
+        description: '25 White Roses',
+        price: '40€',
+        _id: bouquetFive.body._id,
+      },
+    ]
+
+    const actualOutput = await request(app).get('/products')
+
+    expect(actualOutput.body).toMatchObject(expectedOutput)
+  })
 })
