@@ -2,17 +2,30 @@ services:
   api:
     image: wildflower-api
     build:
-      context: .
+      context: backend
       dockerfile: Dockerfile
     depends_on:
       - mongodb
     ports:
       - '3000:3000'
     volumes:
-      - ./src:/app/src
+      - ./backend/src:/app/src
     environment:
-      #- MONGODB_CONNECTION_STRING=mongodb://mongodb:27017/wildflower
-      - MONGODB_CONNECTION_STRING=${MONGODB_CONNECTION_STRING}
+      - MONGODB_CONNECTION_STRING=mongodb://mongodb:27017/wildflower
+      # - MONGODB_CONNECTION_STRING=${MONGODB_CONNECTION_STRING}
+
+  frontend:
+    image: frontend
+    build:
+      context: frontend
+      dockerfile: Dockerfile
+    ports:
+      - 5173:5173
+    # env_file:
+    #   - ./frontend/.env
+    volumes:
+      - ./frontend/src:/app/src
+      - ./frontend/public:/app/public
 
   mongodb:
     image: mongo
@@ -26,5 +39,5 @@ services:
   #   depends_on:
   #     - api
   #   volumes:
-  #     - ./src/index.js:/app/src/index.js
+  #     - ./backend/src/index.js:/app/src/index.js
   #   command: node src/index.js
