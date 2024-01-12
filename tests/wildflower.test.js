@@ -227,8 +227,33 @@ describe('Wildflower', () => {
     expect(actualOutput.body).toMatchObject(expectedOutput)
   })
 
-  // it(can let a user remove an item from the cart, async () => {
+  it('can let a user remove an item from the cart', async () => {
+    const bunny = await request(app).post('/users').send({ username: 'Bunny' })
+    const bouquetOne = await request(app).post('/products').send({
+      title: 'Bouquet One',
+      description: '10 Pink Peonies',
+      price: '30€',
+    })
+
+    const expectedOutput = {
+      username: 'Bunny',
+      cart: [],
+      _id: bunny.body._id,
+    }
+
+    await request(app).post(`/users/${bunny.body._id}/cart/items`).send({
+      itemId: bouquetOne.body._id,
+    })
+
+    await request(app).delete(`/users/${bunny.body._id}/cart/items/${bouquetOne.body._id}`)
+
+    const actualOutput = await request(app).get(`/users/${bunny.body._id}`)
+
+    expect(actualOutput.body).toMatchObject(expectedOutput)
+  })
+
   // it(can let a user place an order, async () => {
+
   // it(can get all the orders, async () => {
 
   it("responds with 404 if the user doesn't exist", async () => {
