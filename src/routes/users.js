@@ -61,8 +61,11 @@ router.post('/:userId/cart/items', async function (req, res, next) {
   }
 
   await user.addItemToCart(item)
+  // Fetch updated user object from database
+  const updatedUser = await User.findById(userId)
 
-  res.send(user.cart)
+  res.send(updatedUser)
+  //res.send(user.cart)
 })
 
 // /users/userId/cart/items/itemId => delete, remove an item from the cart
