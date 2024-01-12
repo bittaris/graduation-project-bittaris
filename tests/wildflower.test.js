@@ -77,33 +77,6 @@ describe('Wildflower', () => {
     expect(actualOutput.body._id).toBeDefined()
   })
 
-  it('should delete a user', async () => {
-    const bunny = await request(app).post('/users').send({ username: 'Bunny' })
-    const lula = await request(app).post('/users').send({ username: 'Lula' })
-
-    const expectedOutput = {}
-
-    const actualOutput = await request(app).delete(`/users/${lula.body._id}`)
-
-    expect(actualOutput.body).toMatchObject(expectedOutput)
-    expect(actualOutput.status).toBe(200)
-  })
-
-  it('can delete a product', async () => {
-    const bouquetOne = await request(app).post('/products').send({
-      title: 'Bouquet One',
-      description: '10 Pink Peonies',
-      price: '30€',
-    })
-
-    const expectedOutput = {}
-
-    const actualOutput = await request(app).delete(`/products/${bouquetOne.body._id}`)
-
-    expect(actualOutput.body).toMatchObject(expectedOutput)
-    expect(actualOutput.status).toBe(200)
-  })
-
   it('can get all products', async () => {
     const bouquetOne = await request(app).post('/products').send({
       title: 'Bouquet One',
@@ -172,7 +145,40 @@ describe('Wildflower', () => {
 
     expect(actualOutput.body).toMatchObject(expectedOutput)
   })
-    
+
+  it('can delete a user', async () => {
+    const bunny = await request(app).post('/users').send({ username: 'Bunny' })
+    const lula = await request(app).post('/users').send({ username: 'Lula' })
+
+    const expectedOutput = {}
+
+    const actualOutput = await request(app).delete(`/users/${lula.body._id}`)
+
+    expect(actualOutput.body).toMatchObject(expectedOutput)
+    expect(actualOutput.status).toBe(200)
+  })
+
+  it('can delete a product', async () => {
+    const bouquetOne = await request(app).post('/products').send({
+      title: 'Bouquet One',
+      description: '10 Pink Peonies',
+      price: '30€',
+    })
+
+    const expectedOutput = {}
+
+    const actualOutput = await request(app).delete(`/products/${bouquetOne.body._id}`)
+
+    expect(actualOutput.body).toMatchObject(expectedOutput)
+    expect(actualOutput.status).toBe(200)
+  })
+
+  //it('can let a user add an item to the cart')
+  // it(can get the cart of a user, async () => {
+  // it(can let a user remove an item from the cart, async () => {
+  // it(can let a user place an order, async () => {
+  // it(can get all the orders, async () => {
+
   it("responds with 404 if the user doesn't exist", async () => {
     const bunny = await request(app).post('/users').send({ username: 'Bunny' })
     const lula = await request(app).post('/users').send({ username: 'Lula' })
