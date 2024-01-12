@@ -173,8 +173,33 @@ describe('Wildflower', () => {
     expect(actualOutput.status).toBe(200)
   })
 
-  //it('can let a user add an item to the cart')
-  // it(can get the cart of a user, async () => {
+  it('can let a user add an item to the cart', async () => {
+    const bunny = await request(app).post('/users').send({ username: 'Bunny' })
+    const bouquetOne = await request(app).post('/products').send({
+      title: 'Bouquet One',
+      description: '10 Pink Peonies',
+      price: '30€',
+    })
+
+    const expectedOutput = {
+      username: 'Bunny',
+      cart: [
+        {
+          _id: bouquetOne.body._id,
+          title: 'Bouquet One',
+          description: '10 Pink Peonies',
+          price: '30€',
+        },
+      ],
+      _id: bunny.body._id,
+    }
+
+    const actualOutput = await request(app).post(`/users/${bunny.body._id}/cart/items`).send({
+      itemId: bouquetOne.body._id,
+    })
+
+    expect(actualOutput.body).toMatchObject(expectedOutput)
+  })
   // it(can let a user remove an item from the cart, async () => {
   // it(can let a user place an order, async () => {
   // it(can get all the orders, async () => {
