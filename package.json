@@ -40,6 +40,9 @@
   "jest": {
     "setupFiles": [
       "dotenv/config"
+    ],
+    "setupFilesAfterEnv": [
+      "./test/setup.js"
     ]
   }
 }
