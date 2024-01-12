@@ -172,4 +172,17 @@ describe('Wildflower', () => {
 
     expect(actualOutput.body).toMatchObject(expectedOutput)
   })
+    
+  it("responds with 404 if the user doesn't exist", async () => {
+    const bunny = await request(app).post('/users').send({ username: 'Bunny' })
+    const lula = await request(app).post('/users').send({ username: 'Lula' })
+
+    await request(app).delete(`/users/${lula.body._id}`)
+
+    const expectedOutput = 'User not found'
+    const actualOutput = await request(app).get(`/users/${lula.body._id}`)
+    expect(actualOutput.text).toMatch(expectedOutput)
+
+    expect(actualOutput.status).toBe(404)
+  })
 })
