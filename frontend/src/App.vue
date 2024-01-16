@@ -5,13 +5,14 @@ import HelloWorld from './components/HelloWorld.vue'
 
 <template>
   <header>
-    <div class="wrapper">
+    <!-- <div class="wrapper">
       <nav>
         <RouterLink to="/">Home</RouterLink>
         <RouterLink to="/about">About</RouterLink>
       </nav>
-    </div>
+    </div> -->
   </header>
+  <h1>Wildflower</h1>
   <Suspense>
     <RouterView />
   </Suspense>
@@ -51,6 +52,12 @@ nav a {
 
 nav a:first-of-type {
   border: 0;
+}
+
+h1 {
+  font-size: 2rem;
+  margin-bottom: 1rem;
+  color: rgb(248, 246, 243);
 }
 
 @media (min-width: 1024px) {
