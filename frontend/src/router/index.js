@@ -16,6 +16,11 @@ const router = createRouter({
       component: ProductsView
     },
     {
+      path: '/products/:_id',
+      name: 'product',
+      component: () => import('../views/ProductView.vue')
+    },
+    {
       path: '/about',
       name: 'about',
       // route level code-splitting
