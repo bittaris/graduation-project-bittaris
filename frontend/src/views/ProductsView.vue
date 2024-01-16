@@ -12,9 +12,7 @@ const products = productsResponse.data
     <h1>Bouquets</h1>
     <ul>
       <li v-for="product in products" :key="product._id">
-        <a :href="`/products/${products._id}`">
-          {{ product.title }}
-        </a>
+        <RouterLink :to="`/products/${product._id}`">{{ product.title }}</RouterLink>
         {{ product.description }} for {{ product.price }}
       </li>
     </ul>
@@ -23,12 +21,13 @@ const products = productsResponse.data
 
 <style scoped>
 h1 {
-  font-size: 2rem;
+  font-size: 1.5rem;
   font-weight: bold;
+  margin-left: 1rem;
   margin-bottom: 1rem;
   color: rgb(248, 246, 243);
 }
 a {
-  color: green;
+  color: rgb(20, 145, 0);
 }
 </style>
