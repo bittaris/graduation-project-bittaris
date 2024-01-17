@@ -1,5 +1,9 @@
 <script setup>
-import { ref } from 'vue'
+import { useCounterStore } from '@/stores/counter'
+
+const counter = useCounterStore()
+
+// import { ref } from 'vue'
 
 defineProps({
   name: {
@@ -8,23 +12,23 @@ defineProps({
   }
 })
 
-const count = ref(0)
+// const count = ref(0)
 
-const increment = () => {
-  count.value++
-}
+// const increment = () => {
+//   count.value++
+// }
 
-const decrement = () => {
-  count.value--
-}
+// const decrement = () => {
+//   count.value--
+// }
 </script>
 
 <template>
   <div>
     <h1>{{ name }}</h1>
-    <p>Count: {{ count }}</p>
-    <button @click="increment">Increment</button>
-    <button @click="decrement">Decrement</button>
+    <p>Count: {{ counter.count }}</p>
+    <button @click="counter.increment">Increment</button>
+    <button @click="counter.decrement">Decrement</button>
   </div>
 </template>
 
