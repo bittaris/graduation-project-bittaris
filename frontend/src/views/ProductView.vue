@@ -1,5 +1,7 @@
 <script>
-import axios from 'axios'
+import { mapActions } from 'pinia'
+import { useProductStore } from '@/stores/product'
+
 import CounterOptionsAPI from '@/components/CounterOptionsAPI.vue'
 
 export default {
@@ -15,10 +17,10 @@ export default {
     }
   },
   async created() {
-    const { data: product } = await axios.get(
-      `http://localhost:3000/products/${this.$route.params._id}`
-    )
-    this.product = product
+    this.product = await this.fetchProduct(this.$route.params._id)
+  },
+  methods: {
+    ...mapActions(useProductStore, ['fetchProduct'])
   }
 }
 </script>
