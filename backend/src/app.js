@@ -14,6 +14,7 @@ const indexRouter = require('./routes/index')
 const usersRouter = require('./routes/users')
 const productsRouter = require('./routes/products')
 const ordersRouter = require('./routes/orders')
+const MongoStore = require('connect-mongo')
 
 const app = express()
 
@@ -32,6 +33,10 @@ app.use(
       secure: process.env.NODE_ENV === 'production',
       maxAge: 1000 * 60 * 60 * 24 * 7, // 1 week
     },
+    store: MongoStore.create({
+      mongoUrl: process.env.MONGODB_CONNECTION_STRING,
+      // ttl: 60 * 60 * 24 * 7, // 1 week
+    }),
   })
 )
 app.use((req, res, next) => {
