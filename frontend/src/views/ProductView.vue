@@ -9,7 +9,9 @@ export default {
   },
   data() {
     return {
-      product: {}
+      product: {},
+      counter1Name: 'Bouquet Counter 1',
+      counter2Name: 'Bouquet Counter 2'
     }
   },
   async created() {
@@ -23,8 +25,8 @@ export default {
 
 <template>
   <div>
-    <CounterOptionsAPI :name="product.title" />
-    <CounterOptionsAPI :name="product.title" />
+    <CounterOptionsAPI :name="counter1Name" />
+    <CounterOptionsAPI :name="counter2Name" />
   </div>
   <div class="product">
     <h1>{{ product.title }}</h1>
