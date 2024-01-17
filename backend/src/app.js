@@ -6,6 +6,7 @@ const path = require('path')
 const cookieParser = require('cookie-parser')
 const logger = require('morgan')
 const cors = require('cors')
+const session = require('express-session')
 
 require('./database-connection')
 
@@ -21,6 +22,28 @@ app.use(cors())
 // view engine setup
 app.set('views', path.join(__dirname, 'views'))
 app.set('view engine', 'pug')
+
+app.use(
+  session({
+    secret: 'iuhsdfiuwhfiufwhfaoksodjodijsd',
+    resave: false,
+    saveUninitialized: true,
+    cookie: {
+      secure: process.env.NODE_ENV === 'production',
+      maxAge: 1000 * 60 * 60 * 24 * 7, // 1 week
+    },
+  })
+)
+app.use((req, res, next) => {
+  const numberOfVisits = req.session.numberOfVisits || 0
+  req.session.numberOfVisits = numberOfVisits + 1
+  req.session.history = req.session.history || []
+  req.session.history.push(req.url)
+  req.session.ip = req.ip
+
+  console.log('session', req.session)
+  next()
+})
 
 app.use(logger('dev'))
 app.use(express.json())
