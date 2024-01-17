@@ -1,15 +1,18 @@
 <script>
 import axios from 'axios'
+import CounterOptionsAPI from '@/components/CounterOptionsAPI.vue'
 
 export default {
   name: 'ProductDetail',
+  components: {
+    CounterOptionsAPI
+  },
   data() {
     return {
       product: {}
     }
   },
   async created() {
-    console.log(this.$route.params._id)
     const { data: product } = await axios.get(
       `http://localhost:3000/products/${this.$route.params._id}`
     )
@@ -19,19 +22,21 @@ export default {
 </script>
 
 <template>
+  <div>
+    <CounterOptionsAPI :name="product.title" />
+    <CounterOptionsAPI :name="product.title" />
+  </div>
   <div class="product">
     <h1>{{ product.title }}</h1>
-    <p>{{ product.description }}</p>
-    for
-    <p>{{ product.price }}</p>
+    <p>{{ product.description }} for {{ product.price }}</p>
   </div>
 </template>
 
 <style scoped>
 h1 {
-  font-size: 2rem;
+  font-size: 1rem;
   font-weight: bold;
-  margin-bottom: 1rem;
+  margin-top: 1rem;
   color: rgb(248, 246, 243);
 }
 </style>
