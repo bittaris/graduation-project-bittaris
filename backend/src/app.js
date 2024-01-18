@@ -72,7 +72,8 @@ app.use((req, res, next) => {
   req.session.history.push(req.url)
   req.session.ip = req.ip
 
-  console.log('session', req.session)
+  // console.log('session', req.session)
+
   next()
 })
 

@@ -6,21 +6,26 @@ export default {
   data() {
     return {
       email: '',
-      password: ''
+      password: '',
+      user: null
     }
   },
   methods: {
     async login() {
-      axios.post('http://localhost:3000/accounts/session/', {
-        email: this.email,
-        password: this.password
-      })
+      this.user = (
+        await axios.post('http://localhost:3000/accounts/session/', {
+          email: this.email,
+          password: this.password
+        })
+      ).data
     }
   }
 }
 </script>
 <template>
   <h3>Log into your account</h3>
+
+  <h4 v-if="user">You're logged in as {{ user.username }}</h4>
 
   <form @submit.prevent="login">
     <div>
