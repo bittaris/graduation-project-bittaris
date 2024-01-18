@@ -18,6 +18,17 @@ const usersRouter = require('./routes/users')
 const productsRouter = require('./routes/products')
 const ordersRouter = require('./routes/orders')
 
+// requires the model with Passport-Local Mongoose plugged in
+const User = require('./models/user')
+const passport = require('passport')
+
+// use static authenticate method of model in LocalStrategy
+passport.use(User.createStrategy())
+
+// use static serialize and deserialize of model for passport session support
+passport.serializeUser(User.serializeUser())
+passport.deserializeUser(User.deserializeUser())
+
 const app = express()
 
 app.use(
@@ -50,6 +61,9 @@ app.use(
     store: MongoStore.create({ clientPromise, stringify: false }),
   })
 )
+
+app.use(passport.session())
+
 app.use((req, res, next) => {
   const numberOfVisits = req.session.numberOfVisits || 0
   req.session.numberOfVisits = numberOfVisits + 1
