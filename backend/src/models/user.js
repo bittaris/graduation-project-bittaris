@@ -1,6 +1,7 @@
 const Order = require('./order')
 const mongoose = require('mongoose')
 const autopopulate = require('mongoose-autopopulate')
+const passportLocalMongoose = require('passport-local-mongoose')
 
 const userSchema = new mongoose.Schema({
   username: String,
@@ -24,6 +25,7 @@ class User {
 }
 
 userSchema.plugin(autopopulate)
+userSchema.plugin(passportLocalMongoose, { usernameField: 'email' })
 
 userSchema.loadClass(User)
 
