@@ -43,8 +43,8 @@ app.use(
     resave: false,
     saveUninitialized: true,
     cookie: {
-      httpOnly: false,
-      secure: false,
+      // httpOnly: false,
+      secure: process.env.NODE_ENV === 'production',
       maxAge: 1000 * 60 * 60 * 24 * 7, // 1 week
     },
     store: MongoStore.create({ clientPromise, stringify: false }),
