@@ -1,7 +1,8 @@
 <script>
 import { RouterLink, RouterView } from 'vue-router'
 import HelloWorld from './components/HelloWorld.vue'
-import axios from 'axios'
+import { useAccountStore } from './stores/account'
+import { mapActions } from 'pinia'
 
 export default {
   name: 'App',
@@ -10,19 +11,15 @@ export default {
     RouterLink,
     RouterView
   },
-  data() {
-    user: null
-  },
   async mounted() {
     await this.fetchUser()
   },
   methods: {
-    async fetchUser() {
-      this.user = (
-        await axios.get('http://localhost:3000/accounts/session', {
-          withCredentials: true
-        })
-      ).data
+    ...mapActions(useAccountStore, ['fetchUser'])
+  },
+  computed: {
+    user() {
+      return useAccountStore().user
     }
   }
 }
@@ -39,7 +36,7 @@ export default {
       </nav>
     </div>
   </header>
-  <h1>Wildflower</h1>
+  <h1>Wildflower for {{ user?.passport.user }}</h1>
   <Suspense>
     <RouterView />
   </Suspense>
