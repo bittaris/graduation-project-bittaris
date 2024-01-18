@@ -18,9 +18,7 @@ export default {
     ...mapActions(useAccountStore, ['fetchUser'])
   },
   computed: {
-    user() {
-      return useAccountStore().user
-    }
+    ...mapState(useAccountStore, ['user'])
   }
 }
 </script>
