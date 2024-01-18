@@ -7,6 +7,9 @@ const cookieParser = require('cookie-parser')
 const logger = require('morgan')
 const cors = require('cors')
 const session = require('express-session')
+const MongoStore = require('connect-mongo')
+
+const mongoose = require('mongoose')
 
 require('./database-connection')
 
@@ -14,15 +17,25 @@ const indexRouter = require('./routes/index')
 const usersRouter = require('./routes/users')
 const productsRouter = require('./routes/products')
 const ordersRouter = require('./routes/orders')
-const MongoStore = require('connect-mongo')
 
 const app = express()
 
-app.use(cors())
+app.use(
+  cors({
+    origin: 'http://localhost:5173',
+    methods: ['GET', 'POST', 'DELETE', 'PATCH', 'PUT'],
+    credentials: true,
+  })
+)
 
 // view engine setup
 app.set('views', path.join(__dirname, 'views'))
 app.set('view engine', 'pug')
+
+const clientPromise = mongoose.connection.asPromise().then(connection => (connection = connection.getClient()))
+mongoose.connection.on('error', err => {
+  console.log('MongoDB connection error:', err)
+})
 
 app.use(
   session({
@@ -30,13 +43,11 @@ app.use(
     resave: false,
     saveUninitialized: true,
     cookie: {
-      secure: process.env.NODE_ENV === 'production',
+      httpOnly: false,
+      secure: false,
       maxAge: 1000 * 60 * 60 * 24 * 7, // 1 week
     },
-    store: MongoStore.create({
-      mongoUrl: process.env.MONGODB_CONNECTION_STRING,
-      // ttl: 60 * 60 * 24 * 7, // 1 week
-    }),
+    // store: MongoStore.create({ clientPromise, stringify: false }),
   })
 )
 app.use((req, res, next) => {

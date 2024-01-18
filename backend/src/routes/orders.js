@@ -6,7 +6,9 @@ const Address = require('../models/address')
 
 /* GET orders listing. */
 router.get('/', async function (req, res, next) {
-  res.send(await Order.find())
+  const order = await Order.find()
+  console.log('order', order)
+  res.send(order)
 })
 
 /* /orders/orderId get specific order */

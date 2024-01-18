@@ -15,7 +15,6 @@ router.get('/:_id', async function (req, res, next) {
   if (!product) {
     return res.status(404).send('Product not found')
   }
-
   res.send(product)
 })
 
