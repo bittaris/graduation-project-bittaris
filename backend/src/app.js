@@ -47,7 +47,7 @@ app.use(
       secure: false,
       maxAge: 1000 * 60 * 60 * 24 * 7, // 1 week
     },
-    // store: MongoStore.create({ clientPromise, stringify: false }),
+    store: MongoStore.create({ clientPromise, stringify: false }),
   })
 )
 app.use((req, res, next) => {
