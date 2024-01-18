@@ -1,6 +1,31 @@
-<script setup>
+<script>
 import { RouterLink, RouterView } from 'vue-router'
 import HelloWorld from './components/HelloWorld.vue'
+import axios from 'axios'
+
+export default {
+  name: 'App',
+  components: {
+    HelloWorld,
+    RouterLink,
+    RouterView
+  },
+  data() {
+    user: null
+  },
+  async mounted() {
+    await this.fetchUser()
+  },
+  methods: {
+    async fetchUser() {
+      this.user = (
+        await axios.get('http://localhost:3000/accounts/session', {
+          withCredentials: true
+        })
+      ).data
+    }
+  }
+}
 </script>
 
 <template>

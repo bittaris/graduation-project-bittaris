@@ -13,10 +13,16 @@ export default {
   methods: {
     async login() {
       this.user = (
-        await axios.post('http://localhost:3000/accounts/session/', {
-          email: this.email,
-          password: this.password
-        })
+        await axios.post(
+          'http://localhost:3000/accounts/session/',
+          {
+            email: this.email,
+            password: this.password
+          },
+          {
+            withCredentials: true
+          }
+        )
       ).data
     }
   }
