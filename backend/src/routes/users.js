@@ -22,12 +22,20 @@ router.get('/:userId', async function (req, res, next) {
 
 /* (POST)Create a new user. */
 router.post('/', async function (req, res, next) {
-  const user = await User.create({
-    username: req.body.username,
-    cart: req.body.cart,
-  }) // this way the route handler ignores the other parameters and only sends name. Security concern.
+  const { username, email, password } = req.body
+
+  const user = await User.register({ username, email }, password)
+
   res.send(user)
 })
+// router.post('/', async function (req, res, next) {
+//   const user = await User.create({
+//     username: req.body.username,
+//     cart: req.body.cart,
+//   }) // this way the route handler ignores the other parameters and only sends name. Security concern.
+//   res.send(user)
+// })
+
 /* DELETE a user */
 router.delete('/:userId', async function (req, res, next) {
   const { userId } = req.params //instead of const username = req.params.username
