@@ -6,12 +6,25 @@ const User = require('../models/user')
 /* GET my own session with cookies */
 router.get('/session', async function (req, res, next) {
   console.log('the current user is ', req.user)
-  res.send(req.session)
+  res.send(req.user)
 })
 
 // Express application route middleware
 router.post('/session', passport.authenticate('local', { failWithError: true }), function (req, res) {
   res.send(req.user)
+})
+
+/* DELETE session aka logout */
+router.delete('/session', async function (req, res, next) {
+  await req.logout(function (err) {
+    if (err) {
+      return next(err)
+    }
+    req.session.regenerate(err => {
+      if (err) next(err)
+      res.sendStatus(200)
+    })
+  })
 })
 
 module.exports = router
