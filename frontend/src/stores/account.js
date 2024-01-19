@@ -10,9 +10,11 @@ export const useAccountStore = defineStore('Account', {
     user: null
   }),
   actions: {
+    // get user session
     async fetchUser() {
       this.user = (await axios.get('/accounts/session')).data
     },
+    // user login (find or create session)
     async login(email, password) {
       this.user = (
         await axios.post('/accounts/session/', {
@@ -21,6 +23,7 @@ export const useAccountStore = defineStore('Account', {
         })
       ).data
     },
+    // user logout (delete session)
     async logout() {
       await axios.delete('/accounts/session')
       this.user = null
