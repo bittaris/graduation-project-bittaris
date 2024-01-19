@@ -1,29 +1,20 @@
 <script>
-import axios from 'axios'
+import { useAccountStore } from '@/stores/account'
+import { mapActions } from 'pinia'
 
 export default {
   name: 'LoginView',
   data() {
     return {
       email: '',
-      password: '',
-      user: null
+      password: ''
     }
   },
   methods: {
-    async login() {
-      this.user = (
-        await axios.post(
-          'http://localhost:3000/accounts/session/',
-          {
-            email: this.email,
-            password: this.password
-          },
-          {
-            withCredentials: true
-          }
-        )
-      ).data
+    ...mapActions(useAccountStore, ['login']),
+    async doLogin() {
+      await this.login(this.email, this.password)
+      this.$router.push('/')
     }
   }
 }
@@ -31,9 +22,7 @@ export default {
 <template>
   <h3>Log into your account</h3>
 
-  <h4 v-if="user">You're logged in as {{ user.username }}</h4>
-
-  <form @submit.prevent="login">
+  <form @submit.prevent="doLogin">
     <div>
       <label for="email">Email:</label>
       <input id="email" type="email" v-model="email" />
