@@ -22,9 +22,9 @@ router.get('/:userId', async function (req, res, next) {
 
 /* (POST)Create a new user. */
 router.post('/', async function (req, res, next) {
-  const { username, email, password } = req.body
+  const { username, firstName, lastName, email, password } = req.body
 
-  const user = await User.register({ username, email }, password)
+  const user = await User.register({ username, firstName, lastName, email }, password)
 
   res.send(user)
 })
