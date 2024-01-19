@@ -15,7 +15,7 @@ export default {
     await this.fetchUser()
   },
   methods: {
-    ...mapActions(useAccountStore, ['fetchUser'])
+    ...mapActions(useAccountStore, ['fetchUser', 'logout'])
   },
   computed: {
     ...mapState(useAccountStore, ['user'])
@@ -29,12 +29,13 @@ export default {
       <nav>
         <RouterLink to="/">Home</RouterLink>
         <RouterLink to="/about">About</RouterLink>
-        <RouterLink to="/login">Log in</RouterLink>
-        <RouterLink to="/register">Register</RouterLink>
+        <RouterLink v-if="!user" to="/login">Log in</RouterLink>
+        <RouterLink v-if="!user" to="/register">Register</RouterLink>
+        <a v-if="user" @click="logout">Log out</a>
       </nav>
     </div>
   </header>
-  <h1>Wildflower for {{ user?.passport.user }}</h1>
+  <h1>Wildflower for {{ user?.username }}</h1>
   <Suspense>
     <RouterView />
   </Suspense>
