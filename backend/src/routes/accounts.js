@@ -8,7 +8,7 @@ router.get('/session', async function (req, res, next) {
   res.send(req.user)
 })
 
-// Express application route middleware
+// Login
 router.post('/session', passport.authenticate('local', { failWithError: true }), function (req, res) {
   res.send(req.user)
 })
