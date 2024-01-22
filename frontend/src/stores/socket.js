@@ -1,7 +1,9 @@
 import { defineStore } from 'pinia'
 import { io } from 'socket.io-client'
 
-export const socket = io('http://localhost:3000')
+export const socket = io('http://localhost:3000', {
+  withCredentials: true
+})
 
 // options api implementation
 export const useSocketStore = defineStore('Socket', {
@@ -17,6 +19,9 @@ export const useSocketStore = defineStore('Socket', {
       socket.on('disconnect', () => {
         this.connected = false
         console.log('socket disconnected')
+      })
+      socket.on('number of visits', (numberOfVisits) => {
+        console.log('number of visits', numberOfVisits)
       })
     }
   }

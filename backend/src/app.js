@@ -49,19 +49,19 @@ mongoose.connection.on('error', err => {
   console.log('MongoDB connection error:', err)
 })
 
-app.use(
-  session({
-    secret: 'iuhsdfiuwhfiufwhfaoksodjodijsd',
-    resave: false,
-    saveUninitialized: true,
-    cookie: {
-      // httpOnly: false,
-      secure: process.env.NODE_ENV === 'production',
-      maxAge: 1000 * 60 * 60 * 24 * 7, // 1 week
-    },
-    store: MongoStore.create({ clientPromise, stringify: false }),
-  })
-)
+const sessionMiddleware = session({
+  secret: 'iuhsdfiuwhfiufwhfaoksodjodijsd',
+  resave: false,
+  saveUninitialized: true,
+  cookie: {
+    // httpOnly: false,
+    secure: process.env.NODE_ENV === 'production',
+    maxAge: 1000 * 60 * 60 * 24 * 7, // 1 week
+  },
+  store: MongoStore.create({ clientPromise, stringify: false }),
+})
+
+app.use(sessionMiddleware)
 
 app.use(passport.session())
 
@@ -113,10 +113,20 @@ app.createSocketServer = function (server) {
     },
   })
 
+  io.engine.use(sessionMiddleware)
+  io.engine.use(passport.initialize())
+  io.engine.use(passport.session())
+
   console.log('socket.io server created')
 
   io.on('connection', socket => {
     console.log('a user connected')
+
+    console.log('user: ', socket.request.user)
+
+    console.log('user session: ', socket.request.session)
+
+    // socket.emit('number of visits', socket.request.session.numberOfVisits)
 
     socket.on('disconnect', () => {
       console.log('user disconnected')

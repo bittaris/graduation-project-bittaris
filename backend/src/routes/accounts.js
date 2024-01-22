@@ -5,7 +5,6 @@ const User = require('../models/user')
 
 /* GET my own session with cookies */
 router.get('/session', async function (req, res, next) {
-  console.log('the current user is ', req.user)
   res.send(req.user)
 })
 
