@@ -48,7 +48,7 @@ const clientPromise = mongoose.connection.asPromise().then(connection => (connec
 mongoose.connection.on('error', err => {
   console.log('MongoDB connection error:', err)
 })
-
+// This way it can be accessed from other modules
 const sessionMiddleware = session({
   secret: 'iuhsdfiuwhfiufwhfaoksodjodijsd',
   resave: false,
@@ -71,11 +71,6 @@ app.use((req, res, next) => {
   req.session.history = req.session.history || []
   req.session.history.push({ url: req.url, ip: req.ip })
   // req.session.ip = req.ip
-
-  const io = app.get('io')
-  if (io && req.user) {
-    io.to(req.user._id.toString).emit('number of visits', req.session.numberOfVisits + 1)
-  }
 
   next()
 })
@@ -107,7 +102,7 @@ app.use(function (err, req, res, next) {
   res.status(err.status || 500)
   res.render('error')
 })
-
+// io is the second server
 app.createSocketServer = function (server) {
   const io = require('socket.io')(server, {
     cors: {
@@ -115,23 +110,25 @@ app.createSocketServer = function (server) {
       credentials: true,
     },
   })
-  // function for application setting, making it globally accessible
+  // set is a function for application setting, making it globally accessible
   app.set('io', io)
 
+  // allows you to fetch the logged in user from a session
   io.engine.use(sessionMiddleware)
   io.engine.use(passport.session())
 
   console.log('socket.io server created')
 
   io.on('connection', socket => {
-    console.log('a user connected')
+    console.log('a user connected', socket.request.user?._id.toString())
     // Sockets also have access to the session
     console.log('user: ', socket.request.user)
 
+    // It checks if there is a user logged in and if so, it joins the room with the user id
+    // 'request' checks for the first/original http request
     if (socket.request.user) {
       socket.join(socket.request.user._id.toString())
     }
-
     console.log('user session: ', socket.request.session)
 
     socket.emit('number of visits', socket.request.session.numberOfVisits)
