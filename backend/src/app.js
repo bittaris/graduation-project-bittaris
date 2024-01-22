@@ -69,10 +69,13 @@ app.use((req, res, next) => {
   const numberOfVisits = req.session.numberOfVisits || 0
   req.session.numberOfVisits = numberOfVisits + 1
   req.session.history = req.session.history || []
-  req.session.history.push(req.url)
-  req.session.ip = req.ip
+  req.session.history.push({ url: req.url, ip: req.ip })
+  // req.session.ip = req.ip
 
-  // console.log('session', req.session)
+  const io = app.get('io')
+  if (io && req.user) {
+    io.to(req.user._id.toString).emit('number of visits', req.session.numberOfVisits + 1)
+  }
 
   next()
 })
@@ -112,21 +115,26 @@ app.createSocketServer = function (server) {
       credentials: true,
     },
   })
+  // function for application setting, making it globally accessible
+  app.set('io', io)
 
   io.engine.use(sessionMiddleware)
-  io.engine.use(passport.initialize())
   io.engine.use(passport.session())
 
   console.log('socket.io server created')
 
   io.on('connection', socket => {
     console.log('a user connected')
-
+    // Sockets also have access to the session
     console.log('user: ', socket.request.user)
+
+    if (socket.request.user) {
+      socket.join(socket.request.user._id.toString())
+    }
 
     console.log('user session: ', socket.request.session)
 
-    // socket.emit('number of visits', socket.request.session.numberOfVisits)
+    socket.emit('number of visits', socket.request.session.numberOfVisits)
 
     socket.on('disconnect', () => {
       console.log('user disconnected')
