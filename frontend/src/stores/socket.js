@@ -1,6 +1,7 @@
 import { defineStore } from 'pinia'
 import { io } from 'socket.io-client'
 
+// With Credentials means that the client will send the cookies to the server
 export const socket = io('http://localhost:3000', {
   withCredentials: true
 })
@@ -20,6 +21,7 @@ export const useSocketStore = defineStore('Socket', {
         this.connected = false
         console.log('socket disconnected')
       })
+      // Will automatically log the incrementing number of visits
       socket.on('number of visits', (numberOfVisits) => {
         console.log('number of visits', numberOfVisits)
       })
