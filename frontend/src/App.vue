@@ -2,6 +2,8 @@
 import { RouterLink, RouterView } from 'vue-router'
 import HelloWorld from './components/HelloWorld.vue'
 import { useAccountStore } from './stores/account'
+import { useSocketStore } from './stores/socket'
+
 import { mapActions, mapState } from 'pinia'
 
 export default {
@@ -13,12 +15,15 @@ export default {
   },
   async mounted() {
     await this.fetchUser()
+    await this.init()
   },
   methods: {
-    ...mapActions(useAccountStore, ['fetchUser', 'logout'])
+    ...mapActions(useAccountStore, ['fetchUser', 'logout']),
+    ...mapActions(useSocketStore, ['init'])
   },
   computed: {
-    ...mapState(useAccountStore, ['user'])
+    ...mapState(useAccountStore, ['user']),
+    ...mapState(useSocketStore, ['connected'])
   }
 }
 </script>
@@ -35,7 +40,7 @@ export default {
       </nav>
     </div>
   </header>
-  <h1>Wildflower for {{ user?.username }}</h1>
+  <h1>Wildflower for {{ user?.username }}. Socket connected: {{ connected ? 'yes' : 'no' }}</h1>
   <Suspense>
     <RouterView />
   </Suspense>
