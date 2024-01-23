@@ -1,8 +1,10 @@
 import { defineStore } from 'pinia'
 import { io } from 'socket.io-client'
 
+const URL = import.meta.env.VITE_API_URL
+
 // With Credentials means that the client will send the cookies to the server
-export const socket = io('', {
+export const socket = io(URL, {
   withCredentials: true
 })
 
