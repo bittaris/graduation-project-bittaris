@@ -36,7 +36,7 @@ app.set('trust proxy', 1)
 
 app.use(
   cors({
-    origin: 'http://localhost:5173', // needs to be changed for deployment
+    origin: process.env.NODE_ENV === 'production' ?   'http://localhost:5173', // needs to be changed for deployment
     methods: ['GET', 'POST', 'DELETE', 'PATCH', 'PUT'],
     credentials: true,
   })
