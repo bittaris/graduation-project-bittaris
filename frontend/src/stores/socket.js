@@ -2,7 +2,7 @@ import { defineStore } from 'pinia'
 import { io } from 'socket.io-client'
 
 // With Credentials means that the client will send the cookies to the server
-export const socket = io('http://localhost:3000', {
+export const socket = io('', {
   withCredentials: true
 })
 

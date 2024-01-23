@@ -2,7 +2,7 @@
 // composition API
 import axios from 'axios'
 
-const productsResponse = await axios.get('http://localhost:3000/products') // top level await
+const productsResponse = await axios.get('/products') // top level await
 
 const products = productsResponse.data
 </script>

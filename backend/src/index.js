@@ -1,6 +1,6 @@
 const axios = require('axios')
 
-axios.defaults.baseURL = 'http://localhost:3000'
+axios.defaults.baseURL = ''
 // axios.defaults.baseURL = 'http://api:3000'
 
 // create user with axious

@@ -9,7 +9,7 @@ export const useProductStore = defineStore('product', {
 
   actions: {
     async fetchProduct(_id) {
-      const { data: product } = await axios.get(`http://localhost:3000/products/${_id}`)
+      const { data: product } = await axios.get(`/products/${_id}`)
       return product
     }
   }
