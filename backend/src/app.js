@@ -32,6 +32,8 @@ passport.deserializeUser(User.deserializeUser())
 
 const app = express()
 
+app.set('trust proxy', 1)
+
 app.use(
   cors({
     origin: 'http://localhost:5173', // needs to be changed for deployment
@@ -57,6 +59,7 @@ const sessionMiddleware = session({
     // httpOnly: false,
     secure: process.env.NODE_ENV === 'production',
     maxAge: 1000 * 60 * 60 * 24 * 7, // 1 week
+    sameSite: 'none',
   },
   store: MongoStore.create({ clientPromise, stringify: false }),
 })
