@@ -31,7 +31,8 @@ export default {
       <label for="password">Password:</label>
       <input id="password" type="password" v-model="password" />
     </div>
-    <button type="submit">Log in</button>
+    <!-- <button type="submit">Log in</button> -->
+    <button class="btn btn-primary" @click="doLogin">Log in</button>
   </form>
 </template>
 
@@ -46,11 +47,10 @@ label {
 }
 
 button {
-  margin-top: 1.5rem;
-  padding: 0.25rem 1.5rem;
   font-family: Arial, Helvetica, sans-serif;
   font-weight: bold;
   color: rgb(255, 255, 255);
   background-color: green;
+  margin-top: 1rem;
 }
 </style>
