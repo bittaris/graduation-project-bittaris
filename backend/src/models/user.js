@@ -4,7 +4,8 @@ const autopopulate = require('mongoose-autopopulate')
 const passportLocalMongoose = require('passport-local-mongoose')
 
 const userSchema = new mongoose.Schema({
-  username: String,
+  firstName: String,
+  lastName: String,
   cart: [{ type: mongoose.Schema.Types.ObjectId, ref: 'Product', autopopulate: true }],
 })
 

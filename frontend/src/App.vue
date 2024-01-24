@@ -40,7 +40,7 @@ export default {
       </nav>
     </div>
   </header>
-  <h1>Wildflower for {{ user?.username }}. Socket connected: {{ connected ? 'yes' : 'no' }}</h1>
+  <h1>Wildflower for {{ user?.firstName }}. Socket connected: {{ connected ? 'yes' : 'no' }}</h1>
   <Suspense>
     <RouterView />
   </Suspense>

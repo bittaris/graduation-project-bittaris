@@ -6,7 +6,6 @@ export default {
   name: 'RegisterView',
   data() {
     return {
-      username: '',
       firstName: '',
       lastName: '',
       email: '',
@@ -16,7 +15,7 @@ export default {
   methods: {
     ...mapActions(useUserStore, ['register']),
     async doRegister() {
-      await this.register(this.username, this.firstName, this.lastName, this.email, this.password)
+      await this.register(this.firstName, this.lastName, this.email, this.password)
       this.$router.push('/login')
     }
   }
@@ -26,10 +25,6 @@ export default {
   <h3>Register for an account</h3>
 
   <form @submit.prevent="doRegister">
-    <div>
-      <label for="username">Username:</label>
-      <input id="username" type="text" v-model="username" />
-    </div>
     <div>
       <label for="firstName">First Name:</label>
       <input id="firstName" type="text" v-model="firstName" />
