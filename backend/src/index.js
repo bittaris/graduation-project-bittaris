@@ -5,15 +5,14 @@ axios.defaults.baseURL = 'http://localhost:3000'
 
 async function main() {
   // await axios.get('/delete')
-  // // create user
-  // const lamb = await axios.post('/users', {
-  //   username: 'Lamb',
-  //   firstName: 'Bea',
-  //   lastName: 'Lamb',
-  //   type: 'owner',
-  //   email: 'be@lamb.com',
-  //   password: '123456',
-  // })
+  // create user
+  const camel = await axios.post('/users', {
+    firstName: 'Camel',
+    lastName: 'Case',
+    type: 'owner',
+    email: 'camel@hump.com',
+    password: '123456',
+  })
 
   // // lamb logs in
   // await axios.post('accounts/session', {
@@ -47,32 +46,33 @@ async function main() {
   // // gets a specific user
   // const whoBunny = await axios.get(`/users/${bunny.data._id}`)
   // console.log('whoBunny: ', whoBunny.data)
-  // // create products with axios
-  // const bouquetOne = await axios.post('/products', {
-  //   title: 'Bouquet One',
-  //   description: '10 Pink Peonies',
-  //   price: '30€',
-  // })
-  // const bouquetTwo = await axios.post('/products', {
-  //   title: 'Bouquet Two',
-  //   description: '20 Yellow Roses',
-  //   price: '35€',
-  // })
-  // const bouquetThree = await axios.post('/products', {
-  //   title: 'Bouquet Three',
-  //   description: '25 Pink Carnations',
-  //   price: '30€',
-  // })
-  // const bouquetFour = await axios.post('/products', {
-  //   title: 'Bouquet Four',
-  //   description: '15 Yellow Daffodils',
-  //   price: '25€',
-  // })
-  // const bouquetFive = await axios.post('/products', {
-  //   title: 'Bouquet Five',
-  //   description: '25 White Roses',
-  //   price: '40€',
-  // })
+
+  // create products with axios
+  const bouquetOne = await axios.post('/products', {
+    title: 'Bouquet One',
+    description: '10 Pink Peonies',
+    price: '30€',
+  })
+  const bouquetTwo = await axios.post('/products', {
+    title: 'Bouquet Two',
+    description: '20 Yellow Roses',
+    price: '35€',
+  })
+  const bouquetThree = await axios.post('/products', {
+    title: 'Bouquet Three',
+    description: '25 Pink Carnations',
+    price: '30€',
+  })
+  const bouquetFour = await axios.post('/products', {
+    title: 'Bouquet Four',
+    description: '15 Yellow Daffodils',
+    price: '25€',
+  })
+  const bouquetFive = await axios.post('/products', {
+    title: 'Bouquet Five',
+    description: '25 White Roses',
+    price: '40€',
+  })
   // const allProducts = await axios.get('/products')
   // console.log('List of all the products: ', allProducts.data)
   // // // delete user with axios
