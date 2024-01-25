@@ -34,6 +34,7 @@ export default {
       <nav>
         <RouterLink to="/">Home</RouterLink>
         <RouterLink to="/about">About</RouterLink>
+        <RouterLink to="/products">Bouquets</RouterLink>
         <RouterLink v-if="!user" to="/login">Log in</RouterLink>
         <RouterLink v-if="!user" to="/register">Register</RouterLink>
         <a v-if="user" @click="logout">Log out</a>
