@@ -67,6 +67,7 @@ const sessionMiddleware = session({
 
 app.use(sessionMiddleware)
 
+// app.use(passport.initialize())
 app.use(passport.session())
 
 app.use((req, res, next) => {
@@ -74,6 +75,7 @@ app.use((req, res, next) => {
   req.session.numberOfVisits = numberOfVisits + 1
   req.session.history = req.session.history || []
   req.session.history.push({ url: req.url, ip: req.ip })
+  console.log('number of visits: ', req.session.numberOfVisits)
   // req.session.ip = req.ip
 
   next()
