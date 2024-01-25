@@ -58,8 +58,9 @@ const sessionMiddleware = session({
   cookie: {
     // httpOnly: false,
     secure: process.env.NODE_ENV === 'production',
+    // secure: true,
     maxAge: 1000 * 60 * 60 * 24 * 7, // 1 week
-    sameSite: 'none',
+    sameSite: process.env.NODE_ENV === 'production' ? 'none' : '',
   },
   store: MongoStore.create({ clientPromise, stringify: false }),
 })
