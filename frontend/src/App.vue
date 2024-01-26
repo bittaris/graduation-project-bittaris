@@ -84,8 +84,9 @@ nav a:first-of-type {
 }
 
 h1 {
-  font-size: 2rem;
-  margin-bottom: 1rem;
+  font-size: 1rem;
+  margin-bottom: 2rem;
+  margin-top: 1.5rem;
   color: rgb(248, 246, 243);
 }
 
