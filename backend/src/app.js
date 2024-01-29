@@ -12,6 +12,7 @@ const MongoStore = require('connect-mongo')
 const helmet = require('helmet')
 const BodyParser = require('body-parser')
 const celebrate = require('celebrate')
+const sanitize = require('mongo-sanitize')
 
 const mongoose = require('mongoose')
 
