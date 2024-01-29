@@ -8,6 +8,7 @@ const logger = require('morgan')
 const cors = require('cors')
 const session = require('express-session')
 const MongoStore = require('connect-mongo')
+const helmet = require('helmet')
 
 const mongoose = require('mongoose')
 
@@ -45,6 +46,8 @@ app.use(
 // view engine setup
 app.set('views', path.join(__dirname, 'views'))
 app.set('view engine', 'pug')
+
+app.use(helmet())
 
 const clientPromise = mongoose.connection.asPromise().then(connection => (connection = connection.getClient()))
 mongoose.connection.on('error', err => {
