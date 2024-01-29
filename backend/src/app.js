@@ -8,7 +8,10 @@ const logger = require('morgan')
 const cors = require('cors')
 const session = require('express-session')
 const MongoStore = require('connect-mongo')
+
 const helmet = require('helmet')
+const BodyParser = require('body-parser')
+const celebrate = require('celebrate')
 
 const mongoose = require('mongoose')
 
@@ -48,6 +51,8 @@ app.set('views', path.join(__dirname, 'views'))
 app.set('view engine', 'pug')
 
 app.use(helmet())
+app.use(BodyParser.json())
+app.use(celebrate.errors())
 
 const clientPromise = mongoose.connection.asPromise().then(connection => (connection = connection.getClient()))
 mongoose.connection.on('error', err => {
