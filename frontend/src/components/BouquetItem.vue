@@ -26,11 +26,7 @@ export default {
   <div class="products">
     <div class="card-group">
       <div class="card">
-        <img
-          src="/images/bouquet1.jpg"
-          class="card-img-top"
-          alt="Bouquet composed of 5 pink peonies wrapped in simple white paper"
-        />
+        <img :src="product.image?.source" class="card-img-top" :alt="product.image?.alt" />
         <div class="card-body">
           <h5 class="card-title">{{ product.title }}</h5>
           <p class="card-text">{{ product.description }}</p>

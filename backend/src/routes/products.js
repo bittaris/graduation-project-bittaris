@@ -22,9 +22,9 @@ router.get('/:_id', async function (req, res, next) {
 /* (POST)Create a new product. */
 router.post('/', async function (req, res, next) {
   const image = await Image.create({
-    source: req.body.source,
-    alt: req.body.alt,
-    format: req.body.format,
+    source: req.body.image.source,
+    alt: req.body.image.alt,
+    format: req.body.image.format,
   })
   const product = await Product.create({
     title: req.body.title,
