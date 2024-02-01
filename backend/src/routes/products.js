@@ -1,6 +1,7 @@
 const express = require('express')
 const router = express.Router()
 const Product = require('../models/product')
+const Image = require('../models/image')
 
 /* GET product listing. */
 router.get('/', async function (req, res, next) {
@@ -20,10 +21,16 @@ router.get('/:_id', async function (req, res, next) {
 
 /* (POST)Create a new product. */
 router.post('/', async function (req, res, next) {
+  const image = await Image.create({
+    source: req.body.source,
+    alt: req.body.alt,
+    format: req.body.format,
+  })
   const product = await Product.create({
     title: req.body.title,
     description: req.body.description,
     price: req.body.price,
+    image: image,
   })
   res.send(product)
 })
