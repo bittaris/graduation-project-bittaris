@@ -10,7 +10,6 @@ const session = require('express-session')
 const MongoStore = require('connect-mongo')
 
 const helmet = require('helmet')
-const BodyParser = require('body-parser')
 const celebrate = require('celebrate')
 const sanitize = require('mongo-sanitize')
 
@@ -52,7 +51,6 @@ app.set('views', path.join(__dirname, 'views'))
 app.set('view engine', 'pug')
 
 app.use(helmet())
-app.use(BodyParser.json())
 app.use(celebrate.errors())
 
 const clientPromise = mongoose.connection.asPromise().then(connection => (connection = connection.getClient()))
