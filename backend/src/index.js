@@ -4,7 +4,7 @@ axios.defaults.baseURL = 'http://localhost:3000'
 // axios.defaults.baseURL = 'http://api:3000'
 
 async function main() {
-  // await axios.get('/delete')
+  await axios.get('/delete')
   // // create user
   // const camel = await axios.post('/users', {
   //   firstName: 'Camel',
@@ -134,18 +134,74 @@ async function main() {
   // console.log('Lamb: ', loggedInLamb.data)
 
   // create new product with image
-  const image = await axios.post('/products', {
-    source: 'public/images/bouquet3.jpg',
-    alt: 'Hand holding a bouquet of pink carnations',
-    format: 'jpg',
+  const bouquetOne = await axios.post('/products', {
+    title: 'Bouquet One',
+    description: 'Bouquet composed of pink peonies',
+    price: '35€',
+    image: {
+      source: '/images/bouquet1.jpg',
+      alt: 'Pink peonies bouquet wrapped in white paper',
+      format: 'jpg',
+    },
   })
+
+  const bouquetTwo = await axios.post('/products', {
+    title: 'Bouquet Two',
+    description: 'Bouquet composed of yellow roses',
+    price: '40€',
+    image: {
+      source: '/images/bouquet2.jpg',
+      alt: 'Yellow rose bouquet on a vase on a window sill',
+      format: 'jpg',
+    },
+  })
+
   const bouquetThree = await axios.post('/products', {
     title: 'Bouquet Three',
-    description: '25 Pink Carnations',
+    description: 'Bouquet composed of pink carnations',
     price: '30€',
-    image: image.data,
+    image: {
+      source: '/images/bouquet3.jpg',
+      alt: 'Hand holding a bouquet of pink carnations',
+      format: 'jpg',
+    },
   })
-  console.log('bouquetThree: ', bouquetThree.data)
+
+  const bouquetFour = await axios.post('/products', {
+    title: 'Bouquet Four',
+    description: 'Bouquet composed of yellow daffodils',
+    price: '15€',
+    image: {
+      source: '/images/bouquet4.jpg',
+      alt: 'yellow daffodils bouquet on a vase on a window sill',
+      format: 'jpg',
+    },
+  })
+
+  const bouquetFive = await axios.post('/products', {
+    title: 'Bouquet Five',
+    description: 'Bouquet composed of white roses',
+    price: '50€',
+    image: {
+      source: '/images/bouquet5.jpg',
+      alt: 'white roses bouquet being handheld against a off-white background',
+      format: 'jpg',
+    },
+  })
+
+  const bouquetSix = await axios.post('/products', {
+    title: 'Bouquet Six',
+    description: 'Bouquet composed of white tulips with pink streaks',
+    price: '50€',
+    image: {
+      source: '/images/bouquet6.jpg',
+      alt: 'bouquet of white tulips with pink streaks in a glass vase against a taupe background',
+      format: 'jpg',
+    },
+  })
+
+  const allProducts = await axios.get('/products')
+  console.log('All products: ', allProducts.data)
 
   // const allUsers = await axios.get('/users')
   // console.log('List of all the users: ', allUsers.data)
