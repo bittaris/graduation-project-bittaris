@@ -2,6 +2,7 @@ const express = require('express')
 const router = express.Router()
 const User = require('../models/user')
 const Product = require('../models/product')
+const { celebrate, Joi, errors, Segments } = require('celebrate')
 
 /* GET users listing. */
 router.get('/', async function (req, res, next) {
@@ -21,13 +22,26 @@ router.get('/:userId', async function (req, res, next) {
 })
 
 /* (POST)Create a new user. */
-router.post('/', async function (req, res, next) {
-  const { firstName, lastName, email, password, type } = req.body
+router.post(
+  '/',
+  celebrate({
+    [Segments.BODY]: Joi.object().keys({
+      firstName: Joi.string().required(),
+      lastName: Joi.string().required(),
+      email: Joi.string().email().required(),
+      password: Joi.string().required(),
+      type: Joi.string().valid('customer', 'owner').required(),
+    }),
+  }),
+  async function (req, res, next) {
+    const { firstName, lastName, email, password, type } = req.body
 
-  const user = await User.register({ firstName, lastName, email, type }, password)
+    const user = await User.register({ firstName, lastName, email, type }, password)
 
-  res.send(user)
-})
+    res.send(user)
+  }
+)
+
 // router.post('/', async function (req, res, next) {
 //   const user = await User.create({
 //     username: req.body.username,
