@@ -12,7 +12,8 @@ export const useUserStore = defineStore('User', {
         firstName: firstName,
         lastName: lastName,
         email: email,
-        password: password
+        password: password,
+        type: 'customer'
       })
       return newUser.data
     }
