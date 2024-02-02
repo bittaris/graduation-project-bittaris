@@ -87,6 +87,7 @@ h1 {
   font-size: 1rem;
   margin-bottom: 2rem;
   margin-top: 1.5rem;
+  margin-left: 5rem;
   color: rgb(248, 246, 243);
 }
 
@@ -94,7 +95,7 @@ h1 {
   header {
     display: flex;
     place-items: center;
-    padding-right: calc(var(--section-gap) / 2);
+    /* padding-right: calc(var(--section-gap) / 2); */
   }
 
   .logo {
