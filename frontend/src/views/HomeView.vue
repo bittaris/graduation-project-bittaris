@@ -1,10 +1,7 @@
-<script setup>
-// import TheWelcome from '../components/TheWelcome.vue'
-</script>
+<script setup></script>
 
 <template>
   <div class="wrapper">
-    <!-- <img src="/images/pexels-polina-kovaleva-6965692.jpg" class="img-fluid" alt="..." /> -->
     <div class="text-overlay">
       <h1>Welcome to Wildflower</h1>
       <h2>Your local online flower shop</h2>
