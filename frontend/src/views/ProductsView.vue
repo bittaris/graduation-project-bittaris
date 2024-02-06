@@ -25,11 +25,9 @@ const products = productsResponse.data
 
 <style scoped>
 h1 {
-  font-size: 1.5rem;
-  font-weight: bold;
-  margin-left: 1rem;
-  margin-bottom: 1rem;
-  color: rgb(248, 246, 243);
+  font-size: 2.5rem;
+  margin: 3rem 0 2rem 5rem;
+  color: rgb(251, 222, 251);
 }
 a {
   color: rgb(20, 145, 0);

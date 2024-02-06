@@ -10,7 +10,7 @@
       <h2>Your local online flower shop</h2>
       <br />
       <br />
-      <h3>Wanna be cute and that show you</h3>
+      <h3>Wanna be cute and show that you</h3>
       <h3>care without actually being there?</h3>
       <a href="/products" class="btn btn-primary">Send flowers</a>
       <br />

@@ -23,4 +23,32 @@
   </div>
 </template>
 
-<style></style>
+<style scoped>
+.about {
+  margin: 3rem 0 0 5rem;
+  text-align: left;
+  max-width: 850px;
+}
+h1 {
+  font-size: 2.5rem;
+  margin-bottom: 0.7rem;
+  color: rgb(186, 70, 157);
+}
+h2 {
+  font-size: 2rem;
+  margin-bottom: 0.7rem;
+  color: rgb(245, 183, 230);
+}
+h3 {
+  font-size: 1.7rem;
+  margin-bottom: 1rem;
+  color: rgb(217, 217, 217);
+  padding: 2rem 0 0 2rem;
+}
+p {
+  font-size: 1.2rem;
+  color: rgb(211, 211, 211);
+  padding: 0 2rem 0 2rem;
+  max-width: 700px;
+}
+</style>
