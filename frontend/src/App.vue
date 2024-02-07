@@ -32,7 +32,9 @@ export default {
   <header>
     <div class="wrapper">
       <nav class="navbar navbar-expand-lg navbar-dark" id="navbarMain">
-        <RouterLink to="/" class="navbar-brand">Wildflower</RouterLink>
+        <RouterLink to="/" class="navbar-brand"
+          ><i class="bi bi-flower3"></i> Wildflower</RouterLink
+        >
         <button
           class="navbar-toggler"
           type="button"
@@ -52,8 +54,12 @@ export default {
             <RouterLink v-if="!user" to="/login" class="nav-item nav-link">Login</RouterLink>
             <RouterLink v-if="!user" to="/register" class="nav-item nav-link">Register</RouterLink>
             <a v-if="user" class="nav-item nav-link" @click="logout">Logout</a>
-            <h1>
-              Wildflower for {{ user?.firstName }}. Socket connected: {{ connected ? 'yes' : 'no' }}
+            <RouterLink class="nav-item nav-link" to="/cart"
+              ><i class="bi bi-cart3"></i
+            ></RouterLink>
+            <h1 class="user-customized">
+              Hey {{ user?.firstName }}!
+              <!-- Socket connected: {{ connected ? 'yes' : 'no' }} -->
             </h1>
           </div>
         </div>
@@ -68,8 +74,17 @@ export default {
 <style scoped>
 .wrapper {
   max-width: 1200px;
-  margin: 0 0 0 2rem;
-  padding: 0 1rem;
+  margin: 0 0 0 rem;
+  padding: 0 5rem;
+}
+
+.user-customized {
+  font-size: 1.2rem;
+  align-items: center;
+  display: inline-block;
+  justify-content: center;
+  margin: 0.74rem 0 0 1rem;
+  color: rgb(200, 200, 200);
 }
 
 /* .navbar-nav {
@@ -88,15 +103,10 @@ export default {
   text-align: center;
 } */
 
-header {
-  line-height: 1;
-  max-height: 80vh;
-}
-
-.logo {
+/* .logo {
   display: block;
   margin: 0 auto 2rem;
-}
+} */
 
 /* nav {
   width: 100%;
@@ -123,22 +133,16 @@ nav a:first-of-type {
   border: 0;
 }
 
-h1 {
-  font-size: 1rem;
-  margin: 0 0 0 5rem;
-  color: rgb(248, 246, 243);
-}
-
 @media (min-width: 1024px) {
   header {
     display: flex;
     place-items: center;
     /* padding-right: calc(var(--section-gap) / 2); */
   }
-
+  /*
   .logo {
     margin: 0 2rem 0 0;
-  }
+  } */
 
   header .wrapper {
     display: flex;
@@ -149,9 +153,8 @@ h1 {
   nav {
     text-align: left;
     margin-left: -1rem;
-    font-size: 1rem;
-
-    padding: 1rem 0;
+    font-size: 1.2rem;
+    padding: 0.5rem 1rem 1.5rem 1rem;
     margin-top: 1rem;
   }
 }
