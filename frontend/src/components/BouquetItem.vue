@@ -1,19 +1,24 @@
 <script>
+import { useUserStore } from '@/stores/user'
+import { useAccountStore } from '@/stores/account'
+import { mapActions, mapState } from 'pinia'
+
 export default {
   name: 'BouquetItem',
-  // data() {
-  //   return {
-  //     product: {
-  //       title: 'Bouquet One',
-  //       description: 'Composed of pink peonies available in different sizes.',
-  //       price: '30€',
-  //       image: {
-  //         url: '/images/bouquet1.jpg',
-  //         alt: 'Bouquet composed of 5 pink peonies wrapped in simple white paper'
-  //       }
-  //     }
-  //   }
-  // },
+  data() {
+    return {
+      showModal: false
+    }
+  },
+  computed: {
+    ...mapState(useAccountStore, ['user'])
+  },
+  methods: {
+    toggleModal() {
+      this.showModal = !this.showModal
+    },
+    ...mapActions(useUserStore, ['addItemToCart'])
+  },
   props: {
     product: {
       type: Object,
@@ -28,11 +33,86 @@ export default {
       <div class="card">
         <img :src="product.image?.source" class="card-img-top" :alt="product.image?.alt" />
         <div class="card-body">
-          <h5 class="card-title">{{ product.title }}</h5>
+          <h2 class="card-title">{{ product.title }}</h2>
           <p class="card-text">{{ product.description }}</p>
-          <a href="#" class="btn btn-primary">Select size</a>
+          <!-- <a href="#" class="btn btn-primary">Select size</a> -->
+          <button
+            type="button"
+            class="btn btn-primary"
+            data-bs-toggle="modal"
+            @click="toggleModal"
+            :data-bs-target="`#modal${product._id}`"
+          >
+            Select size
+          </button>
+        </div>
+      </div>
+      <div
+        class="modal fade"
+        :id="`modal${product._id}`"
+        tabindex="-1"
+        role="dialog"
+        aria-labelledby="exampleModalCenterTitle"
+        aria-hidden="true"
+      >
+        <div class="modal-dialog modal-dialog-centered" role="document">
+          <div class="modal-content">
+            <div class="modal-header">
+              <h5 class="modal-title" id="ModalLongTitle">Info</h5>
+              <button type="button" class="close" data-bs-dismiss="modal" aria-label="Close">
+                <span aria-hidden="true">&times;</span>
+              </button>
+            </div>
+            <div class="modal-body">
+              <div class="product">
+                <h3>{{ product.title }}</h3>
+                <p>{{ product.description }} for {{ product.price }}</p>
+              </div>
+            </div>
+            <div class="modal-footer">
+              <button type="button" class="btn btn-secondary" data-bs-dismiss="modal">Close</button>
+              <button
+                @click="addItemToCart(user._id, product._id)"
+                type="button"
+                class="btn btn-primary"
+              >
+                <i class="bi bi-cart3"></i> Add to cart
+              </button>
+            </div>
+          </div>
         </div>
       </div>
     </div>
   </div>
 </template>
+<style scoped>
+.modal-title {
+  font-size: 1.5rem;
+  color: rgb(1, 1, 1);
+}
+h2 {
+  font-size: 1.5rem;
+  margin-bottom: 0.7rem;
+  color: rgb(0, 0, 0);
+}
+h3 {
+  font-size: 1.2rem;
+  margin-bottom: 0.7rem;
+  color: rgb(0, 0, 0);
+}
+.product {
+  color: rgb(0, 0, 0);
+  text-align: left;
+}
+
+.btn-secondary {
+  background-color: rgb(101, 101, 101);
+  border-color: rgb(101, 101, 101);
+  color: white;
+}
+.btn-primary {
+  background-color: rgb(8, 62, 0);
+  border-color: rgb(8, 62, 0);
+  color: white;
+}
+</style>
