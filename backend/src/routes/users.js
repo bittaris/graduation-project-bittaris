@@ -73,16 +73,16 @@ router.get('/:userId/cart', async function (req, res, next) {
 // /users/userId/cart/items => post, add an item to the cart
 router.post('/:userId/cart/items', async function (req, res, next) {
   const { userId } = req.params
-  const { itemId } = req.body
+  const { productId } = req.body
 
   const user = await User.findById(userId)
-  const item = await Product.findById(itemId)
+  const product = await Product.findById(productId)
 
-  if (!user || !item) {
-    res.sendStatus(404).send('User or item not found')
+  if (!user || !product) {
+    res.sendStatus(404).send('User or product not found')
   }
 
-  await user.addItemToCart(item)
+  await user.addItemToCart(product)
   // Fetch updated user object from database
   const updatedUser = await User.findById(userId)
 
