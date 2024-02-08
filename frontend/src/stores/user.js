@@ -16,6 +16,13 @@ export const useUserStore = defineStore('User', {
         type: 'customer'
       })
       return newUser.data
+    },
+    async fetchCart(userId) {
+      const cart = await axios.get(`/users/${userId}/cart`)
+      return cart.data
+    },
+    async addItemToCart(userId, productId) {
+      await axios.post(`/users/${userId}/cart/items`, { productId })
     }
   }
 })
