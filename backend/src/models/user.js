@@ -7,15 +7,28 @@ const Product = require('./product')
 const userSchema = new mongoose.Schema({
   firstName: String,
   lastName: String,
-  cart: [{ type: mongoose.Schema.Types.ObjectId, ref: 'Product', autopopulate: true }],
+  cart: [
+    {
+      product: { type: mongoose.Schema.Types.ObjectId, ref: 'Product', autopopulate: true },
+      quantity: { type: Number, default: 1 },
+    },
+  ],
   type: { type: String, enum: ['owner', 'customer'], default: 'customer' },
 })
 
 class User {
-  async addItemToCart(itemToAdd) {
-    this.cart.push(itemToAdd)
+  async addItemToCart(product, quantity) {
+    const existingItem = this.cart.find(item => item.product._id.equals(product._id))
+
+    if (existingItem) {
+      existingItem.quantity += quantity
+    } else {
+      this.cart.push({ product, quantity })
+    }
+
     await this.save()
   }
+
   async removeItem(itemToRemove) {
     this.cart.pull(itemToRemove)
     await this.save()

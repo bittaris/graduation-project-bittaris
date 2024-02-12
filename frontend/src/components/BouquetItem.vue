@@ -7,7 +7,8 @@ export default {
   name: 'BouquetItem',
   data() {
     return {
-      showModal: false
+      showModal: false,
+      quantity: 1
     }
   },
   computed: {
@@ -70,9 +71,10 @@ export default {
               </div>
             </div>
             <div class="modal-footer">
+              <input type="number" class="form-control" placeholder="quantity" v-model="quantity" />
               <button type="button" class="btn btn-secondary" data-bs-dismiss="modal">Close</button>
               <button
-                @click="addItemToCart(user._id, product._id)"
+                @click="addItemToCart(user._id, product._id, quantity)"
                 type="button"
                 class="btn btn-primary"
               >

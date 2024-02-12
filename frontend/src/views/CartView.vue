@@ -26,17 +26,29 @@ export default {
     <h1>Cart</h1>
     <div class="container text-center">
       <div class="row row-cols-1 row-cols-sm-2 row-cols-md-2 row-cols-lg-3">
-        <div class="col g-4" v-for="product in cart" :key="product._id">
+        <div class="col g-4" v-for="item in cart" :key="item.product._id">
           <div class="card">
-            <img :src="product.image" class="card-img-top" alt="..." />
+            <img :src="item.product.image" class="card-img-top" alt="..." />
             <div class="card-body">
-              <h5 class="card-title">{{ product.title }}</h5>
-              <p class="card-text">{{ product.description }}</p>
-              <p class="card-text">{{ product.price }}</p>
+              <h5 class="card-title">{{ item.product.title }}</h5>
+              <p class="card-text">{{ item.product.description }}</p>
+              <p class="card-text">{{ item.product.price }}</p>
+              <p class="card-text">{{ item.quantity }}</p>
             </div>
           </div>
         </div>
       </div>
+      <RouterLink class="btn btn-primary" to="/checkout">Proceed to checkout</RouterLink>
     </div>
   </div>
 </template>
+<style scope>
+h1 {
+  font-size: 2rem;
+  margin: 0 0 0 3rem;
+}
+.btn-primary {
+  margin: 2rem 0rem 5rem 0rem;
+  padding: 0.7rem 1.5rem 0.7rem 1.5rem;
+}
+</style>
