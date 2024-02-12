@@ -20,7 +20,7 @@ export default {
 }
 </script>
 <template>
-  <h3>Log into your account</h3>
+  <h2>Log into your account</h2>
 
   <form @submit.prevent="doLogin">
     <div>
@@ -37,8 +37,13 @@ export default {
 </template>
 
 <style scoped>
-h3 {
-  color: rgb(1, 179, 31);
+h2 {
+  color: rgb(176, 176, 176);
+  margin: 2rem 0 1rem 3rem;
+}
+
+form {
+  margin: 0 0 0 3rem;
 }
 
 label {
