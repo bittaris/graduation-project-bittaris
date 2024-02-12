@@ -22,7 +22,7 @@ export default {
 }
 </script>
 <template>
-  <h3>Register for an account</h3>
+  <h2>Register for an account</h2>
 
   <form @submit.prevent="doRegister">
     <div>
@@ -41,6 +41,26 @@ export default {
       <label for="password">Password:</label>
       <input id="password" type="password" v-model="password" />
     </div>
-    <button type="submit">Register</button>
+    <button class="btn btn-primary" @click="doRegister">Register</button>
   </form>
 </template>
+<style scoped>
+label {
+  display: block;
+  margin: 0.7rem 0 0 0;
+}
+h2 {
+  font-size: 2rem;
+  margin: 2rem 0 1rem 3rem;
+}
+form {
+  margin: 2rem 0 0 3rem;
+}
+.btn-primary {
+  font-family: Arial, Helvetica, sans-serif;
+  font-weight: bold;
+  color: rgb(255, 255, 255);
+  background-color: green;
+  margin-top: 2rem;
+}
+</style>
