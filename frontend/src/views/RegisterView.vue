@@ -41,7 +41,7 @@ export default {
       <label for="password">Password:</label>
       <input id="password" type="password" v-model="password" />
     </div>
-    <button class="btn btn-primary" @click="doRegister">Register</button>
+    <button type="submit" class="btn btn-primary">Register</button>
   </form>
 </template>
 <style scoped>
