@@ -53,7 +53,6 @@ export default {
             <RouterLink to="/products" class="nav-item nav-link">Bouquets</RouterLink>
             <RouterLink v-if="!user" to="/login" class="nav-item nav-link">Login</RouterLink>
             <RouterLink v-if="!user" to="/register" class="nav-item nav-link">Register</RouterLink>
-            <a v-if="user" class="nav-item nav-link" @click="logout">Logout</a>
             <RouterLink class="nav-item nav-link" to="/cart"
               ><i class="bi bi-cart3"></i
             ></RouterLink>
@@ -61,6 +60,7 @@ export default {
               Hey {{ user?.firstName }}!
               <!-- Socket connected: {{ connected ? 'yes' : 'no' }} -->
             </h1>
+            <a v-if="user" class="nav-item nav-link" @click="logout">Logout</a>
           </div>
         </div>
       </nav>
