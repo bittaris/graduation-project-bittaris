@@ -71,7 +71,7 @@ router.get('/:userId/cart', async function (req, res, next) {
 })
 
 // /users/userId/cart/items => post, add an item to the cart
-router.post('/:userId/cart/items', async function (req, res, next) {
+router.post('/:userId/cart/products', async function (req, res, next) {
   const { userId } = req.params
   const { productId, quantity } = req.body
 
