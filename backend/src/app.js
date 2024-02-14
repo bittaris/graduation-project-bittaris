@@ -82,8 +82,7 @@ app.use((req, res, next) => {
   req.session.numberOfVisits = numberOfVisits + 1
   req.session.history = req.session.history || []
   req.session.history.push({ url: req.url, ip: req.ip })
-  console.log('number of visits: ', req.session.numberOfVisits)
-  // req.session.ip = req.ip
+  // console.log('number of visits: ', req.session.numberOfVisits)
 
   next()
 })
@@ -142,7 +141,7 @@ app.createSocketServer = function (server) {
     if (socket.request.user) {
       socket.join(socket.request.user._id.toString())
     }
-    console.log('user session: ', socket.request.session)
+    // console.log('user session: ', socket.request.session)
 
     socket.emit('number of visits', socket.request.session.numberOfVisits)
 
