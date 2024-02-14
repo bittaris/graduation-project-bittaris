@@ -29,8 +29,17 @@ class User {
     await this.save()
   }
 
-  async removeItem(itemToRemove) {
-    this.cart.pull(itemToRemove)
+  async removeItem(product, quantity) {
+    const existingItem = this.cart.find(item => item.product._id.equals(product._id))
+
+    if (existingItem) {
+      if (existingItem.quantity > quantity) {
+        existingItem.quantity -= quantity
+      } else {
+        this.cart = this.cart.filter(item => !item.product._id.equals(product._id))
+      }
+    }
+
     await this.save()
   }
   async placeOrder(deliveryAddress) {

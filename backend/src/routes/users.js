@@ -92,12 +92,15 @@ router.post('/:userId/cart/products', async function (req, res, next) {
 
 // /users/userId/cart/items/itemId => delete, remove an item from the cart
 
-router.delete('/:userId/cart/items/:itemId', async function (req, res, next) {
-  const { userId, itemId } = req.params
+router.delete('/:userId/cart/products/:productId', async function (req, res, next) {
+  console.log('req.params: ', req.params)
+  const { userId, productId } = req.params
+  const { quantity } = req.body
 
   const user = await User.findById(userId)
-  const item = await Product.findById(itemId)
-  await user.removeItem(item)
+  const product = await Product.findById(productId)
+
+  await user.removeItem(product, quantity)
 
   res.send(user.cart)
 })

@@ -14,8 +14,12 @@ export default {
     ...mapState(useAccountStore, ['user'])
   },
   methods: {
-    ...mapActions(useUserStore, ['fetchCart'])
+    ...mapActions(useUserStore, ['fetchCart', 'removeItemFromCart']),
+    removeItem(productId) {
+      this.removeItemFromCart(this.user._id, productId, 1)
+    }
   },
+
   async mounted() {
     this.cart = await this.fetchCart(this.user._id)
   }
