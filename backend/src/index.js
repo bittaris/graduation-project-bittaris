@@ -136,7 +136,7 @@ async function main() {
   // create new product with image
   const bouquetOne = await axios.post('/products', {
     title: 'Bouquet One',
-    description: 'Bouquet composed of pink peonies',
+    description: 'Composed of pink peonies',
     price: '35€',
     image: {
       source: '/images/bouquet1.jpg',
@@ -147,7 +147,7 @@ async function main() {
 
   const bouquetTwo = await axios.post('/products', {
     title: 'Bouquet Two',
-    description: 'Bouquet composed of yellow roses',
+    description: 'Composed of yellow roses',
     price: '40€',
     image: {
       source: '/images/bouquet2.jpg',
@@ -158,7 +158,7 @@ async function main() {
 
   const bouquetThree = await axios.post('/products', {
     title: 'Bouquet Three',
-    description: 'Bouquet composed of pink carnations',
+    description: 'Composed of pink carnations',
     price: '30€',
     image: {
       source: '/images/bouquet3.jpg',
@@ -169,7 +169,7 @@ async function main() {
 
   const bouquetFour = await axios.post('/products', {
     title: 'Bouquet Four',
-    description: 'Bouquet composed of yellow daffodils',
+    description: 'Composed of yellow daffodils',
     price: '15€',
     image: {
       source: '/images/bouquet4.jpg',
@@ -180,7 +180,7 @@ async function main() {
 
   const bouquetFive = await axios.post('/products', {
     title: 'Bouquet Five',
-    description: 'Bouquet composed of white roses',
+    description: 'Composed of white roses',
     price: '50€',
     image: {
       source: '/images/bouquet5.jpg',
@@ -191,7 +191,7 @@ async function main() {
 
   const bouquetSix = await axios.post('/products', {
     title: 'Bouquet Six',
-    description: 'Bouquet composed of white tulips with pink streaks',
+    description: 'Composed of white tulips with pink streaks',
     price: '50€',
     image: {
       source: '/images/bouquet6.jpg',
