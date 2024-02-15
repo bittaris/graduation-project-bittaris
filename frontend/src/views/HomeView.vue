@@ -1,4 +1,6 @@
-<script setup></script>
+<script>
+import { RouterLink } from 'vue-router'
+</script>
 
 <template>
   <div class="wrapper">
@@ -9,7 +11,7 @@
       <br />
       <h3>Wanna be cute and show that you</h3>
       <h3>care without actually being there?</h3>
-      <a href="/products" class="btn btn-primary">Send flowers</a>
+      <RouterLink to="/products" class="btn btn-primary">Send flowers</RouterLink>
       <br />
       <br />
       <h4>All of the credibility</h4>
