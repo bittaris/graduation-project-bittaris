@@ -30,9 +30,6 @@ export default {
       // save updated cart to local storage
       localStorage.setItem('cart', JSON.stringify(this.cart))
       this.$router.push('/cart')
-      // hide modal
-      this.showModal = false
-      this.removeModalBackdrop()
     },
     removeModalBackdrop() {
       let backdrop = document.querySelector('.modal-backdrop')
@@ -97,6 +94,7 @@ export default {
               <button
                 @click="addItemAndRedirect(user._id, product._id, quantity)"
                 type="button"
+                data-bs-dismiss="modal"
                 class="btn btn-primary"
               >
                 <i class="bi bi-cart3"></i> Add to cart
