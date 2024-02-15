@@ -17,8 +17,29 @@ export default {
   methods: {
     toggleModal() {
       this.showModal = !this.showModal
+      if (!this.showModal) {
+        this.removeModalBackdrop()
+      }
     },
-    ...mapActions(useUserStore, ['addItemToCart'])
+    ...mapActions(useUserStore, ['addItemToCart', 'fetchCart']),
+    async addItemAndRedirect(userId, productId, quantity) {
+      await this.addItemToCart(userId, productId, quantity)
+      this.cart = await this.fetchCart(userId)
+      console.log('this.cart', this.cart)
+
+      // save updated cart to local storage
+      localStorage.setItem('cart', JSON.stringify(this.cart))
+      this.$router.push('/cart')
+      // hide modal
+      this.showModal = false
+      this.removeModalBackdrop()
+    },
+    removeModalBackdrop() {
+      let backdrop = document.querySelector('.modal-backdrop')
+      if (backdrop) {
+        backdrop.parentNode.removeChild(backdrop)
+      }
+    }
   },
   props: {
     product: {
@@ -36,7 +57,6 @@ export default {
         <div class="card-body">
           <h2 class="card-title">{{ product.title }}</h2>
           <p class="card-text">{{ product.description }}</p>
-          <!-- <a href="#" class="btn btn-primary">Select size</a> -->
           <button
             type="button"
             class="btn btn-primary"
@@ -44,7 +64,7 @@ export default {
             @click="toggleModal"
             :data-bs-target="`#modal${product._id}`"
           >
-            Select size
+            Select amount
           </button>
         </div>
       </div>
@@ -55,6 +75,7 @@ export default {
         role="dialog"
         aria-labelledby="exampleModalCenterTitle"
         aria-hidden="true"
+        v-show="showModal"
       >
         <div class="modal-dialog modal-dialog-centered" role="document">
           <div class="modal-content">
@@ -74,7 +95,7 @@ export default {
               <input type="number" class="form-control" placeholder="quantity" v-model="quantity" />
               <button type="button" class="btn btn-secondary" data-bs-dismiss="modal">Close</button>
               <button
-                @click="addItemToCart(user._id, product._id, quantity)"
+                @click="addItemAndRedirect(user._id, product._id, quantity)"
                 type="button"
                 class="btn btn-primary"
               >
