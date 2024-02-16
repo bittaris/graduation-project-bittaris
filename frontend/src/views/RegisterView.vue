@@ -52,6 +52,7 @@ label {
 h2 {
   font-size: 2rem;
   margin: 2rem 0 1rem 3rem;
+  color: thistle;
 }
 form {
   margin: 2rem 0 0 3rem;
@@ -61,6 +62,7 @@ form {
   font-weight: bold;
   color: rgb(255, 255, 255);
   background-color: green;
+  border-color: green;
   margin-top: 2rem;
 }
 </style>
