@@ -40,7 +40,7 @@ import { RouterLink } from 'vue-router'
 .text-overlay {
   /* background-color: rgba(0, 0, 0, 0.5); */
   color: white;
-  padding: 5rem;
+  padding: 2rem 0 0 0rem;
   text-align: left;
   flex-direction: column;
   justify-content: left;
@@ -48,7 +48,7 @@ import { RouterLink } from 'vue-router'
   height: 100%;
 }
 .btn {
-  background-color: #c46c01;
+  background-color: #b86500;
   border: none;
   color: rgb(255, 255, 255);
   padding: 15px 32px;
