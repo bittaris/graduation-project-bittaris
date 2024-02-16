@@ -54,7 +54,7 @@ export default {
             <RouterLink to="/contact" class="nav-item nav-link">Get in touch</RouterLink>
             <RouterLink v-if="!user" to="/login" class="nav-item nav-link">Login</RouterLink>
             <RouterLink v-if="!user" to="/register" class="nav-item nav-link">Register</RouterLink>
-            <RouterLink class="nav-item nav-link" to="/cart"
+            <RouterLink v-if="user" class="nav-item nav-link" to="/cart"
               ><i class="bi bi-cart3"></i
             ></RouterLink>
             <h1 v-if="user" class="user-customized">
