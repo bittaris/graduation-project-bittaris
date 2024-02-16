@@ -24,7 +24,7 @@ export default {
   </header>
   <body>
     <h2>Write to us using the form below</h2>
-    <form>
+    <form @submit.prevent="showAlert">
       <div>
         <label for="firstName">First Name</label>
         <input id="firstName" type="text" v-model="firstName" />
@@ -41,7 +41,7 @@ export default {
         <label for="message">Message</label>
         <textarea id="message" v-model="message"></textarea>
       </div>
-      <button @click="showAlert" class="btn btn-primary" type="submit">Send</button>
+      <button class="btn btn-primary" type="submit">Send</button>
     </form>
   </body>
 </template>
