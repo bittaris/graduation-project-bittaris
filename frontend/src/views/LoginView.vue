@@ -38,12 +38,12 @@ export default {
 
 <style scoped>
 h2 {
-  color: rgb(176, 176, 176);
+  color: thistle;
   margin: 2rem 0 1rem 3rem;
 }
 
 form {
-  margin: 0 0 0 3rem;
+  margin: 2rem 3rem 0 3rem;
 }
 
 label {
@@ -56,6 +56,7 @@ button {
   font-weight: bold;
   color: rgb(255, 255, 255);
   background-color: green;
-  margin-top: 1rem;
+  border-color: green;
+  margin-top: 2rem;
 }
 </style>
