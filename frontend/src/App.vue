@@ -88,26 +88,13 @@ export default {
   color: rgb(200, 200, 200);
 }
 
-/* .navbar-nav {
-  margin: 0 auto;
-  display: flex;
-  align-items: center;
-  flex-direction: row;
-  padding-inline: 3rem 3rem 3rem 3rem;
-} */
-
-/* .nav-item {
+.nav-item {
   margin: 0 1rem;
   color: rgb(184, 182, 182);
   text-align: center;
-  font-size: 1rem;
+  font-size: 1.2rem;
   text-align: center;
-} */
-
-/* .logo {
-  display: block;
-  margin: 0 auto 2rem;
-} */
+}
 
 /* nav {
   width: 100%;
