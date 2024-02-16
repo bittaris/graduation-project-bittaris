@@ -51,6 +51,7 @@ export default {
             <RouterLink to="/" class="nav-item nav-link active">Home</RouterLink>
             <RouterLink to="/about" class="nav-item nav-link">About</RouterLink>
             <RouterLink to="/products" class="nav-item nav-link">Bouquets</RouterLink>
+            <RouterLink to="/contact" class="nav-item nav-link">Get in touch</RouterLink>
             <RouterLink v-if="!user" to="/login" class="nav-item nav-link">Login</RouterLink>
             <RouterLink v-if="!user" to="/register" class="nav-item nav-link">Register</RouterLink>
             <RouterLink class="nav-item nav-link" to="/cart"
