@@ -2,6 +2,7 @@
 import { useUserStore } from '@/stores/user'
 import { useAccountStore } from '@/stores/account'
 import { mapActions, mapState } from 'pinia'
+import OrderBreakdown from '@/components/OrderBreakdown.vue'
 
 export default {
   name: 'CartView',
@@ -10,8 +11,18 @@ export default {
       cart: []
     }
   },
+  components: {
+    OrderBreakdown
+  },
   computed: {
-    ...mapState(useAccountStore, ['user'])
+    ...mapState(useAccountStore, ['user']),
+    totalPrice() {
+      return this.cart.reduce((total, item) => {
+        const itemPrice = parseFloat(item.product.price.split('€')[0])
+
+        return total + itemPrice * item.quantity
+      }, 0)
+    }
   },
   methods: {
     ...mapActions(useUserStore, ['fetchCart', 'addItemToCart', 'removeItemFromCart']),
@@ -55,6 +66,7 @@ export default {
 </script>
 <template>
   <h1>Cart</h1>
+  <!-- <OrderBreakdown :cart="cart" /> -->
   <div v-for="item in cart" :key="item.product._id">
     <div class="item-body">
       <h2 class="item-title">{{ item.product.title }}</h2>
@@ -71,6 +83,9 @@ export default {
       </p>
       <p>---------------------------------------</p>
     </div>
+  </div>
+  <div class="totalPrice">
+    <h4>Total Price: {{ totalPrice }} €</h4>
   </div>
   <RouterLink class="btn btn-primary" to="/checkout">Proceed to checkout</RouterLink>
 </template>
@@ -90,6 +105,11 @@ h3 {
   /* margin-bottom: 0.7rem; */
   color: rgb(224, 224, 224);
 }
+h4 {
+  font-size: 1rem;
+  /* margin-bottom: 0.7rem; */
+  color: whitesmoke;
+}
 p {
   font-size: 1rem;
   /* margin-bottom: 0.7rem; */
@@ -103,5 +123,9 @@ p {
   border-color: rgb(8, 62, 0);
   color: white;
   margin-left: 6.5rem;
+}
+.totalPrice {
+  margin: 2rem 0 2rem 3rem;
+  color: whitesmoke;
 }
 </style>
