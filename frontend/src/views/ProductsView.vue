@@ -20,6 +20,9 @@ const products = productsResponse.data
         </div>
       </div>
     </div>
+    <footer>
+      <h2>Looking for a specific type of flower or bouquet? Reach out to us directly!</h2>
+    </footer>
   </div>
 </template>
 
@@ -28,6 +31,13 @@ h1 {
   font-size: 2.5rem;
   margin: 3rem 0 2rem 5rem;
   color: rgb(251, 222, 251);
+}
+
+h2 {
+  font-size: 1rem;
+  margin: 2rem 0 2rem 0;
+  color: rgb(252, 239, 252);
+  text-align: center;
 }
 a {
   color: rgb(20, 145, 0);
