@@ -1,4 +1,7 @@
 <script>
+import { useUserStore } from '@/stores/user'
+import { useAccountStore } from '@/stores/account'
+import { mapActions, mapState } from 'pinia'
 export default {
   name: 'CheckoutView',
   data() {
@@ -12,8 +15,13 @@ export default {
       country: ''
     }
   },
+  computed: {
+    ...mapState(useAccountStore, ['user'])
+  },
   methods: {
-    showAlert: () => {
+    ...mapActions(useUserStore, ['emptyCart']),
+    showAlert() {
+      this.emptyCart(this.user._id)
       alert(
         "Thank you for your purchase! Are you worried about the fact you didn't input any payment information? Don't worry, money is made up. Flowers will find their way to you regardless."
       )
@@ -62,7 +70,7 @@ export default {
       <p>*To assure the quality of our flowers, we only deliver inside Germany.</p>
     </form>
     <h2>Billing information</h2>
-    <form>
+    <form @submit.prevent="showAlert">
       <div class="names-billing">
         <div>
           <label for="firstName">First Name</label>
@@ -95,9 +103,9 @@ export default {
           <input id="country" type="text" v-model="country" />
         </div>
       </div>
-      <RouterLink @click="showAlert" class="btn btn-primary" to="/checkout"
-        ><i class="bi bi-shield-lock"></i> Pay safely</RouterLink
-      >
+      <button type="submit" class="btn btn-primary">
+        <i class="bi bi-shield-lock"></i> Pay safely
+      </button>
     </form>
   </body>
 </template>
