@@ -56,7 +56,7 @@ export default {
             <RouterLink class="nav-item nav-link" to="/cart"
               ><i class="bi bi-cart3"></i
             ></RouterLink>
-            <h1 class="user-customized">
+            <h1 v-if="user" class="user-customized">
               Hey {{ user?.firstName }}!
               <!-- Socket connected: {{ connected ? 'yes' : 'no' }} -->
             </h1>
