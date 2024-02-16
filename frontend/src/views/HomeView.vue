@@ -18,37 +18,25 @@ import { RouterLink } from 'vue-router'
       <h4>none of the hassle</h4>
     </div>
   </div>
-
-  <!-- <div class="card text-bg-dark">
-    <img src="/images/pexels-polina-kovaleva-6965692.jpg" class="card-img" alt="..." />
-    <div class="card-img-overlay">
-      <h1 class="card-title">Welcome to Wildflower</h1>
-      <h2 class="card-text">Your local online flower shop</h2>
-      <br />
-      <br />
-      <h3 class="card-text">Wanna be cute and that show you</h3>
-      <h3 class="card-text">care without actually being there?</h3>
-      <a href="/products" class="btn btn-primary">Send flowers</a>
-      <br />
-      <br />
-      <h4>All of the credibility</h4>
-      <h4>none of the hassle</h4>
-    </div>
-  </div> -->
 </template>
 
 <style scoped>
 .wrapper {
-  background-image: url('/images/homepage_bouquet.png');
+  background: url('/images/homepage_bouquet.png') no-repeat center center fixed;
+  -webkit-background-size: cover;
+  -moz-background-size: cover;
+  -o-background-size: cover;
   background-size: cover;
   background-position: center;
-  height: 80vh;
+  height: 100vh;
+  min-width: 0;
   /* display: flex;
   flex-direction: column;
   justify-content: center;
   align-items: center;
   text-align: center; */
 }
+
 .text-overlay {
   /* background-color: rgba(0, 0, 0, 0.5); */
   color: white;
