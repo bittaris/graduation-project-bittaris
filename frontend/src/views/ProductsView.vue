@@ -21,7 +21,11 @@ const products = productsResponse.data
       </div>
     </div>
     <footer>
-      <h2>Looking for a specific type of flower or bouquet? Reach out to us directly!</h2>
+      <h2>
+        Looking for a specific type of flower or bouquet?<RouterLink to="/contact" class="nav-item">
+          Reach out to us directly!</RouterLink
+        >
+      </h2>
     </footer>
   </div>
 </template>
