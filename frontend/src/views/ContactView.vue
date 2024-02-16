@@ -8,6 +8,13 @@ export default {
       email: '',
       message: ''
     }
+  },
+  methods: {
+    showAlert: () => {
+      alert(
+        'Thank you for reaching out to us! No one will read your message. You are free to write your guilt free letters to the void. You are safe here.'
+      )
+    }
   }
 }
 </script>
@@ -34,7 +41,7 @@ export default {
         <label for="message">Message</label>
         <textarea id="message" v-model="message"></textarea>
       </div>
-      <button class="btn btn-primary" type="submit">Send</button>
+      <button @click="showAlert" class="btn btn-primary" type="submit">Send</button>
     </form>
   </body>
 </template>
